@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tomsdoo/github-repo/issues"
   },
-  "homepage": "https://github.com/tomsdoo/github-repo#readme"
+  "homepage": "https://github.com/tomsdoo/github-repo#readme",
+  "dependencies": {
+    "@octokit/rest": "^19.0.5"
+  }
 }
