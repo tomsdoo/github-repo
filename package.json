@@ -19,5 +19,9 @@
   "homepage": "https://github.com/tomsdoo/github-repo#readme",
   "dependencies": {
     "@octokit/rest": "^19.0.5"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1"
   }
 }
