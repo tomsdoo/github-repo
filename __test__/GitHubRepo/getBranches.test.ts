@@ -1,4 +1,11 @@
-import { afterEach, beforeEach, describe, it, expect, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+  expect,
+  jest,
+} from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
 
 const callstacks = {
@@ -11,11 +18,19 @@ jest.mock("@octokit/rest", () => ({
   Octokit: class Octokit {
     protected token: string;
     public rest: any;
-    constructor({ auth }: { auth: string; }){
+    constructor({ auth }: { auth: string }) {
       this.token = auth;
       this.rest = {
         git: {
-          listMatchingRefs: async ({ owner, repo, ref }: { owner: string; repo: string; ref: string;}) => {
+          listMatchingRefs: async ({
+            owner,
+            repo,
+            ref,
+          }: {
+            owner: string;
+            repo: string;
+            ref: string;
+          }) => {
             callstacks.octokit.listMathchingRefs.push({ owner, repo, ref });
             return await Promise.resolve({
               data: [
@@ -25,13 +40,13 @@ jest.mock("@octokit/rest", () => ({
                 {
                   ref: "refs/heads/branch2",
                 },
-              ]
+              ],
             });
-          }
-        }
+          },
+        },
       };
     }
-  }
+  },
 }));
 
 describe("GitHugRepo", () => {
@@ -49,10 +64,7 @@ describe("GitHugRepo", () => {
   describe("getBranches()", () => {
     it("success", async () => {
       const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getBranches()).toEqual([
-        "branch1",
-        "branch2",
-      ]);
+      expect(await instance.getBranches()).toEqual(["branch1", "branch2"]);
       expect(callstacks.octokit.listMathchingRefs.pop()).toStrictEqual({
         owner: "dummyOwner",
         repo: "dummyRepo",
