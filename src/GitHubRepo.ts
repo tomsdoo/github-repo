@@ -61,7 +61,18 @@ export class GitHubRepo {
       );
   }
 
-  public async getTree(sha: string): Promise<Array<{ path?: string; mode?: string; type?: string; sha?: string; size?: number; url?: string; }>> {
+  public async getTree(
+    sha: string
+  ): Promise<
+    Array<{
+      path?: string;
+      mode?: string;
+      type?: string;
+      sha?: string;
+      size?: number;
+      url?: string;
+    }>
+  > {
     return await this.octokit.rest.git
       .getTree({
         owner: this.owner,
@@ -72,7 +83,18 @@ export class GitHubRepo {
       .then(({ data: { tree } }) => tree);
   }
 
-  public async getBranchTree(branch: string): Promise<Array<{ path?: string; mode?: string; type?: string; sha?: string; size?: number; url?: string; }>> {
+  public async getBranchTree(
+    branch: string
+  ): Promise<
+    Array<{
+      path?: string;
+      mode?: string;
+      type?: string;
+      sha?: string;
+      size?: number;
+      url?: string;
+    }>
+  > {
     const branchSha = await this.getBranchSha(branch);
     return await this.getTree(branchSha);
   }
