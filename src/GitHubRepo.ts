@@ -52,4 +52,8 @@ export class GitHubRepo {
     })
       .then(({ data: { tree }}) => tree);
   }
+  public async getBranchTree(branch: string){
+    const branchSha = await this.getBranchSha(branch);
+    return await this.getTree(branchSha);
+  }
 }
