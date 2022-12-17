@@ -1,4 +1,11 @@
-import { afterEach, beforeEach, describe, it, expect, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+  expect,
+  jest,
+} from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
 
 const callstacks = {
@@ -11,12 +18,27 @@ jest.mock("@octokit/rest", () => ({
   Octokit: class Octokit {
     protected token: string;
     public rest: any;
-    constructor({ auth }: { auth: string; }){
+    constructor({ auth }: { auth: string }) {
       this.token = auth;
       this.rest = {
         git: {
-          getTree: async ({ owner, repo, tree_sha, recursive  }: { owner: string; repo: string; tree_sha: string; recursive: string; }) => {
-            callstacks.octokit.getTree.push({ owner, repo, tree_sha, recursive });
+          getTree: async ({
+            owner,
+            repo,
+            tree_sha,
+            recursive,
+          }: {
+            owner: string;
+            repo: string;
+            tree_sha: string;
+            recursive: string;
+          }) => {
+            callstacks.octokit.getTree.push({
+              owner,
+              repo,
+              tree_sha,
+              recursive,
+            });
             return await Promise.resolve({
               data: {
                 tree: [
@@ -26,11 +48,11 @@ jest.mock("@octokit/rest", () => ({
                 ],
               },
             });
-          }
-        }
+          },
+        },
       };
     }
-  }
+  },
 }));
 
 describe("GitHugRepo", () => {

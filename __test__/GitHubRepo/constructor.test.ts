@@ -1,4 +1,11 @@
-import { afterEach, beforeEach, describe, it, expect, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+  expect,
+  jest,
+} from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
 
 const callstacks = {
@@ -10,7 +17,7 @@ const callstacks = {
 jest.mock("@octokit/rest", () => ({
   Octokit: class Octokit {
     protected token: string;
-    constructor({ auth }: { auth: string; }){
+    constructor({ auth }: { auth: string }) {
       callstacks.octokit.constructor.push({ auth });
       this.token = auth;
     }

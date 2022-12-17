@@ -1,4 +1,11 @@
-import { afterEach, beforeEach, describe, it, expect, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+  expect,
+  jest,
+} from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
 
 describe("GitHubRepo", () => {
@@ -19,7 +26,7 @@ describe("GitHubRepo", () => {
       const spyGetRefSha = jest
         .spyOn(GitHubRepo.prototype, "getRefSha")
         .mockReturnValue(Promise.resolve(mockedValue));
-      
+
       const instance = new GitHubRepo(githubToken, owner, repo);
       expect(await instance.getBranchSha("dummyBranch")).toBe("dummySha");
       expect(spyGetRefSha).toHaveBeenCalledWith("heads/dummyBranch");
