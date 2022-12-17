@@ -25,6 +25,7 @@ jest.mock("@octokit/rest", () => ({
           getTree: async ({
             owner,
             repo,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             tree_sha,
             recursive,
           }: {
