@@ -1,0 +1,1 @@
+export { GitHubRepo } from "./GitHubRepo";
