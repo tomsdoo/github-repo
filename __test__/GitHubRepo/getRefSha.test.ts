@@ -3,7 +3,7 @@ import { GitHubRepo } from "@/GitHubRepo";
 
 const callstacks = {
   octokit: {
-    listMathchingRefs: [],
+    getRef: [],
   },
 };
 
@@ -15,17 +15,14 @@ jest.mock("@octokit/rest", () => ({
       this.token = auth;
       this.rest = {
         git: {
-          listMatchingRefs: async ({ owner, repo, ref }: { owner: string; repo: string; ref: string;}) => {
-            callstacks.octokit.listMathchingRefs.push({ owner, repo, ref });
+          getRef: async ({ owner, repo, ref }: { owner: string; repo: string; ref: string;}) => {
+            callstacks.octokit.getRef.push({ owner, repo, ref });
             return await Promise.resolve({
-              data: [
-                {
-                  ref: "refs/heads/branch1",
+              data: {
+                object: {
+                  sha: "sha1",
                 },
-                {
-                  ref: "refs/heads/branch2",
-                },
-              ]
+              },
             });
           }
         }
@@ -46,17 +43,14 @@ describe("GitHugRepo", () => {
     owner = "dummyOwner";
     repo = "dummyRepo";
   });
-  describe("getBranches()", () => {
+  describe("getRefSha()", () => {
     it("success", async () => {
       const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getBranches()).toEqual([
-        "branch1",
-        "branch2",
-      ]);
-      expect(callstacks.octokit.listMathchingRefs.pop()).toStrictEqual({
+      expect(await instance.getRefSha("dummyRef")).toBe("sha1");
+      expect(callstacks.octokit.getRef.pop()).toStrictEqual({
         owner: "dummyOwner",
         repo: "dummyRepo",
-        ref: "heads/",
+        ref: "dummyRef",
       });
     });
   });
