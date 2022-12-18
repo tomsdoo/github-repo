@@ -61,9 +61,7 @@ export class GitHubRepo {
       );
   }
 
-  public async getTree(
-    sha: string
-  ): Promise<
+  public async getTree(sha: string): Promise<
     Array<{
       path?: string;
       mode?: string;
@@ -83,9 +81,7 @@ export class GitHubRepo {
       .then(({ data: { tree } }) => tree);
   }
 
-  public async getBranchTree(
-    branch: string
-  ): Promise<
+  public async getBranchTree(branch: string): Promise<
     Array<{
       path?: string;
       mode?: string;
