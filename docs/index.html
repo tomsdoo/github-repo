@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="It's a utility for GitHub repository." />
+    <script src="https://cdn.jsdelivr.net/npm/@tomsd/md-book/public/js/index.js"></script>
+    <script>
+      MdBook.start({
+        mdFiles: {
+          indexedPaths: [
+            "/md/about.md",
+            "/md/GitHubRepo.md",
+          ],
+          hiddenPaths: [
+            {
+              path: "/md/GitHubRepo.getBranches.md",
+              title: "GitHubRepo getBranches()",
+            },
+            {
+              path: "/md/GitHubRepo.getBranchSha.md",
+              title: "GitHubRepo getBranchSha()",
+            },
+            {
+              path: "/md/GitHubRepo.getBranchTree.md",
+              title: "GitHubRepo getBranchTree()",
+            },
+            {
+              path: "/md/GitHubRepo.getFileContent.md",
+              title: "GitHubRepo getFileContent()",
+            },
+            {
+              path: "/md/GitHubRepo.getRefSha.md",
+              title: "GitHubRepo getRefSha()",
+            },
+            {
+              path: "/md/GitHubRepo.getTree.md",
+              title: "GitHubRepo getTree()",
+            },
+          ]
+        },
+        header: { title: "@tomsd/github-repo" },
+        footer: {
+          text: "powered by ",
+          link: {
+            href: "https://www.npmjs.com/package/@tomsd/md-book",
+            text: "md-book"
+          }
+        },
+        mermaid: {
+          theme: "dark",
+        },
+      });
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tomsd/md-book/public/css/dark.css" />
+  </head>
+  <body></body>
+</html>
