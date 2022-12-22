@@ -1,6 +1,7 @@
 # @tomsd/github-repo
 
-It's a utility for GitHub.
+It's a utility for GitHub.  
+See [github-repo-package.netlify.app](https://github-repo-package.netlify.app/) for details.
 
 ## installation
 
