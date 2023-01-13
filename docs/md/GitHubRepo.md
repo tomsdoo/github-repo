@@ -38,3 +38,5 @@ class TreeElement {
 
 GitHubRepo -- TreeElement
 ```
+
+See <a href="https://github-repo-package.netlify.app/typedocs/" target="_blank">tyoedoc</a> also.
