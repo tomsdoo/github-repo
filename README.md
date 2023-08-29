@@ -30,7 +30,12 @@ const repo = new GitHubRepo(
 #### get branches
 
 ``` typescript
-await repo getBranches();
+await repo.getBranches();
+```
+#### get tags
+
+``` typescript
+await repo.getTags();
 ```
 
 #### get branch sha
