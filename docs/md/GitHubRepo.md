@@ -5,6 +5,7 @@
 |name|description|
 |:--|:--|
 |[getBranches()](./GitHubRepo.getBranches.md)|get branch names|
+|[getTags()](./GitHubRepo.getTags.md)|get tag names|
 |[getBranchSha()](./GitHubRepo.getBranchSha.md)|get branch sha|
 |[getBranchTree()](./GitHubRepo.getBranchTree.md)|get branch tree|
 |[getFileContent()](./GitHubRepo.getFileContent.md)|get file content of the path|
@@ -19,6 +20,7 @@ classDiagram
 class GitHubRepo {
   constructor(token: string, owner: string, repo:string)
   +getBranches() Promise~string[]~
+  +getTags() Promise~string[]~
   +getBranchSha(branch: string) Promise~string~
   +getBranchTree(branch: string) Promise~TreeElement[]~
   +getFileContent(path: string,branch?: string) Promise~any~
