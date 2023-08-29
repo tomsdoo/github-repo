@@ -41,6 +41,22 @@ export class GitHubRepo {
       );
   }
 
+  public async getTags(): Promise<string[]> {
+    return await this.octokit.rest.git
+      .listMatchingRefs({
+        owner: this.owner,
+        repo: this.repo,
+        ref: "tags/",
+      })
+      .then((r) => {
+        console.log(r.data.map(({ object }) => object));
+        return r;
+      })
+      .then(({ data }) =>
+        data.map(({ ref }) => ref.replace(/^refs\/tags\//, ""))
+      );
+  }
+
   public async getBranchSha(branch: string): Promise<string> {
     return await this.getRefSha(`heads/${branch}`);
   }
