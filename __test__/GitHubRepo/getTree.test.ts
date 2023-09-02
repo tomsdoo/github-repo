@@ -6,79 +6,55 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
-
-const callstacks = {
-  octokit: {
-    getTree: [],
-  },
-};
-
-jest.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    protected token: string;
-    public rest: any;
-    constructor({ auth }: { auth: string }) {
-      this.token = auth;
-      this.rest = {
-        git: {
-          getTree: async ({
-            owner,
-            repo,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            tree_sha,
-            recursive,
-          }: {
-            owner: string;
-            repo: string;
-            tree_sha: string;
-            recursive: string;
-          }) => {
-            callstacks.octokit.getTree.push({
-              owner,
-              repo,
-              tree_sha,
-              recursive,
-            });
-            return await Promise.resolve({
-              data: {
-                tree: [
-                  {
-                    path: "dummyPath1",
-                  },
-                ],
-              },
-            });
-          },
-        },
-      };
-    }
-  },
-}));
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHugRepo", () => {
-  let githubToken: string;
-  let owner: string;
-  let repo: string;
+  let githubRepo: TestingGitHubRepo;
+  let spyOctokitRestGitGetTree: jest.Spied<
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.getTree
+  >;
   afterEach(() => {
     jest.clearAllMocks();
   });
   beforeEach(() => {
-    githubToken = "dummyGithubToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    spyOctokitRestGitGetTree = jest
+      .spyOn(githubRepo.octokit.rest.git, "getTree")
+      .mockResolvedValue({
+        status: 200,
+        url: "dummyApiUrl",
+        headers: {},
+        data: {
+          sha: "dummySha",
+          url: "dummyUrl",
+          truncated: false,
+          tree: [
+            {
+              path: "dummyPath1",
+            },
+            {
+              path: "dummyPath2",
+            },
+          ],
+        },
+      });
   });
   describe("getTree()", () => {
-    it("success", async () => {
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getTree("dummySha")).toEqual([
+    it("resolved value is correct", async () => {
+      await expect(githubRepo.getTree("dummySha")).resolves.toEqual([
         {
           path: "dummyPath1",
         },
+        {
+          path: "dummyPath2",
+        },
       ]);
-      expect(callstacks.octokit.getTree.pop()).toStrictEqual({
-        owner: "dummyOwner",
-        repo: "dummyRepo",
+    });
+    it("calls octokit.rest.git.getTree()", async () => {
+      await githubRepo.getTree("dummySha");
+      expect(spyOctokitRestGitGetTree).toHaveBeenCalledWith({
+        owner,
+        repo,
         tree_sha: "dummySha",
         recursive: "true",
       });
