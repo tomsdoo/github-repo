@@ -7,20 +7,15 @@ import {
   jest,
 } from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
+import { owner, repo, token } from "./constants";
 
 describe("GitHubRepo", () => {
-  let token: string;
-  let owner: string;
-  let repo: string;
   let githubRepo: GitHubRepo;
   let spyOctokitRestGitCreateRef: jest.Spied<
     // @ts-expect-error protected access
     typeof GitHubRepo.prototype.octokit.rest.git.createRef
   >;
   beforeEach(() => {
-    token = "dummyToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
     githubRepo = new GitHubRepo(token, owner, repo);
   });
 
