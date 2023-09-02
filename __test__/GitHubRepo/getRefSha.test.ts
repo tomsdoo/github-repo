@@ -6,65 +6,46 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
-
-const callstacks = {
-  octokit: {
-    getRef: [],
-  },
-};
-
-jest.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    protected token: string;
-    public rest: any;
-    constructor({ auth }: { auth: string }) {
-      this.token = auth;
-      this.rest = {
-        git: {
-          getRef: async ({
-            owner,
-            repo,
-            ref,
-          }: {
-            owner: string;
-            repo: string;
-            ref: string;
-          }) => {
-            callstacks.octokit.getRef.push({ owner, repo, ref });
-            return await Promise.resolve({
-              data: {
-                object: {
-                  sha: "sha1",
-                },
-              },
-            });
-          },
-        },
-      };
-    }
-  },
-}));
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHugRepo", () => {
-  let githubToken: string;
-  let owner: string;
-  let repo: string;
+  let githubRepo: TestingGitHubRepo;
+  let spyOctokitRestGitGetRef: jest.Spied<
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.getRef
+  >;
   afterEach(() => {
     jest.clearAllMocks();
   });
   beforeEach(() => {
-    githubToken = "dummyGithubToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    spyOctokitRestGitGetRef = jest
+      .spyOn(githubRepo.octokit.rest.git, "getRef")
+      .mockResolvedValue({
+        status: 200,
+        url: "dummyApiUrl",
+        headers: {},
+        data: {
+          ref: "dummyRef",
+          node_id: "dummyNodeId",
+          url: "dummyUrl",
+          object: {
+            type: "commit",
+            sha: "dummySha",
+            url: "dummyUrl",
+          },
+        },
+      });
   });
   describe("getRefSha()", () => {
-    it("success", async () => {
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getRefSha("dummyRef")).toBe("sha1");
-      expect(callstacks.octokit.getRef.pop()).toStrictEqual({
-        owner: "dummyOwner",
-        repo: "dummyRepo",
+    it("resolved value is correct", async () => {
+      await expect(githubRepo.getRefSha("dummyRef")).resolves.toBe("dummySha");
+    });
+
+    it("calls octokit.rest.git.getRef()", async () => {
+      await githubRepo.getRefSha("dummyRef");
+      expect(spyOctokitRestGitGetRef).toHaveBeenCalledWith({
+        owner,
+        repo,
         ref: "dummyRef",
       });
     });
