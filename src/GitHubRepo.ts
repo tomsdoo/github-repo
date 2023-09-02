@@ -48,13 +48,47 @@ export class GitHubRepo {
         repo: this.repo,
         ref: "tags/",
       })
-      .then((r) => {
-        console.log(r.data.map(({ object }) => object));
-        return r;
-      })
       .then(({ data }) =>
         data.map(({ ref }) => ref.replace(/^refs\/tags\//, ""))
       );
+  }
+
+  public async createTag(name: string, branch: string): Promise<string> {
+    return await this.octokit.rest.git
+      .createTag({
+        owner: this.owner,
+        repo: this.repo,
+        tag: name,
+        message: "",
+        object: await this.getBranchSha(branch),
+        type: "commit",
+        "tagger.name": "",
+        "tagger.email": "",
+      })
+      .then(
+        async ({
+          data: {
+            tag,
+            object: { sha },
+          },
+        }) => await this.createRef(sha, tag, "tag")
+      );
+  }
+
+  public async createRef(
+    sha: string,
+    refName: string,
+    refType: "head" | "tag"
+  ): Promise<string> {
+    const ref = `refs/${{ head: "heads", tag: "tags" }[refType]}/${refName}`;
+    return await this.octokit.rest.git
+      .createRef({
+        owner: this.owner,
+        repo: this.repo,
+        ref,
+        sha,
+      })
+      .then(({ data: { ref } }) => ref.replace(/^refs\/(tags|heads)\//, ""));
   }
 
   public async getBranchSha(branch: string): Promise<string> {
