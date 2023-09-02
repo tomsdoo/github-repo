@@ -6,69 +6,34 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
-
-const callstacks = {
-  octokit: {
-    getContent: [],
-  },
-};
-
-jest.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    protected token: string;
-    public rest: any;
-    constructor({ auth }: { auth: string }) {
-      this.token = auth;
-      this.rest = {
-        repos: {
-          getContent: async ({
-            owner,
-            repo,
-            ref,
-            path,
-            mediaType,
-          }: {
-            owner: string;
-            repo: string;
-            path: string;
-            mediaType: { format: string };
-            ref?: string;
-          }) => {
-            callstacks.octokit.getContent.push({
-              owner,
-              repo,
-              ref,
-              path,
-              mediaType,
-            });
-            return await Promise.resolve({ data: "dummyContent" });
-          },
-        },
-      };
-    }
-  },
-}));
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHugRepo", () => {
-  let githubToken: string;
-  let owner: string;
-  let repo: string;
+  let githubRepo: TestingGitHubRepo;
+  let spyOctokitRestReposGetContent: jest.Spied<
+    typeof TestingGitHubRepo.prototype.octokit.rest.repos.getContent
+  >;
   afterEach(() => {
     jest.clearAllMocks();
   });
   beforeEach(() => {
-    githubToken = "dummyGithubToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    spyOctokitRestReposGetContent = jest
+      .spyOn(githubRepo.octokit.rest.repos, "getContent")
+      .mockResolvedValue({
+        status: 200,
+        url: "dummyApiUrl",
+        headers: {},
+        // @ts-expect-error data type
+        data: "dummyContent",
+      });
   });
   describe("getFileContent()", () => {
     it("without branch", async () => {
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getFileContent("dummyPath")).toEqual(
+      expect(await githubRepo.getFileContent("dummyPath")).toEqual(
         "dummyContent"
       );
-      expect(callstacks.octokit.getContent.pop()).toStrictEqual({
+      expect(spyOctokitRestReposGetContent).toHaveBeenCalledWith({
         owner: "dummyOwner",
         repo: "dummyRepo",
         ref: undefined,
@@ -80,11 +45,10 @@ describe("GitHugRepo", () => {
     });
 
     it("with branch", async () => {
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getFileContent("dummyPath", "dummyBranch")).toEqual(
-        "dummyContent"
-      );
-      expect(callstacks.octokit.getContent.pop()).toStrictEqual({
+      expect(
+        await githubRepo.getFileContent("dummyPath", "dummyBranch")
+      ).toEqual("dummyContent");
+      expect(spyOctokitRestReposGetContent).toHaveBeenCalledWith({
         owner: "dummyOwner",
         repo: "dummyRepo",
         ref: "heads/dummyBranch",
