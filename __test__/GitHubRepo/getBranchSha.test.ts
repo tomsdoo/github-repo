@@ -7,28 +7,31 @@ import {
   jest,
 } from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
+import { owner, repo, token } from "./constants";
 
 describe("GitHubRepo", () => {
-  let owner: string;
-  let repo: string;
-  let githubToken: string;
   afterEach(() => {
     jest.clearAllMocks();
   });
+  let mockedSha: string;
+  let githubRepo: GitHubRepo;
+  let spyGetRefSha: jest.Spied<typeof GitHubRepo.prototype.getRefSha>;
   beforeEach(() => {
-    owner = "dummyOwner";
-    repo = "dummyRepo";
-    githubToken = "dummyGithubToken";
+    mockedSha = "dummySha";
+    githubRepo = new GitHubRepo(token, owner, repo);
+    spyGetRefSha = jest
+      .spyOn(GitHubRepo.prototype, "getRefSha")
+      .mockReturnValue(Promise.resolve(mockedSha));
   });
   describe("getBranchSha()", () => {
-    it("success", async () => {
-      const mockedValue = "dummySha";
-      const spyGetRefSha = jest
-        .spyOn(GitHubRepo.prototype, "getRefSha")
-        .mockReturnValue(Promise.resolve(mockedValue));
+    it("resolves as valid value", async () => {
+      await expect(githubRepo.getBranchSha("dummyBranch")).resolves.toBe(
+        mockedSha
+      );
+    });
 
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getBranchSha("dummyBranch")).toBe("dummySha");
+    it("calls getRefSha()", async () => {
+      await githubRepo.getBranchSha("dummyBranch");
       expect(spyGetRefSha).toHaveBeenCalledWith("heads/dummyBranch");
     });
   });

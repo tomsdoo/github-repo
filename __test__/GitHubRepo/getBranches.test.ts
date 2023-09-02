@@ -6,68 +6,61 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
-
-const callstacks = {
-  octokit: {
-    listMathchingRefs: [],
-  },
-};
-
-jest.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    protected token: string;
-    public rest: any;
-    constructor({ auth }: { auth: string }) {
-      this.token = auth;
-      this.rest = {
-        git: {
-          listMatchingRefs: async ({
-            owner,
-            repo,
-            ref,
-          }: {
-            owner: string;
-            repo: string;
-            ref: string;
-          }) => {
-            callstacks.octokit.listMathchingRefs.push({ owner, repo, ref });
-            return await Promise.resolve({
-              data: [
-                {
-                  ref: "refs/heads/branch1",
-                },
-                {
-                  ref: "refs/heads/branch2",
-                },
-              ],
-            });
-          },
-        },
-      };
-    }
-  },
-}));
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHugRepo", () => {
-  let githubToken: string;
-  let owner: string;
-  let repo: string;
+  let githubRepo: TestingGitHubRepo;
+  let spyOctokitListMatchingRef: jest.Spied<
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.listMatchingRefs
+  >;
   afterEach(() => {
     jest.clearAllMocks();
   });
+
   beforeEach(() => {
-    githubToken = "dummyGithubToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    spyOctokitListMatchingRef = jest
+      .spyOn(githubRepo.octokit.rest.git, "listMatchingRefs")
+      .mockResolvedValue({
+        status: 200,
+        url: "dummyApiUrl",
+        headers: {},
+        data: [
+          {
+            ref: "refs/heads/dummyBranch1",
+            node_id: "dummyNodeId",
+            url: "dummyUrl",
+            object: {
+              type: "commit",
+              sha: "dummySha",
+              url: "dummyUrl",
+            },
+          },
+          {
+            ref: "refs/heads/dummyBranch2",
+            node_id: "dummyNodeId",
+            url: "dummyUrl",
+            object: {
+              type: "commit",
+              sha: "dummySha",
+              url: "dummyUrl",
+            },
+          },
+        ],
+      });
   });
   describe("getBranches()", () => {
-    it("success", async () => {
-      const instance = new GitHubRepo(githubToken, owner, repo);
-      expect(await instance.getBranches()).toEqual(["branch1", "branch2"]);
-      expect(callstacks.octokit.listMathchingRefs.pop()).toStrictEqual({
-        owner: "dummyOwner",
-        repo: "dummyRepo",
+    it("result value is correct", async () => {
+      await expect(githubRepo.getBranches()).resolves.toEqual([
+        "dummyBranch1",
+        "dummyBranch2",
+      ]);
+    });
+    it("calls octokit.rest.git.listMatchingRefs()", async () => {
+      await githubRepo.getBranches();
+      expect(spyOctokitListMatchingRef).toHaveBeenCalledWith({
+        owner,
+        repo,
         ref: "heads/",
       });
     });

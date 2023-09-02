@@ -6,22 +6,15 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHubRepo", () => {
-  let token: string;
-  let owner: string;
-  let repo: string;
-  let githubRepo: GitHubRepo;
+  let githubRepo: TestingGitHubRepo;
   let spyOctokitRestGitCreateRef: jest.Spied<
-    // @ts-expect-error protected access
-    typeof GitHubRepo.prototype.octokit.rest.git.createRef
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.createRef
   >;
   beforeEach(() => {
-    token = "dummyToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
-    githubRepo = new GitHubRepo(token, owner, repo);
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
   });
 
   afterEach(() => {
@@ -31,7 +24,6 @@ describe("GitHubRepo", () => {
   describe("createRef()", () => {
     it("for tag ref", async () => {
       spyOctokitRestGitCreateRef = jest
-        // @ts-expect-error access
         .spyOn(githubRepo.octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,
@@ -61,7 +53,6 @@ describe("GitHubRepo", () => {
 
     it("for head ref", async () => {
       spyOctokitRestGitCreateRef = jest
-        // @ts-expect-error access
         .spyOn(githubRepo.octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,

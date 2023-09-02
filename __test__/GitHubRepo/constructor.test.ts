@@ -1,60 +1,35 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  it,
-  expect,
-  jest,
-} from "@jest/globals";
+import { afterEach, describe, it, expect, jest } from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
-
-const callstacks = {
-  octokit: {
-    constructor: [],
-  },
-};
+import { Octokit } from "@octokit/rest";
+import { owner, repo, token } from "./constants";
 
 jest.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    protected token: string;
-    constructor({ auth }: { auth: string }) {
-      callstacks.octokit.constructor.push({ auth });
-      this.token = auth;
-    }
-  },
+  Octokit: jest.fn(() => ({ name: "dummyInstance" })),
 }));
 
 describe("GitHubRepo", () => {
-  let githubToken: string;
-  let owner: string;
-  let repo: string;
   afterEach(() => {
     jest.clearAllMocks();
   });
-  beforeEach(() => {
-    githubToken = "dummyGithubToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
-  });
   it("instance has property named 'owner'", () => {
-    const instance = new GitHubRepo(githubToken, owner, repo);
+    const instance = new GitHubRepo(token, owner, repo);
     expect(instance).toHaveProperty("owner", owner);
-    expect(callstacks.octokit.constructor.pop()).toStrictEqual({
-      auth: "dummyGithubToken",
-    });
   });
   it("instance has property named 'repo'", () => {
-    const instance = new GitHubRepo(githubToken, owner, repo);
+    const instance = new GitHubRepo(token, owner, repo);
     expect(instance).toHaveProperty("repo", repo);
-    expect(callstacks.octokit.constructor.pop()).toStrictEqual({
-      auth: "dummyGithubToken",
-    });
   });
   it("instance has property named 'octokit'", () => {
-    const instance = new GitHubRepo(githubToken, owner, repo);
-    expect(instance).toHaveProperty("octokit");
-    expect(callstacks.octokit.constructor.pop()).toStrictEqual({
-      auth: "dummyGithubToken",
+    const instance = new GitHubRepo(token, owner, repo);
+    expect(instance).toHaveProperty("octokit", {
+      name: "dummyInstance",
+    });
+  });
+  it("news Octokit", () => {
+    const instance = new GitHubRepo(token, owner, repo);
+    expect(instance instanceof GitHubRepo).toBe(true);
+    expect(Octokit).toHaveBeenCalledWith({
+      auth: token,
     });
   });
 });
