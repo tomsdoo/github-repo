@@ -4,6 +4,7 @@
 
 |name|description|
 |:--|:--|
+|[createTag()](./GitHubRepo.createTag.md)|create tag|
 |[getBranches()](./GitHubRepo.getBranches.md)|get branch names|
 |[getTags()](./GitHubRepo.getTags.md)|get tag names|
 |[getBranchSha()](./GitHubRepo.getBranchSha.md)|get branch sha|
@@ -19,6 +20,7 @@ classDiagram
 
 class GitHubRepo {
   constructor(token: string, owner: string, repo:string)
+  +createTag(name: string, branch: string) Promise~string~
   +getBranches() Promise~string[]~
   +getTags() Promise~string[]~
   +getBranchSha(branch: string) Promise~string~

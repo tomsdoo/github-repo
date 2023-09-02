@@ -43,7 +43,13 @@
 <a href="#get-branches" id="get-branches" style="color: inherit; text-decoration: none;">
   <h4>get branches</h4>
 </a>
-<pre><code class="language-typescript"><span class="hl-2">await</span><span class="hl-0"> </span><span class="hl-3">repo</span><span class="hl-0"> </span><span class="hl-6">getBranches</span><span class="hl-0">();</span>
+<pre><code class="language-typescript"><span class="hl-2">await</span><span class="hl-0"> </span><span class="hl-3">repo</span><span class="hl-0">.</span><span class="hl-6">getBranches</span><span class="hl-0">();</span>
+</code></pre>
+
+<a href="#get-tags" id="get-tags" style="color: inherit; text-decoration: none;">
+  <h4>get tags</h4>
+</a>
+<pre><code class="language-typescript"><span class="hl-2">await</span><span class="hl-0"> </span><span class="hl-3">repo</span><span class="hl-0">.</span><span class="hl-6">getTags</span><span class="hl-0">();</span>
 </code></pre>
 
 <a href="#get-branch-sha" id="get-branch-sha" style="color: inherit; text-decoration: none;">
@@ -62,6 +68,12 @@
   <h4>get file content</h4>
 </a>
 <pre><code class="language-typescript"><span class="hl-2">await</span><span class="hl-0"> </span><span class="hl-3">repo</span><span class="hl-0">.</span><span class="hl-6">getFileContent</span><span class="hl-0">(</span><span class="hl-1">&quot;path/to/file&quot;</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#create-a-tag" id="create-a-tag" style="color: inherit; text-decoration: none;">
+  <h4>create a tag</h4>
+</a>
+<pre><code class="language-typescript"><span class="hl-2">await</span><span class="hl-0"> </span><span class="hl-3">repo</span><span class="hl-0">.</span><span class="hl-6">createTag</span><span class="hl-0">(</span><span class="hl-1">&quot;my-tag&quot;</span><span class="hl-0">, </span><span class="hl-1">&quot;main&quot;</span><span class="hl-0">);</span>
 </code></pre>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
