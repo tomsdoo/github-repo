@@ -56,3 +56,8 @@ await repo getBranchTree("main");
 await repo.getFileContent("path/to/file");
 ```
 
+#### create a tag
+
+``` typescript
+await repo.createTag("my-tag", "main");
+```
