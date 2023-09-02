@@ -8,15 +8,19 @@ import {
 } from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "./constants";
+import type { Octokit } from "@octokit/rest";
+
+class Testing extends GitHubRepo {
+  public octokit: Octokit;
+}
 
 describe("GitHubRepo", () => {
-  let githubRepo: GitHubRepo;
+  let githubRepo: Testing;
   let spyOctokitRestGitCreateRef: jest.Spied<
-    // @ts-expect-error protected access
-    typeof GitHubRepo.prototype.octokit.rest.git.createRef
+    typeof Testing.prototype.octokit.rest.git.createRef
   >;
   beforeEach(() => {
-    githubRepo = new GitHubRepo(token, owner, repo);
+    githubRepo = new Testing(token, owner, repo);
   });
 
   afterEach(() => {
@@ -26,7 +30,6 @@ describe("GitHubRepo", () => {
   describe("createRef()", () => {
     it("for tag ref", async () => {
       spyOctokitRestGitCreateRef = jest
-        // @ts-expect-error access
         .spyOn(githubRepo.octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,
@@ -56,7 +59,6 @@ describe("GitHubRepo", () => {
 
     it("for head ref", async () => {
       spyOctokitRestGitCreateRef = jest
-        // @ts-expect-error access
         .spyOn(githubRepo.octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,
