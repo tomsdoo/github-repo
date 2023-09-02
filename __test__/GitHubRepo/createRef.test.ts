@@ -6,21 +6,15 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
-import { owner, repo, token } from "./constants";
-import type { Octokit } from "@octokit/rest";
-
-class Testing extends GitHubRepo {
-  public octokit: Octokit;
-}
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHubRepo", () => {
-  let githubRepo: Testing;
+  let githubRepo: TestingGitHubRepo;
   let spyOctokitRestGitCreateRef: jest.Spied<
-    typeof Testing.prototype.octokit.rest.git.createRef
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.createRef
   >;
   beforeEach(() => {
-    githubRepo = new Testing(token, owner, repo);
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
   });
 
   afterEach(() => {

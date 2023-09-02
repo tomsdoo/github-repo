@@ -7,27 +7,20 @@ import {
   jest,
 } from "@jest/globals";
 import { GitHubRepo } from "@/GitHubRepo";
+import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHubRepo", () => {
-  let token: string;
-  let owner: string;
-  let repo: string;
-  let githubRepo: GitHubRepo;
+  let githubRepo: TestingGitHubRepo;
   let spyOctokitRestGitCreateTag: jest.Spied<
-    // @ts-expect-error protected access
-    typeof GitHubRepo.prototype.octokit.rest.git.createTag
+    typeof TestingGitHubRepo.prototype.octokit.rest.git.createTag
   >;
   let spyGithubRepoCreateRef: jest.Spied<typeof GitHubRepo.prototype.createRef>;
   let spyGithubRepoGetBranchSha: jest.Spied<
     typeof GitHubRepo.prototype.getBranchSha
   >;
   beforeEach(() => {
-    token = "dummyToken";
-    owner = "dummyOwner";
-    repo = "dummyRepo";
-    githubRepo = new GitHubRepo(token, owner, repo);
+    githubRepo = new TestingGitHubRepo(token, owner, repo);
     spyOctokitRestGitCreateTag = jest
-      // @ts-expect-error protected access
       .spyOn(githubRepo.octokit.rest.git, "createTag")
       .mockResolvedValue({
         status: 201,
