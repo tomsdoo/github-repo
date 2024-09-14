@@ -41,7 +41,7 @@ describe("GitHubRepo", () => {
           },
         });
       await expect(
-        githubRepo.createRef("dummySha", "dummyTag", "tag")
+        githubRepo.createRef("dummySha", "dummyTag", "tag"),
       ).resolves.toBe("dummyTag");
       expect(spyOctokitRestGitCreateRef).toHaveBeenCalledWith({
         owner,
@@ -70,7 +70,7 @@ describe("GitHubRepo", () => {
           },
         });
       await expect(
-        githubRepo.createRef("dummySha", "dummyBranch", "head")
+        githubRepo.createRef("dummySha", "dummyBranch", "head"),
       ).resolves.toBe("dummyBranch");
       expect(spyOctokitRestGitCreateRef).toHaveBeenCalledWith({
         owner,

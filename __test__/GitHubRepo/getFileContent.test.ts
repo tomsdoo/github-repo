@@ -31,7 +31,7 @@ describe("GitHugRepo", () => {
   describe("getFileContent()", () => {
     it("without branch", async () => {
       expect(await githubRepo.getFileContent("dummyPath")).toEqual(
-        "dummyContent"
+        "dummyContent",
       );
       expect(spyOctokitRestReposGetContent).toHaveBeenCalledWith({
         owner: "dummyOwner",
@@ -46,7 +46,7 @@ describe("GitHugRepo", () => {
 
     it("with branch", async () => {
       expect(
-        await githubRepo.getFileContent("dummyPath", "dummyBranch")
+        await githubRepo.getFileContent("dummyPath", "dummyBranch"),
       ).toEqual("dummyContent");
       expect(spyOctokitRestReposGetContent).toHaveBeenCalledWith({
         owner: "dummyOwner",

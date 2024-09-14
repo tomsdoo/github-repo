@@ -37,7 +37,7 @@ export class GitHubRepo {
         ref: "heads/",
       })
       .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/heads\//, ""))
+        data.map(({ ref }) => ref.replace(/^refs\/heads\//, "")),
       );
   }
 
@@ -49,7 +49,7 @@ export class GitHubRepo {
         ref: "tags/",
       })
       .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/tags\//, ""))
+        data.map(({ ref }) => ref.replace(/^refs\/tags\//, "")),
       );
   }
 
@@ -71,14 +71,14 @@ export class GitHubRepo {
             tag,
             object: { sha },
           },
-        }) => await this.createRef(sha, tag, "tag")
+        }) => await this.createRef(sha, tag, "tag"),
       );
   }
 
   public async createRef(
     sha: string,
     refName: string,
-    refType: "head" | "tag"
+    refType: "head" | "tag",
   ): Promise<string> {
     const ref = `refs/${{ head: "heads", tag: "tags" }[refType]}/${refName}`;
     return await this.octokit.rest.git
@@ -107,7 +107,7 @@ export class GitHubRepo {
           data: {
             object: { sha },
           },
-        }) => sha
+        }) => sha,
       );
   }
 

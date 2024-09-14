@@ -44,7 +44,7 @@ describe("GitHubRepo", () => {
   describe("getBranchTree()", () => {
     it("resolved value is correct", async () => {
       await expect(
-        githubRepo.getBranchTree("dummyBranch")
+        githubRepo.getBranchTree("dummyBranch"),
       ).resolves.toStrictEqual(mockedTree);
     });
 
