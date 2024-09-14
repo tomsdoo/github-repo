@@ -10,7 +10,7 @@
     "format": "prettier --write __test__/**/*.ts && prettier --write src/**/*.ts",
     "make:typedoc": "typedoc",
     "lint": "eslint __test__/**/*.ts && eslint src/**/*.ts",
-    "prepare": "husky install",
+    "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs/",
     "test": "jest"
   },
@@ -51,7 +51,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.6.0",
     "eslint-plugin-promise": "^6.1.1",
-    "husky": "^8.0.2",
+    "husky": "9.1.6",
     "jest": "^29.3.1",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
