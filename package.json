@@ -1,6 +1,7 @@
 {
   "name": "@tomsd/github-repo",
   "version": "1.2.1",
+  "type": "module",
   "description": "Utility for GitHub repo",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
