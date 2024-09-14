@@ -1,15 +1,15 @@
-import { afterEach, describe, it, expect, jest } from "@jest/globals";
+import { afterEach, describe, it, expect, vi } from "vitest";
 import { GitHubRepo } from "@/GitHubRepo";
 import { Octokit } from "@octokit/rest";
 import { owner, repo, token } from "./constants";
 
-jest.mock("@octokit/rest", () => ({
-  Octokit: jest.fn(() => ({ name: "dummyInstance" })),
+vi.mock("@octokit/rest", () => ({
+  Octokit: vi.fn(() => ({ name: "dummyInstance" })),
 }));
 
 describe("GitHubRepo", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("instance has property named 'owner'", () => {
     const instance = new GitHubRepo(token, owner, repo);

@@ -12,7 +12,7 @@
     "lint": "eslint __test__/**/*.ts && eslint src/**/*.ts",
     "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs/",
-    "test": "jest"
+    "test": "vitest"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -39,23 +39,19 @@
     "@octokit/rest": "19.0.5"
   },
   "devDependencies": {
-    "@babel/core": "7.25.2",
-    "@babel/preset-env": "7.25.4",
-    "@babel/preset-typescript": "7.24.7",
     "@tomsd/md-book": "1.2.0",
     "@typescript-eslint/eslint-plugin": "8.5.0",
-    "babel-jest": "29.7.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.30.0",
     "eslint-plugin-n": "17.10.2",
     "eslint-plugin-promise": "7.1.0",
     "husky": "9.1.6",
-    "jest": "29.7.0",
     "lint-staged": "15.2.10",
     "prettier": "3.3.3",
     "ts-node": "10.9.2",
     "typedoc": "0.26.7",
-    "typescript": "5.6.2"
+    "typescript": "5.6.2",
+    "vitest": "2.1.1"
   }
 }
