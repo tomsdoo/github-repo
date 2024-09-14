@@ -26,7 +26,7 @@ describe("GitHubRepo", () => {
   describe("getBranchSha()", () => {
     it("resolves as valid value", async () => {
       await expect(githubRepo.getBranchSha("dummyBranch")).resolves.toBe(
-        mockedSha
+        mockedSha,
       );
     });
 
