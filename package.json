@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/tomsdoo/github-repo#readme",
   "dependencies": {
-    "@octokit/rest": "^19.0.5"
+    "@octokit/rest": "19.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
