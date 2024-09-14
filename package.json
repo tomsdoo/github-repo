@@ -3,9 +3,13 @@
   "version": "1.2.1",
   "type": "module",
   "description": "Utility for GitHub repo",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/esm/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
     "format": "prettier --write __test__/**/*.ts && prettier --write src/**/*.ts",
@@ -37,7 +41,7 @@
   },
   "homepage": "https://github.com/tomsdoo/github-repo#readme",
   "dependencies": {
-    "@octokit/rest": "19.0.5"
+    "@octokit/rest": "21.0.2"
   },
   "devDependencies": {
     "@tomsd/md-book": "1.2.0",
