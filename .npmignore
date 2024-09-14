@@ -7,9 +7,6 @@ src/
 .eslintrc.js
 .gitignore
 .npmignore
-jest.babel.config.js
-jest.config.js
-package-lock.json
 tsconfig.*.json
 tsconfig.json
 typedoc.json

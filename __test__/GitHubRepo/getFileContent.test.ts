@@ -4,21 +4,20 @@ import {
   describe,
   it,
   expect,
-  jest,
-} from "@jest/globals";
+  vi,
+  type MockInstance,
+} from "vitest";
 import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHugRepo", () => {
   let githubRepo: TestingGitHubRepo;
-  let spyOctokitRestReposGetContent: jest.Spied<
-    typeof TestingGitHubRepo.prototype.octokit.rest.repos.getContent
-  >;
+  let spyOctokitRestReposGetContent: MockInstance;
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   beforeEach(() => {
     githubRepo = new TestingGitHubRepo(token, owner, repo);
-    spyOctokitRestReposGetContent = jest
+    spyOctokitRestReposGetContent = vi
       .spyOn(githubRepo.octokit.rest.repos, "getContent")
       .mockResolvedValue({
         status: 200,

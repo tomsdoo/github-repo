@@ -4,14 +4,15 @@ import {
   describe,
   it,
   expect,
-  jest,
-} from "@jest/globals";
+  vi,
+  type MockInstance,
+} from "vitest";
 import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "./constants";
 
 describe("GitHubRepo", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   let mockedTree: Array<{
     path?: string;
@@ -22,11 +23,11 @@ describe("GitHubRepo", () => {
     url?: string;
   }>;
   let githubRepo: GitHubRepo;
-  let spyGetBranchSha: jest.Spied<typeof GitHubRepo.prototype.getBranchSha>;
-  let spyGetTree: jest.Spied<typeof GitHubRepo.prototype.getTree>;
+  let spyGetBranchSha: MockInstance;
+  let spyGetTree: MockInstance;
   beforeEach(() => {
     githubRepo = new GitHubRepo(token, owner, repo);
-    spyGetBranchSha = jest
+    spyGetBranchSha = vi
       .spyOn(GitHubRepo.prototype, "getBranchSha")
       .mockResolvedValue("dummySha");
     mockedTree = [
@@ -37,7 +38,7 @@ describe("GitHubRepo", () => {
         path: "dummyPath2",
       },
     ];
-    spyGetTree = jest
+    spyGetTree = vi
       .spyOn(GitHubRepo.prototype, "getTree")
       .mockResolvedValue(mockedTree);
   });

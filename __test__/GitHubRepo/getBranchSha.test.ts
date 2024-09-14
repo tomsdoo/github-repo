@@ -4,22 +4,23 @@ import {
   describe,
   it,
   expect,
-  jest,
-} from "@jest/globals";
+  vi,
+  type MockInstance,
+} from "vitest";
 import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "./constants";
 
 describe("GitHubRepo", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   let mockedSha: string;
   let githubRepo: GitHubRepo;
-  let spyGetRefSha: jest.Spied<typeof GitHubRepo.prototype.getRefSha>;
+  let spyGetRefSha: MockInstance;
   beforeEach(() => {
     mockedSha = "dummySha";
     githubRepo = new GitHubRepo(token, owner, repo);
-    spyGetRefSha = jest
+    spyGetRefSha = vi
       .spyOn(GitHubRepo.prototype, "getRefSha")
       .mockReturnValue(Promise.resolve(mockedSha));
   });

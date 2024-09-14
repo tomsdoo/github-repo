@@ -4,23 +4,19 @@ import {
   describe,
   it,
   expect,
-  jest,
-} from "@jest/globals";
-import type { GitHubRepo } from "@/GitHubRepo";
+  vi,
+  type MockInstance,
+} from "vitest";
 import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHubRepo", () => {
   let githubRepo: TestingGitHubRepo;
-  let spyOctokitRestGitCreateTag: jest.Spied<
-    typeof TestingGitHubRepo.prototype.octokit.rest.git.createTag
-  >;
-  let spyGithubRepoCreateRef: jest.Spied<typeof GitHubRepo.prototype.createRef>;
-  let spyGithubRepoGetBranchSha: jest.Spied<
-    typeof GitHubRepo.prototype.getBranchSha
-  >;
+  let spyOctokitRestGitCreateTag: MockInstance;
+  let spyGithubRepoCreateRef: MockInstance;
+  let spyGithubRepoGetBranchSha: MockInstance;
   beforeEach(() => {
     githubRepo = new TestingGitHubRepo(token, owner, repo);
-    spyOctokitRestGitCreateTag = jest
+    spyOctokitRestGitCreateTag = vi
       .spyOn(githubRepo.octokit.rest.git, "createTag")
       .mockResolvedValue({
         status: 201,
@@ -50,16 +46,16 @@ describe("GitHubRepo", () => {
           },
         },
       });
-    spyGithubRepoCreateRef = jest
+    spyGithubRepoCreateRef = vi
       .spyOn(githubRepo, "createRef")
       .mockResolvedValue("dummyTag");
-    spyGithubRepoGetBranchSha = jest
+    spyGithubRepoGetBranchSha = vi
       .spyOn(githubRepo, "getBranchSha")
       .mockResolvedValue("dummySha");
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("createTag()", () => {
