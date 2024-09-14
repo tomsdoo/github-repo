@@ -6,7 +6,7 @@ import {
   expect,
   jest,
 } from "@jest/globals";
-import { GitHubRepo } from "@/GitHubRepo";
+import type { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token, TestingGitHubRepo } from "./constants";
 
 describe("GitHubRepo", () => {
@@ -65,7 +65,7 @@ describe("GitHubRepo", () => {
   describe("createTag()", () => {
     it("resolved value is correct", async () => {
       await expect(
-        githubRepo.createTag("dummyTag", "dummyBranch")
+        githubRepo.createTag("dummyTag", "dummyBranch"),
       ).resolves.toEqual("dummyTag");
     });
 
@@ -92,7 +92,7 @@ describe("GitHubRepo", () => {
       expect(spyGithubRepoCreateRef).toHaveBeenCalledWith(
         "dummySha",
         "dummyTag",
-        "tag"
+        "tag",
       );
     });
   });
