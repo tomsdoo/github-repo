@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/rest";
+import { Octokit, type RestEndpointMethodTypes } from "@octokit/rest";
 
 export class GitHubRepo {
   protected owner: string;
@@ -143,5 +143,30 @@ export class GitHubRepo {
   > {
     const branchSha = await this.getBranchSha(branch);
     return await this.getTree(branchSha);
+  }
+
+  public static async listForOrg(
+    token: string,
+    org: string,
+  ): Promise<
+    RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"]
+  > {
+    const octokit = new Octokit({ auth: token });
+    const perPage = 100;
+    let page = 1;
+    const darr = [];
+    while (true) {
+      const { data: items } = await octokit.rest.repos.listForOrg({
+        org,
+        per_page: perPage,
+        page,
+      });
+      darr.push(items);
+      if (items.length === 0 || items.length < perPage) {
+        break;
+      }
+      page++;
+    }
+    return darr.flat();
   }
 }
