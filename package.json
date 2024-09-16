@@ -10,6 +10,9 @@
       "types": "./dist/esm/index.d.ts"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
     "format": "prettier --write __test__/**/*.ts && prettier --write src/**/*.ts",
