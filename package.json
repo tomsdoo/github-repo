@@ -17,7 +17,7 @@
     "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
     "format": "prettier --write __test__/**/*.ts && prettier --write src/**/*.ts",
     "make:typedoc": "typedoc",
-    "lint": "eslint __test__/**/*.ts && eslint src/**/*.ts",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint __test__/**/*.ts && ESLINT_USE_FLAT_CONFIG=false eslint src/**/*.ts",
     "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs/",
     "test": "vitest"
@@ -48,18 +48,18 @@
   },
   "devDependencies": {
     "@tomsd/md-book": "1.2.0",
-    "@typescript-eslint/eslint-plugin": "8.5.0",
-    "eslint": "8.57.0",
+    "@typescript-eslint/eslint-plugin": "8.15.0",
+    "eslint": "9.15.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.30.0",
-    "eslint-plugin-n": "17.10.2",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-n": "17.13.2",
     "eslint-plugin-promise": "7.1.0",
-    "husky": "9.1.6",
+    "husky": "9.1.7",
     "lint-staged": "15.2.10",
     "prettier": "3.3.3",
-    "tsx": "4.19.1",
-    "typedoc": "0.26.7",
-    "typescript": "5.6.2",
-    "vitest": "2.1.1"
+    "tsx": "4.19.2",
+    "typedoc": "0.26.11",
+    "typescript": "5.6.3",
+    "vitest": "2.1.5"
   }
 }
