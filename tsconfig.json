@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
     "lib": ["ESNext"],
+    "module": "ESNext",
+    "strict": true,
+    "target": "ES2022",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
       "@/*": [

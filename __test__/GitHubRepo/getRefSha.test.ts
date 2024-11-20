@@ -7,16 +7,17 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { owner, repo, token, TestingGitHubRepo } from "./constants";
+import { owner, repo, token } from "./constants";
+import { GitHubRepo } from "@/GitHubRepo";
 
 describe("GitHugRepo", () => {
-  let githubRepo: TestingGitHubRepo;
+  let githubRepo: GitHubRepo;
   let spyOctokitRestGitGetRef: MockInstance;
   afterEach(() => {
     vi.clearAllMocks();
   });
   beforeEach(() => {
-    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    githubRepo = new GitHubRepo(token, owner, repo);
     spyOctokitRestGitGetRef = vi
       .spyOn(githubRepo.octokit.rest.git, "getRef")
       .mockResolvedValue({

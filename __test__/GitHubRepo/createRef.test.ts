@@ -7,13 +7,14 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { owner, repo, token, TestingGitHubRepo } from "./constants";
+import { owner, repo, token } from "./constants";
+import { GitHubRepo } from "@/GitHubRepo";
 
 describe("GitHubRepo", () => {
-  let githubRepo: TestingGitHubRepo;
+  let githubRepo: GitHubRepo;
   let spyOctokitRestGitCreateRef: MockInstance;
   beforeEach(() => {
-    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    githubRepo = new GitHubRepo(token, owner, repo);
   });
 
   afterEach(() => {
