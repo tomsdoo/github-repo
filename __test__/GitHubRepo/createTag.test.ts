@@ -9,6 +9,7 @@ import {
 } from "vitest";
 import { owner, repo, token } from "./constants";
 import { GitHubRepo } from "@/GitHubRepo";
+import { regardAsHasOctokit } from "./util";
 
 describe("GitHubRepo", () => {
   let githubRepo: GitHubRepo;
@@ -18,7 +19,7 @@ describe("GitHubRepo", () => {
   beforeEach(() => {
     githubRepo = new GitHubRepo(token, owner, repo);
     spyOctokitRestGitCreateTag = vi
-      .spyOn(githubRepo.octokit.rest.git, "createTag")
+      .spyOn(regardAsHasOctokit(githubRepo).octokit.rest.git, "createTag")
       .mockResolvedValue({
         status: 201,
         url: "dummyApiUrl",
