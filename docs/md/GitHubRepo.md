@@ -13,6 +13,7 @@
 |[getRefSha()](./GitHubRepo.getRefSha.md)|get sha of ref|
 |[getTree()](./GitHubRepo.getTree.md)|get ref tree|
 |[listForOrg()](./GitHubRepo.listForOrg.md)|list repos in organization|
+|[listPulls()](./GitHubRepo.listPulls.md)|list pull requests|
 
 ***
 
@@ -29,6 +30,7 @@ class GitHubRepo {
   +getFileContent(path: string,branch?: string) Promise~any~
   +getRefSha(ref: string) Promise~string~
   +getTree(sha: string) Promise~TreeElement[]~
+  +listPulls(params) Promise~PullRequest[]~
   +listForOrg(token: string, org: string) Promise~Repo[]~$
 }
 
