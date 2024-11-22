@@ -69,3 +69,9 @@ await repo.getFileContent("path/to/file");
 ``` typescript
 await repo.createTag("my-tag", "main");
 ```
+
+#### list pull requests
+
+``` typescript
+await repo.listPulls({ base: "main" });
+```
