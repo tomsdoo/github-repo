@@ -1,4 +1,12 @@
 import { Octokit, type RestEndpointMethodTypes } from "@octokit/rest";
+import { PageLooper } from "@/PageLooper";
+
+type Repository =
+  RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"] extends Array<
+    infer Repository
+  >
+    ? Repository
+    : never;
 
 export class GitHubRepo {
   protected owner: string;
@@ -152,21 +160,14 @@ export class GitHubRepo {
     RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"]
   > {
     const octokit = new Octokit({ auth: token });
-    const perPage = 100;
-    let page = 1;
-    const darr = [];
-    while (true) {
-      const { data: items } = await octokit.rest.repos.listForOrg({
-        org,
-        per_page: perPage,
-        page,
-      });
-      darr.push(items);
-      if (items.length === 0 || items.length < perPage) {
-        break;
-      }
-      page++;
-    }
-    return darr.flat();
+    return await new PageLooper(100).doLoop<Repository>(
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      async ({ per_page, page }) =>
+        await octokit.rest.repos.listForOrg({
+          org,
+          per_page,
+          page,
+        }),
+    );
   }
 }
