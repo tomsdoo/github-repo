@@ -7,13 +7,15 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { owner, repo, token, TestingGitHubRepo } from "./constants";
+import { owner, repo, token } from "./constants";
+import { GitHubRepo } from "@/GitHubRepo";
+import { regardAsHasOctokit } from "./util";
 
 describe("GitHubRepo", () => {
-  let githubRepo: TestingGitHubRepo;
+  let githubRepo: GitHubRepo;
   let spyOctokitRestGitCreateRef: MockInstance;
   beforeEach(() => {
-    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    githubRepo = new GitHubRepo(token, owner, repo);
   });
 
   afterEach(() => {
@@ -23,7 +25,7 @@ describe("GitHubRepo", () => {
   describe("createRef()", () => {
     it("for tag ref", async () => {
       spyOctokitRestGitCreateRef = vi
-        .spyOn(githubRepo.octokit.rest.git, "createRef")
+        .spyOn(regardAsHasOctokit(githubRepo).octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,
           url: "dummyApiUrl",
@@ -52,7 +54,7 @@ describe("GitHubRepo", () => {
 
     it("for head ref", async () => {
       spyOctokitRestGitCreateRef = vi
-        .spyOn(githubRepo.octokit.rest.git, "createRef")
+        .spyOn(regardAsHasOctokit(githubRepo).octokit.rest.git, "createRef")
         .mockResolvedValue({
           status: 201,
           url: "dummyApiUrl",

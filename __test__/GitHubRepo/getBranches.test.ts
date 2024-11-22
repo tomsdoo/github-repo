@@ -7,19 +7,24 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import { owner, repo, token, TestingGitHubRepo } from "./constants";
+import { owner, repo, token } from "./constants";
+import { GitHubRepo } from "@/GitHubRepo";
+import { regardAsHasOctokit } from "./util";
 
 describe("GitHugRepo", () => {
-  let githubRepo: TestingGitHubRepo;
+  let githubRepo: GitHubRepo;
   let spyOctokitListMatchingRef: MockInstance;
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   beforeEach(() => {
-    githubRepo = new TestingGitHubRepo(token, owner, repo);
+    githubRepo = new GitHubRepo(token, owner, repo);
     spyOctokitListMatchingRef = vi
-      .spyOn(githubRepo.octokit.rest.git, "listMatchingRefs")
+      .spyOn(
+        regardAsHasOctokit(githubRepo).octokit.rest.git,
+        "listMatchingRefs",
+      )
       .mockResolvedValue({
         status: 200,
         url: "dummyApiUrl",
