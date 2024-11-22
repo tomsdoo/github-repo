@@ -1,4 +1,4 @@
-# [GetHubRepo](./GitHubRepo.md) getBranches()
+# [GitHubRepo](./GitHubRepo.md) getBranches()
 
 ``` typescript
 await repo.getBranches()

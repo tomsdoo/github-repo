@@ -1,4 +1,4 @@
-# [GetHubRepo](./GitHubRepo.md) getTags()
+# [GitHubRepo](./GitHubRepo.md) getTags()
 
 ``` typescript
 await repo.getTags()

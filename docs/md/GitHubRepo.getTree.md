@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) getTree()
+# [GitHubRepo](./GitHubRepo.md) getTree()
 
 ``` typescript
 await repo.getTree("sha");
