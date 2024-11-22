@@ -1,12 +1,6 @@
 import { Octokit, type RestEndpointMethodTypes } from "@octokit/rest";
 import { PageLooper } from "@/PageLooper";
-
-type Repository =
-  RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"] extends Array<
-    infer Repository
-  >
-    ? Repository
-    : never;
+import type { Repository, ListPullsParams, PullRequest } from "@/types";
 
 export class GitHubRepo {
   protected owner: string;
@@ -151,6 +145,20 @@ export class GitHubRepo {
   > {
     const branchSha = await this.getBranchSha(branch);
     return await this.getTree(branchSha);
+  }
+
+  public async listPulls(params: ListPullsParams): Promise<PullRequest[]> {
+    return await new PageLooper(100).doLoop(
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      async ({ per_page, page }) =>
+        await this.octokit.rest.pulls.list({
+          ...params,
+          owner: this.owner,
+          repo: this.repo,
+          per_page,
+          page,
+        }),
+    );
   }
 
   public static async listForOrg(
