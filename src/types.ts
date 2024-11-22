@@ -20,3 +20,17 @@ export type PullRequest =
   >
     ? T
     : never;
+
+export type Issue =
+  RestEndpointMethodTypes["issues"]["listForRepo"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;
+
+type RawListIssuesForRepoParams =
+  RestEndpointMethodTypes["issues"]["listForRepo"]["parameters"] extends infer T
+    ? T
+    : never;
+
+export type ListIssuesForRepoParams = Partial<RawListIssuesForRepoParams>;

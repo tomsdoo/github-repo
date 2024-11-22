@@ -75,3 +75,9 @@ await repo.createTag("my-tag", "main");
 ``` typescript
 await repo.listPulls({ base: "main" });
 ```
+
+#### list issues
+
+``` typescript
+await repo.listIssues({ state: "all" });
+```

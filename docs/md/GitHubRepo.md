@@ -14,6 +14,7 @@
 |[getTree()](./GitHubRepo.getTree.md)|get ref tree|
 |[listForOrg()](./GitHubRepo.listForOrg.md)|list repos in organization|
 |[listPulls()](./GitHubRepo.listPulls.md)|list pull requests|
+|[listIssues()](./GitHubRepo.listIssues.md)|list issues|
 
 ***
 
@@ -31,6 +32,7 @@ class GitHubRepo {
   +getRefSha(ref: string) Promise~string~
   +getTree(sha: string) Promise~TreeElement[]~
   +listPulls(params) Promise~PullRequest[]~
+  +listIssues(params) Promise~Issue[]~
   +listForOrg(token: string, org: string) Promise~Repo[]~$
 }
 

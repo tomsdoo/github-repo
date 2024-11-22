@@ -1,6 +1,12 @@
-import { Octokit, type RestEndpointMethodTypes } from "@octokit/rest";
+import { Octokit } from "@octokit/rest";
 import { PageLooper } from "@/PageLooper";
-import type { Repository, ListPullsParams, PullRequest } from "@/types";
+import type {
+  Repository,
+  ListIssuesForRepoParams,
+  Issue,
+  ListPullsParams,
+  PullRequest,
+} from "@/types";
 
 export class GitHubRepo {
   protected owner: string;
@@ -161,12 +167,24 @@ export class GitHubRepo {
     );
   }
 
+  public async listIssues(params: ListIssuesForRepoParams): Promise<Issue[]> {
+    return await new PageLooper(100).doLoop(
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      async ({ per_page, page }) =>
+        await this.octokit.rest.issues.listForRepo({
+          ...params,
+          owner: this.owner,
+          repo: this.repo,
+          per_page,
+          page,
+        }),
+    );
+  }
+
   public static async listForOrg(
     token: string,
     org: string,
-  ): Promise<
-    RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"]
-  > {
+  ): Promise<Repository[]> {
     const octokit = new Octokit({ auth: token });
     return await new PageLooper(100).doLoop<Repository>(
       // eslint-disable-next-line @typescript-eslint/naming-convention
