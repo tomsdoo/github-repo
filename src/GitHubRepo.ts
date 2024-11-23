@@ -6,6 +6,7 @@ import type {
   Issue,
   ListPullsParams,
   PullRequest,
+  IssueComment,
 } from "@/types";
 
 export class GitHubRepo {
@@ -175,6 +176,23 @@ export class GitHubRepo {
           ...params,
           owner: this.owner,
           repo: this.repo,
+          per_page,
+          page,
+        }),
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public async listIssueComments(
+    issue_number: number,
+  ): Promise<IssueComment[]> {
+    return await new PageLooper(100).doLoop(
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      async ({ per_page, page }) =>
+        await this.octokit.rest.issues.listComments({
+          owner: this.owner,
+          repo: this.repo,
+          issue_number,
           per_page,
           page,
         }),

@@ -15,6 +15,7 @@
 |[listForOrg()](./GitHubRepo.listForOrg.md)|list repos in organization|
 |[listPulls()](./GitHubRepo.listPulls.md)|list pull requests|
 |[listIssues()](./GitHubRepo.listIssues.md)|list issues|
+|[listIssueComments()](./GitHubRepo.listIssueComments.md)|list issue comments|
 
 ***
 
@@ -33,6 +34,7 @@ class GitHubRepo {
   +getTree(sha: string) Promise~TreeElement[]~
   +listPulls(params) Promise~PullRequest[]~
   +listIssues(params) Promise~Issue[]~
+  +listIssueComments(issueNumber: number) Promise~IssueComment[]~
   +listForOrg(token: string, org: string) Promise~Repo[]~$
 }
 
