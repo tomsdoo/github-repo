@@ -1,42 +1,817 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@tomsd/github-repo</title><meta name="description" content="Documentation for @tomsd/github-repo"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@tomsd/github-repo</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@tomsd/github-repo</h1></div><div class="tsd-panel tsd-typography"><a id="md:tomsdgithub-repo" class="tsd-anchor"></a><h1 class="tsd-anchor-link">@tomsd/github-repo<a href="#md:tomsdgithub-repo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>It's a utility for GitHub.<br>
-See <a href="https://github-repo-package.netlify.app/" target="_blank" class="external">github-repo-package.netlify.app</a> for details.</p>
-<p><img src="https://img.shields.io/npm/v/@tomsd/github-repo" alt="npm">
-<img src="https://img.shields.io/npm/l/@tomsd/github-repo" alt="NPM">
-<img src="https://img.shields.io/npms-io/quality-score/@tomsd/github-repo" alt="npms.io (quality)">
-<img src="https://img.shields.io/librariesio/release/npm/@tomsd/github-repo" alt="Libraries.io dependency status for latest release">
-<img src="https://img.shields.io/maintenance/yes/2024" alt="Maintenance">
-<img src="https://img.shields.io/badge/node%20%3E=%2018-informational" alt="depends on node greater or equal 18"></p>
-<a id="md:installation" class="tsd-anchor"></a><h2 class="tsd-anchor-link">installation<a href="#md:installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="shell"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">@tomsd/github-repo</span>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@tomsd/github-repo</title><meta name="description" content="Documentation for @tomsd/github-repo"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@tomsd/github-repo</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@tomsd/github-repo</h1></div><div class="tsd-panel tsd-typography"><a id="md:nodejs" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Node.js<a href="#md:nodejs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>Node.js is an open-source, cross-platform JavaScript runtime environment.</p>
+<p>For information on using Node.js, see the <a href="https://nodejs.org/" target="_blank" class="external">Node.js website</a>.</p>
+<p>The Node.js project uses an <a href="./GOVERNANCE.md">open governance model</a>. The
+<a href="https://openjsf.org/" target="_blank" class="external">OpenJS Foundation</a> provides support for the project.</p>
+<p>Contributors are expected to act in a collaborative manner to move
+the project forward. We encourage the constructive exchange of contrary
+opinions and compromise. The <a href="./GOVERNANCE.md#technical-steering-committee">TSC</a>
+reserves the right to limit or block contributors who repeatedly act in ways
+that discourage, exhaust, or otherwise negatively affect other participants.</p>
+<p><strong>This project has a <a href="https://github.com/nodejs/admin/blob/HEAD/CODE_OF_CONDUCT.md" target="_blank" class="external">Code of Conduct</a>.</strong></p>
+<a id="md:table-of-contents" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Table of contents<a href="#md:table-of-contents" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><a href="#md:support">Support</a></li>
+<li><a href="#md:release-types">Release types</a>
+<ul>
+<li><a href="#md:download">Download</a>
+<ul>
+<li><a href="#md:current-and-lts-releases">Current and LTS releases</a></li>
+<li><a href="#md:nightly-releases">Nightly releases</a></li>
+<li><a href="#md:api-documentation">API documentation</a></li>
+</ul>
+</li>
+<li><a href="#md:verifying-binaries">Verifying binaries</a></li>
+</ul>
+</li>
+<li><a href="#md:building-nodejs">Building Node.js</a></li>
+<li><a href="#md:security">Security</a></li>
+<li><a href="#md:contributing-to-nodejs">Contributing to Node.js</a></li>
+<li><a href="#md:current-project-team-members">Current project team members</a>
+<ul>
+<li><a href="#md:tsc-technical-steering-committee">TSC (Technical Steering Committee)</a></li>
+<li><a href="#md:collaborators">Collaborators</a></li>
+<li><a href="#md:triagers">Triagers</a></li>
+<li><a href="#md:release-keys">Release keys</a></li>
+</ul>
+</li>
+<li><a href="#md:license">License</a></li>
+</ul>
+<a id="md:support" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Support<a href="#md:support" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Looking for help? Check out the
+<a href=".github/SUPPORT.md">instructions for getting support</a>.</p>
+<a id="md:release-types" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Release types<a href="#md:release-types" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>Current</strong>: Under active development. Code for the Current release is in the
+branch for its major version number (for example,
+<a href="https://github.com/nodejs/node/tree/v22.x" target="_blank" class="external">v22.x</a>). Node.js releases a new
+major version every 6 months, allowing for breaking changes. This happens in
+April and October every year. Releases appearing each October have a support
+life of 8 months. Releases appearing each April convert to LTS (see below)
+each October.</li>
+<li><strong>LTS</strong>: Releases that receive Long Term Support, with a focus on stability
+and security. Every even-numbered major version will become an LTS release.
+LTS releases receive 12 months of <em>Active LTS</em> support and a further 18 months
+of <em>Maintenance</em>. LTS release lines have alphabetically-ordered code names,
+beginning with v4 Argon. There are no breaking changes or feature additions,
+except in some special circumstances.</li>
+<li><strong>Nightly</strong>: Code from the Current branch built every 24-hours when there are
+changes. Use with caution.</li>
+</ul>
+<p>Current and LTS releases follow <a href="https://semver.org" target="_blank" class="external">semantic versioning</a>. A
+member of the Release Team <a href="#md:release-keys">signs</a> each Current and LTS release.
+For more information, see the
+<a href="https://github.com/nodejs/Release#readme" target="_blank" class="external">Release README</a>.</p>
+<a id="md:download" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Download<a href="#md:download" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Binaries, installers, and source tarballs are available at
+<a href="https://nodejs.org/en/download/" target="_blank" class="external">https://nodejs.org/en/download/</a>.</p>
+<a id="md:current-and-lts-releases" class="tsd-anchor"></a><h4 class="tsd-anchor-link">Current and LTS releases<a href="#md:current-and-lts-releases" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p><a href="https://nodejs.org/download/release/" target="_blank" class="external">https://nodejs.org/download/release/</a></p>
+<p>The <a href="https://nodejs.org/download/release/latest/" target="_blank" class="external">latest</a> directory is an
+alias for the latest Current release. The latest-<em>codename</em> directory is an
+alias for the latest release from an LTS line. For example, the
+<a href="https://nodejs.org/download/release/latest-hydrogen/" target="_blank" class="external">latest-hydrogen</a>
+directory contains the latest Hydrogen (Node.js 18) release.</p>
+<a id="md:nightly-releases" class="tsd-anchor"></a><h4 class="tsd-anchor-link">Nightly releases<a href="#md:nightly-releases" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p><a href="https://nodejs.org/download/nightly/" target="_blank" class="external">https://nodejs.org/download/nightly/</a></p>
+<p>Each directory and filename includes the version (e.g., <code>v22.0.0</code>),
+followed by the UTC date (e.g., <code>20240424</code> for April 24, 2024),
+and the short commit SHA of the HEAD of the release (e.g., <code>ddd0a9e494</code>).
+For instance, a full directory name might look like <code>v22.0.0-nightly20240424ddd0a9e494</code>.</p>
+<a id="md:api-documentation" class="tsd-anchor"></a><h4 class="tsd-anchor-link">API documentation<a href="#md:api-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Documentation for the latest Current release is at <a href="https://nodejs.org/api/" target="_blank" class="external">https://nodejs.org/api/</a>.
+Version-specific documentation is available in each release directory in the
+<em>docs</em> subdirectory. Version-specific documentation is also at
+<a href="https://nodejs.org/download/docs/" target="_blank" class="external">https://nodejs.org/download/docs/</a>.</p>
+<a id="md:verifying-binaries" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Verifying binaries<a href="#md:verifying-binaries" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Download directories contain a <code>SHASUMS256.txt</code> file with SHA checksums for the
+files.</p>
+<p>To download <code>SHASUMS256.txt</code> using <code>curl</code>:</p>
+<pre><code class="bash"><span class="hl-0">curl</span><span class="hl-1"> </span><span class="hl-2">-O</span><span class="hl-1"> </span><span class="hl-3">https://nodejs.org/dist/vx.y.z/SHASUMS256.txt</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:usage" class="tsd-anchor"></a><h2 class="tsd-anchor-link">usage<a href="#md:usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:import-githubrepo-class" class="tsd-anchor"></a><h4 class="tsd-anchor-link">import <code>GitHubRepo</code> class.<a href="#md:import-githubrepo-class" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">import</span><span class="hl-1"> { </span><span class="hl-4">GitHubRepo</span><span class="hl-1"> } </span><span class="hl-4">froom</span><span class="hl-1"> </span><span class="hl-2">&quot;@tomsd/github-repo&quot;</span><span class="hl-1">;</span>
+<p>To check that a downloaded file matches the checksum, run
+it through <code>sha256sum</code> with a command such as:</p>
+<pre><code class="bash"><span class="hl-0">grep</span><span class="hl-1"> </span><span class="hl-3">node-vx.y.z.tar.gz</span><span class="hl-1"> </span><span class="hl-3">SHASUMS256.txt</span><span class="hl-1"> | </span><span class="hl-0">sha256sum</span><span class="hl-1"> </span><span class="hl-2">-c</span><span class="hl-1"> </span><span class="hl-3">-</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:create-an-instance" class="tsd-anchor"></a><h4 class="tsd-anchor-link">create an instance<a href="#md:create-an-instance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">repo</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">GitHubRepo</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-6">GITHUB_TOKEN</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">OWNER</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">REPO</span><br/><span class="hl-1">);</span>
+<p>For Current and LTS, the GPG detached signature of <code>SHASUMS256.txt</code> is in
+<code>SHASUMS256.txt.sig</code>. You can use it with <code>gpg</code> to verify the integrity of
+<code>SHASUMS256.txt</code>. You will first need to import
+<a href="#md:release-keys">the GPG keys of individuals authorized to create releases</a>.</p>
+<p>See <a href="#md:release-keys">Release keys</a> for commands to import active release keys.</p>
+<p>Next, download the <code>SHASUMS256.txt.sig</code> for the release:</p>
+<pre><code class="bash"><span class="hl-0">curl</span><span class="hl-1"> </span><span class="hl-2">-O</span><span class="hl-1"> </span><span class="hl-3">https://nodejs.org/dist/vx.y.z/SHASUMS256.txt.sig</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:get-branches" class="tsd-anchor"></a><h4 class="tsd-anchor-link">get branches<a href="#md:get-branches" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">getBranches</span><span class="hl-1">();</span>
+<p>Then use <code>gpg --verify SHASUMS256.txt.sig SHASUMS256.txt</code> to verify
+the file's signature.</p>
+<a id="md:building-nodejs" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Building Node.js<a href="#md:building-nodejs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>See <a href="BUILDING.md">BUILDING.md</a> for instructions on how to build Node.js from
+source and a list of supported platforms.</p>
+<a id="md:security" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Security<a href="#md:security" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>For information on reporting security vulnerabilities in Node.js, see
+<a href="./SECURITY.md">SECURITY.md</a>.</p>
+<a id="md:contributing-to-nodejs" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Contributing to Node.js<a href="#md:contributing-to-nodejs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><a href="CONTRIBUTING.md">Contributing to the project</a></li>
+<li><a href="https://github.com/nodejs/TSC/blob/HEAD/WORKING_GROUPS.md" target="_blank" class="external">Working Groups</a></li>
+<li><a href="doc/contributing/strategic-initiatives.md">Strategic initiatives</a></li>
+<li><a href="doc/contributing/technical-values.md">Technical values and prioritization</a></li>
+</ul>
+<a id="md:current-project-team-members" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Current project team members<a href="#md:current-project-team-members" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>For information about the governance of the Node.js project, see
+<a href="./GOVERNANCE.md">GOVERNANCE.md</a>.</p>
+<!-- node-core-utils and find-inactive-tsc.mjs depend on the format of the TSC
+     list. If the format changes, those utilities need to be tested and
+     updated. -->
+<a id="md:tsc-technical-steering-committee" class="tsd-anchor"></a><h3 class="tsd-anchor-link">TSC (Technical Steering Committee)<a href="#md:tsc-technical-steering-committee" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><a id="md:tsc-voting-members" class="tsd-anchor"></a><h4 class="tsd-anchor-link">TSC voting members<a href="#md:tsc-voting-members" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><!--lint disable prohibited-strings-->
+<ul>
+<li><a href="https://github.com/aduh95" target="_blank" class="external">aduh95</a> -
+<strong>Antoine du Hamel</strong> &lt;<a href="mailto:duhamelantoine1995@gmail.com">duhamelantoine1995@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/anonrig" target="_blank" class="external">anonrig</a> -
+<strong>Yagiz Nizipli</strong> &lt;<a href="mailto:yagiz@nizipli.com">yagiz@nizipli.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/benjamingr" target="_blank" class="external">benjamingr</a> -
+<strong>Benjamin Gruenbaum</strong> &lt;<a href="mailto:benjamingr@gmail.com">benjamingr@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/BridgeAR" target="_blank" class="external">BridgeAR</a> -
+<strong>Ruben Bridgewater</strong> &lt;<a href="mailto:ruben@bridgewater.de">ruben@bridgewater.de</a>&gt; (he/him)</li>
+<li><a href="https://github.com/gireeshpunathil" target="_blank" class="external">gireeshpunathil</a> -
+<strong>Gireesh Punathil</strong> &lt;<a href="mailto:gpunathi@in.ibm.com">gpunathi@in.ibm.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/jasnell" target="_blank" class="external">jasnell</a> -
+<strong>James M Snell</strong> &lt;<a href="mailto:jasnell@gmail.com">jasnell@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/joyeecheung" target="_blank" class="external">joyeecheung</a> -
+<strong>Joyee Cheung</strong> &lt;<a href="mailto:joyeec9h3@gmail.com">joyeec9h3@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/legendecas" target="_blank" class="external">legendecas</a> -
+<strong>Chengzhong Wu</strong> &lt;<a href="mailto:legendecas@gmail.com">legendecas@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/marco-ippolito" target="_blank" class="external">marco-ippolito</a> -
+<strong>Marco Ippolito</strong> &lt;<a href="mailto:marcoippolito54@gmail.com">marcoippolito54@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mcollina" target="_blank" class="external">mcollina</a> -
+<strong>Matteo Collina</strong> &lt;<a href="mailto:matteo.collina@gmail.com">matteo.collina@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mhdawson" target="_blank" class="external">mhdawson</a> -
+<strong>Michael Dawson</strong> &lt;<a href="mailto:midawson@redhat.com">midawson@redhat.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/MoLow" target="_blank" class="external">MoLow</a> -
+<strong>Moshe Atlow</strong> &lt;<a href="mailto:moshe@atlow.co.il">moshe@atlow.co.il</a>&gt; (he/him)</li>
+<li><a href="https://github.com/RafaelGSS" target="_blank" class="external">RafaelGSS</a> -
+<strong>Rafael Gonzaga</strong> &lt;<a href="mailto:rafael.nunu@hotmail.com">rafael.nunu@hotmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/richardlau" target="_blank" class="external">richardlau</a> -
+<strong>Richard Lau</strong> &lt;<a href="mailto:rlau@redhat.com">rlau@redhat.com</a>&gt;</li>
+<li><a href="https://github.com/ronag" target="_blank" class="external">ronag</a> -
+<strong>Robert Nagy</strong> &lt;<a href="mailto:ronagy@icloud.com">ronagy@icloud.com</a>&gt;</li>
+<li><a href="https://github.com/ruyadorno" target="_blank" class="external">ruyadorno</a> -
+<strong>Ruy Adorno</strong> &lt;<a href="mailto:ruy@vlt.sh">ruy@vlt.sh</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ShogunPanda" target="_blank" class="external">ShogunPanda</a> -
+<strong>Paolo Insogna</strong> &lt;<a href="mailto:paolo@cowtech.it">paolo@cowtech.it</a>&gt; (he/him)</li>
+<li><a href="https://github.com/targos" target="_blank" class="external">targos</a> -
+<strong>Michaël Zasso</strong> &lt;<a href="mailto:targos@protonmail.com">targos@protonmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/tniessen" target="_blank" class="external">tniessen</a> -
+<strong>Tobias Nießen</strong> &lt;<a href="mailto:tniessen@tnie.de">tniessen@tnie.de</a>&gt; (he/him)</li>
+</ul>
+<a id="md:tsc-regular-members" class="tsd-anchor"></a><h4 class="tsd-anchor-link">TSC regular members<a href="#md:tsc-regular-members" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><ul>
+<li><a href="https://github.com/apapirovski" target="_blank" class="external">apapirovski</a> -
+<strong>Anatoli Papirovski</strong> &lt;<a href="mailto:apapirovski@mac.com">apapirovski@mac.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/BethGriggs" target="_blank" class="external">BethGriggs</a> -
+<strong>Beth Griggs</strong> &lt;<a href="mailto:bethanyngriggs@gmail.com">bethanyngriggs@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/bnoordhuis" target="_blank" class="external">bnoordhuis</a> -
+<strong>Ben Noordhuis</strong> &lt;<a href="mailto:info@bnoordhuis.nl">info@bnoordhuis.nl</a>&gt;</li>
+<li><a href="https://github.com/cjihrig" target="_blank" class="external">cjihrig</a> -
+<strong>Colin Ihrig</strong> &lt;<a href="mailto:cjihrig@gmail.com">cjihrig@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/codebytere" target="_blank" class="external">codebytere</a> -
+<strong>Shelley Vohr</strong> &lt;<a href="mailto:shelley.vohr@gmail.com">shelley.vohr@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/GeoffreyBooth" target="_blank" class="external">GeoffreyBooth</a> -
+<strong>Geoffrey Booth</strong> &lt;<a href="mailto:webadmin@geoffreybooth.com">webadmin@geoffreybooth.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Trott" target="_blank" class="external">Trott</a> -
+<strong>Rich Trott</strong> &lt;<a href="mailto:rtrott@gmail.com">rtrott@gmail.com</a>&gt; (he/him)</li>
+</ul>
+<details>
+<summary>TSC emeriti members</summary>
+<a id="md:tsc-emeriti-members" class="tsd-anchor"></a><h4 class="tsd-anchor-link">TSC emeriti members<a href="#md:tsc-emeriti-members" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><ul>
+<li><a href="https://github.com/addaleax" target="_blank" class="external">addaleax</a> -
+<strong>Anna Henningsen</strong> &lt;<a href="mailto:anna@addaleax.net">anna@addaleax.net</a>&gt; (she/her)</li>
+<li><a href="https://github.com/ChALkeR" target="_blank" class="external">ChALkeR</a> -
+<strong>Сковорода Никита Андреевич</strong> &lt;<a href="mailto:chalkerx@gmail.com">chalkerx@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/chrisdickinson" target="_blank" class="external">chrisdickinson</a> -
+<strong>Chris Dickinson</strong> &lt;<a href="mailto:christopher.s.dickinson@gmail.com">christopher.s.dickinson@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/danbev" target="_blank" class="external">danbev</a> -
+<strong>Daniel Bevenius</strong> &lt;<a href="mailto:daniel.bevenius@gmail.com">daniel.bevenius@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/danielleadams" target="_blank" class="external">danielleadams</a> -
+<strong>Danielle Adams</strong> &lt;<a href="mailto:adamzdanielle@gmail.com">adamzdanielle@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/evanlucas" target="_blank" class="external">evanlucas</a> -
+<strong>Evan Lucas</strong> &lt;<a href="mailto:evanlucas@me.com">evanlucas@me.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/fhinkel" target="_blank" class="external">fhinkel</a> -
+<strong>Franziska Hinkelmann</strong> &lt;<a href="mailto:franziska.hinkelmann@gmail.com">franziska.hinkelmann@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/Fishrock123" target="_blank" class="external">Fishrock123</a> -
+<strong>Jeremiah Senkpiel</strong> &lt;<a href="mailto:fishrock123@rocketmail.com">fishrock123@rocketmail.com</a>&gt; (he/they)</li>
+<li><a href="https://github.com/gabrielschulhof" target="_blank" class="external">gabrielschulhof</a> -
+<strong>Gabriel Schulhof</strong> &lt;<a href="mailto:gabrielschulhof@gmail.com">gabrielschulhof@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/gibfahn" target="_blank" class="external">gibfahn</a> -
+<strong>Gibson Fahnestock</strong> &lt;<a href="mailto:gibfahn@gmail.com">gibfahn@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/indutny" target="_blank" class="external">indutny</a> -
+<strong>Fedor Indutny</strong> &lt;<a href="mailto:fedor@indutny.com">fedor@indutny.com</a>&gt;</li>
+<li><a href="https://github.com/isaacs" target="_blank" class="external">isaacs</a> -
+<strong>Isaac Z. Schlueter</strong> &lt;<a href="mailto:i@izs.me">i@izs.me</a>&gt;</li>
+<li><a href="https://github.com/joshgav" target="_blank" class="external">joshgav</a> -
+<strong>Josh Gavant</strong> &lt;<a href="mailto:josh.gavant@outlook.com">josh.gavant@outlook.com</a>&gt;</li>
+<li><a href="https://github.com/mmarchini" target="_blank" class="external">mmarchini</a> -
+<strong>Mary Marchini</strong> &lt;<a href="mailto:oss@mmarchini.me">oss@mmarchini.me</a>&gt; (she/her)</li>
+<li><a href="https://github.com/mscdex" target="_blank" class="external">mscdex</a> -
+<strong>Brian White</strong> &lt;<a href="mailto:mscdex@mscdex.net">mscdex@mscdex.net</a>&gt;</li>
+<li><a href="https://github.com/MylesBorins" target="_blank" class="external">MylesBorins</a> -
+<strong>Myles Borins</strong> &lt;<a href="mailto:myles.borins@gmail.com">myles.borins@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/nebrius" target="_blank" class="external">nebrius</a> -
+<strong>Bryan Hughes</strong> &lt;<a href="mailto:bryan@nebri.us">bryan@nebri.us</a>&gt;</li>
+<li><a href="https://github.com/ofrobots" target="_blank" class="external">ofrobots</a> -
+<strong>Ali Ijaz Sheikh</strong> &lt;<a href="mailto:ofrobots@google.com">ofrobots@google.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/orangemocha" target="_blank" class="external">orangemocha</a> -
+<strong>Alexis Campailla</strong> &lt;<a href="mailto:orangemocha@nodejs.org">orangemocha@nodejs.org</a>&gt;</li>
+<li><a href="https://github.com/piscisaureus" target="_blank" class="external">piscisaureus</a> -
+<strong>Bert Belder</strong> &lt;<a href="mailto:bertbelder@gmail.com">bertbelder@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/RaisinTen" target="_blank" class="external">RaisinTen</a> -
+<strong>Darshan Sen</strong> &lt;<a href="mailto:raisinten@gmail.com">raisinten@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/rvagg" target="_blank" class="external">rvagg</a> -
+<strong>Rod Vagg</strong> &lt;<a href="mailto:r@va.gg">r@va.gg</a>&gt;</li>
+<li><a href="https://github.com/sam-github" target="_blank" class="external">sam-github</a> -
+<strong>Sam Roberts</strong> &lt;<a href="mailto:vieuxtech@gmail.com">vieuxtech@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/shigeki" target="_blank" class="external">shigeki</a> -
+<strong>Shigeki Ohtsu</strong> &lt;<a href="mailto:ohtsu@ohtsu.org">ohtsu@ohtsu.org</a>&gt; (he/him)</li>
+<li><a href="https://github.com/thefourtheye" target="_blank" class="external">thefourtheye</a> -
+<strong>Sakthipriyan Vairamani</strong> &lt;<a href="mailto:thechargingvolcano@gmail.com">thechargingvolcano@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/TimothyGu" target="_blank" class="external">TimothyGu</a> -
+<strong>Tiancheng &quot;Timothy&quot; Gu</strong> &lt;<a href="mailto:timothygu99@gmail.com">timothygu99@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/trevnorris" target="_blank" class="external">trevnorris</a> -
+<strong>Trevor Norris</strong> &lt;<a href="mailto:trev.norris@gmail.com">trev.norris@gmail.com</a>&gt;</li>
+</ul>
+</details>
+<!-- node-core-utils and find-inactive-collaborators.mjs depend on the format
+     of the collaborator list. If the format changes, those utilities need to be
+     tested and updated. -->
+<a id="md:collaborators" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Collaborators<a href="#md:collaborators" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><a href="https://github.com/abmusse" target="_blank" class="external">abmusse</a> -
+<strong>Abdirahim Musse</strong> &lt;<a href="mailto:abdirahim.musse@ibm.com">abdirahim.musse@ibm.com</a>&gt;</li>
+<li><a href="https://github.com/addaleax" target="_blank" class="external">addaleax</a> -
+<strong>Anna Henningsen</strong> &lt;<a href="mailto:anna@addaleax.net">anna@addaleax.net</a>&gt; (she/her)</li>
+<li><a href="https://github.com/aduh95" target="_blank" class="external">aduh95</a> -
+<strong>Antoine du Hamel</strong> &lt;<a href="mailto:duhamelantoine1995@gmail.com">duhamelantoine1995@gmail.com</a>&gt; (he/him) - <a href="https://github.com/sponsors/aduh95" target="_blank" class="external">Support me</a></li>
+<li><a href="https://github.com/anonrig" target="_blank" class="external">anonrig</a> -
+<strong>Yagiz Nizipli</strong> &lt;<a href="mailto:yagiz@nizipli.com">yagiz@nizipli.com</a>&gt; (he/him) - <a href="https://github.com/sponsors/anonrig" target="_blank" class="external">Support me</a></li>
+<li><a href="https://github.com/apapirovski" target="_blank" class="external">apapirovski</a> -
+<strong>Anatoli Papirovski</strong> &lt;<a href="mailto:apapirovski@mac.com">apapirovski@mac.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/atlowChemi" target="_blank" class="external">atlowChemi</a> -
+<strong>Chemi Atlow</strong> &lt;<a href="mailto:chemi@atlow.co.il">chemi@atlow.co.il</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Ayase-252" target="_blank" class="external">Ayase-252</a> -
+<strong>Qingyu Deng</strong> &lt;<a href="mailto:i@ayase-lab.com">i@ayase-lab.com</a>&gt;</li>
+<li><a href="https://github.com/bengl" target="_blank" class="external">bengl</a> -
+<strong>Bryan English</strong> &lt;<a href="mailto:bryan@bryanenglish.com">bryan@bryanenglish.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/benjamingr" target="_blank" class="external">benjamingr</a> -
+<strong>Benjamin Gruenbaum</strong> &lt;<a href="mailto:benjamingr@gmail.com">benjamingr@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/BethGriggs" target="_blank" class="external">BethGriggs</a> -
+<strong>Beth Griggs</strong> &lt;<a href="mailto:bethanyngriggs@gmail.com">bethanyngriggs@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/bnb" target="_blank" class="external">bnb</a> -
+<strong>Tierney Cyren</strong> &lt;<a href="mailto:hello@bnb.im">hello@bnb.im</a>&gt; (they/them)</li>
+<li><a href="https://github.com/bnoordhuis" target="_blank" class="external">bnoordhuis</a> -
+<strong>Ben Noordhuis</strong> &lt;<a href="mailto:info@bnoordhuis.nl">info@bnoordhuis.nl</a>&gt;</li>
+<li><a href="https://github.com/BridgeAR" target="_blank" class="external">BridgeAR</a> -
+<strong>Ruben Bridgewater</strong> &lt;<a href="mailto:ruben@bridgewater.de">ruben@bridgewater.de</a>&gt; (he/him)</li>
+<li><a href="https://github.com/cclauss" target="_blank" class="external">cclauss</a> -
+<strong>Christian Clauss</strong> &lt;<a href="mailto:cclauss@me.com">cclauss@me.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/cjihrig" target="_blank" class="external">cjihrig</a> -
+<strong>Colin Ihrig</strong> &lt;<a href="mailto:cjihrig@gmail.com">cjihrig@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/codebytere" target="_blank" class="external">codebytere</a> -
+<strong>Shelley Vohr</strong> &lt;<a href="mailto:shelley.vohr@gmail.com">shelley.vohr@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/cola119" target="_blank" class="external">cola119</a> -
+<strong>Kohei Ueno</strong> &lt;<a href="mailto:kohei.ueno119@gmail.com">kohei.ueno119@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/daeyeon" target="_blank" class="external">daeyeon</a> -
+<strong>Daeyeon Jeong</strong> &lt;<a href="mailto:daeyeon.dev@gmail.com">daeyeon.dev@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/danielleadams" target="_blank" class="external">danielleadams</a> -
+<strong>Danielle Adams</strong> &lt;<a href="mailto:adamzdanielle@gmail.com">adamzdanielle@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/debadree25" target="_blank" class="external">debadree25</a> -
+<strong>Debadree Chatterjee</strong> &lt;<a href="mailto:debadree333@gmail.com">debadree333@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/deokjinkim" target="_blank" class="external">deokjinkim</a> -
+<strong>Deokjin Kim</strong> &lt;<a href="mailto:deokjin81.kim@gmail.com">deokjin81.kim@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/edsadr" target="_blank" class="external">edsadr</a> -
+<strong>Adrian Estrada</strong> &lt;<a href="mailto:edsadr@gmail.com">edsadr@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ErickWendel" target="_blank" class="external">ErickWendel</a> -
+<strong>Erick Wendel</strong> &lt;<a href="mailto:erick.workspace@gmail.com">erick.workspace@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Ethan-Arrowood" target="_blank" class="external">Ethan-Arrowood</a> -
+<strong>Ethan Arrowood</strong> &lt;<a href="mailto:ethan@arrowood.dev">ethan@arrowood.dev</a>&gt; (he/him)</li>
+<li><a href="https://github.com/F3n67u" target="_blank" class="external">F3n67u</a> -
+<strong>Feng Yu</strong> &lt;<a href="mailto:F3n67u@outlook.com">F3n67u@outlook.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/fhinkel" target="_blank" class="external">fhinkel</a> -
+<strong>Franziska Hinkelmann</strong> &lt;<a href="mailto:franziska.hinkelmann@gmail.com">franziska.hinkelmann@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/Flarna" target="_blank" class="external">Flarna</a> -
+<strong>Gerhard Stöbich</strong> &lt;<a href="mailto:deb2001-github@yahoo.de">deb2001-github@yahoo.de</a>&gt; (he/they)</li>
+<li><a href="https://github.com/gabrielschulhof" target="_blank" class="external">gabrielschulhof</a> -
+<strong>Gabriel Schulhof</strong> &lt;<a href="mailto:gabrielschulhof@gmail.com">gabrielschulhof@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/gengjiawen" target="_blank" class="external">gengjiawen</a> -
+<strong>Jiawen Geng</strong> &lt;<a href="mailto:technicalcute@gmail.com">technicalcute@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/GeoffreyBooth" target="_blank" class="external">GeoffreyBooth</a> -
+<strong>Geoffrey Booth</strong> &lt;<a href="mailto:webadmin@geoffreybooth.com">webadmin@geoffreybooth.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/gireeshpunathil" target="_blank" class="external">gireeshpunathil</a> -
+<strong>Gireesh Punathil</strong> &lt;<a href="mailto:gpunathi@in.ibm.com">gpunathi@in.ibm.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/guybedford" target="_blank" class="external">guybedford</a> -
+<strong>Guy Bedford</strong> &lt;<a href="mailto:guybedford@gmail.com">guybedford@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/H4ad" target="_blank" class="external">H4ad</a> -
+<strong>Vinícius Lourenço Claro Cardoso</strong> &lt;<a href="mailto:contact@viniciusl.com.br">contact@viniciusl.com.br</a>&gt; (he/him)</li>
+<li><a href="https://github.com/HarshithaKP" target="_blank" class="external">HarshithaKP</a> -
+<strong>Harshitha K P</strong> &lt;<a href="mailto:harshitha014@gmail.com">harshitha014@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/himself65" target="_blank" class="external">himself65</a> -
+<strong>Zeyu &quot;Alex&quot; Yang</strong> &lt;<a href="mailto:himself65@outlook.com">himself65@outlook.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/jakecastelli" target="_blank" class="external">jakecastelli</a> -
+<strong>Jake Yuesong Li</strong> &lt;<a href="mailto:jake.yuesong@gmail.com">jake.yuesong@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/JakobJingleheimer" target="_blank" class="external">JakobJingleheimer</a> -
+<strong>Jacob Smith</strong> &lt;<a href="mailto:jacob@frende.me">jacob@frende.me</a>&gt; (he/him)</li>
+<li><a href="https://github.com/jasnell" target="_blank" class="external">jasnell</a> -
+<strong>James M Snell</strong> &lt;<a href="mailto:jasnell@gmail.com">jasnell@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/jkrems" target="_blank" class="external">jkrems</a> -
+<strong>Jan Krems</strong> &lt;<a href="mailto:jan.krems@gmail.com">jan.krems@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/joyeecheung" target="_blank" class="external">joyeecheung</a> -
+<strong>Joyee Cheung</strong> &lt;<a href="mailto:joyeec9h3@gmail.com">joyeec9h3@gmail.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/juanarbol" target="_blank" class="external">juanarbol</a> -
+<strong>Juan José Arboleda</strong> &lt;<a href="mailto:soyjuanarbol@gmail.com">soyjuanarbol@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/JungMinu" target="_blank" class="external">JungMinu</a> -
+<strong>Minwoo Jung</strong> &lt;<a href="mailto:nodecorelab@gmail.com">nodecorelab@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/KhafraDev" target="_blank" class="external">KhafraDev</a> -
+<strong>Matthew Aitken</strong> &lt;<a href="mailto:maitken033380023@gmail.com">maitken033380023@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/kvakil" target="_blank" class="external">kvakil</a> -
+<strong>Keyhan Vakil</strong> &lt;<a href="mailto:kvakil@sylph.kvakil.me">kvakil@sylph.kvakil.me</a>&gt;</li>
+<li><a href="https://github.com/legendecas" target="_blank" class="external">legendecas</a> -
+<strong>Chengzhong Wu</strong> &lt;<a href="mailto:legendecas@gmail.com">legendecas@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lemire" target="_blank" class="external">lemire</a> -
+<strong>Daniel Lemire</strong> &lt;<a href="mailto:daniel@lemire.me">daniel@lemire.me</a>&gt;</li>
+<li><a href="https://github.com/Linkgoron" target="_blank" class="external">Linkgoron</a> -
+<strong>Nitzan Uziely</strong> &lt;<a href="mailto:linkgoron@gmail.com">linkgoron@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/LiviaMedeiros" target="_blank" class="external">LiviaMedeiros</a> -
+<strong>LiviaMedeiros</strong> &lt;<a href="mailto:livia@cirno.name">livia@cirno.name</a>&gt;</li>
+<li><a href="https://github.com/lpinca" target="_blank" class="external">lpinca</a> -
+<strong>Luigi Pinca</strong> &lt;<a href="mailto:luigipinca@gmail.com">luigipinca@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lukekarrys" target="_blank" class="external">lukekarrys</a> -
+<strong>Luke Karrys</strong> &lt;<a href="mailto:luke@lukekarrys.com">luke@lukekarrys.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Lxxyx" target="_blank" class="external">Lxxyx</a> -
+<strong>Zijian Liu</strong> &lt;<a href="mailto:lxxyxzj@gmail.com">lxxyxzj@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/marco-ippolito" target="_blank" class="external">marco-ippolito</a> -
+<strong>Marco Ippolito</strong> &lt;<a href="mailto:marcoippolito54@gmail.com">marcoippolito54@gmail.com</a>&gt; (he/him) - <a href="https://github.com/sponsors/marco-ippolito" target="_blank" class="external">Support me</a></li>
+<li><a href="https://github.com/marsonya" target="_blank" class="external">marsonya</a> -
+<strong>Akhil Marsonya</strong> &lt;<a href="mailto:akhil.marsonya27@gmail.com">akhil.marsonya27@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/MattiasBuelens" target="_blank" class="external">MattiasBuelens</a> -
+<strong>Mattias Buelens</strong> &lt;<a href="mailto:mattias@buelens.com">mattias@buelens.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mcollina" target="_blank" class="external">mcollina</a> -
+<strong>Matteo Collina</strong> &lt;<a href="mailto:matteo.collina@gmail.com">matteo.collina@gmail.com</a>&gt; (he/him) - <a href="https://github.com/sponsors/mcollina" target="_blank" class="external">Support me</a></li>
+<li><a href="https://github.com/meixg" target="_blank" class="external">meixg</a> -
+<strong>Xuguang Mei</strong> &lt;<a href="mailto:meixuguang@gmail.com">meixuguang@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mhdawson" target="_blank" class="external">mhdawson</a> -
+<strong>Michael Dawson</strong> &lt;<a href="mailto:midawson@redhat.com">midawson@redhat.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mildsunrise" target="_blank" class="external">mildsunrise</a> -
+<strong>Alba Mendez</strong> &lt;<a href="mailto:me@alba.sh">me@alba.sh</a>&gt; (she/her)</li>
+<li><a href="https://github.com/MoLow" target="_blank" class="external">MoLow</a> -
+<strong>Moshe Atlow</strong> &lt;<a href="mailto:moshe@atlow.co.il">moshe@atlow.co.il</a>&gt; (he/him)</li>
+<li><a href="https://github.com/MrJithil" target="_blank" class="external">MrJithil</a> -
+<strong>Jithil P Ponnan</strong> &lt;<a href="mailto:jithil@outlook.com">jithil@outlook.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ovflowd" target="_blank" class="external">ovflowd</a> -
+<strong>Claudio Wunder</strong> &lt;<a href="mailto:cwunder@gnome.org">cwunder@gnome.org</a>&gt; (he/they)</li>
+<li><a href="https://github.com/panva" target="_blank" class="external">panva</a> -
+<strong>Filip Skokan</strong> &lt;<a href="mailto:panva.ip@gmail.com">panva.ip@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/pimterry" target="_blank" class="external">pimterry</a> -
+<strong>Tim Perry</strong> &lt;<a href="mailto:pimterry@gmail.com">pimterry@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/pmarchini" target="_blank" class="external">pmarchini</a>
+<strong>Pietro Marchini</strong> &lt;<a href="mailto:pietro.marchini94@gmail.com">pietro.marchini94@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Qard" target="_blank" class="external">Qard</a> -
+<strong>Stephen Belanger</strong> &lt;<a href="mailto:admin@stephenbelanger.com">admin@stephenbelanger.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/RafaelGSS" target="_blank" class="external">RafaelGSS</a> -
+<strong>Rafael Gonzaga</strong> &lt;<a href="mailto:rafael.nunu@hotmail.com">rafael.nunu@hotmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/richardlau" target="_blank" class="external">richardlau</a> -
+<strong>Richard Lau</strong> &lt;<a href="mailto:rlau@redhat.com">rlau@redhat.com</a>&gt;</li>
+<li><a href="https://github.com/rluvaton" target="_blank" class="external">rluvaton</a> -
+<strong>Raz Luvaton</strong> &lt;<a href="mailto:rluvaton@gmail.com">rluvaton@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ronag" target="_blank" class="external">ronag</a> -
+<strong>Robert Nagy</strong> &lt;<a href="mailto:ronagy@icloud.com">ronagy@icloud.com</a>&gt;</li>
+<li><a href="https://github.com/ruyadorno" target="_blank" class="external">ruyadorno</a> -
+<strong>Ruy Adorno</strong> &lt;<a href="mailto:ruy@vlt.sh">ruy@vlt.sh</a>&gt; (he/him)</li>
+<li><a href="https://github.com/santigimeno" target="_blank" class="external">santigimeno</a> -
+<strong>Santiago Gimeno</strong> &lt;<a href="mailto:santiago.gimeno@gmail.com">santiago.gimeno@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/ShogunPanda" target="_blank" class="external">ShogunPanda</a> -
+<strong>Paolo Insogna</strong> &lt;<a href="mailto:paolo@cowtech.it">paolo@cowtech.it</a>&gt; (he/him)</li>
+<li><a href="https://github.com/srl295" target="_blank" class="external">srl295</a> -
+<strong>Steven R Loomis</strong> &lt;<a href="mailto:srl295@gmail.com">srl295@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/StefanStojanovic" target="_blank" class="external">StefanStojanovic</a> -
+<strong>Stefan Stojanovic</strong> &lt;<a href="mailto:stefan.stojanovic@janeasystems.com">stefan.stojanovic@janeasystems.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/sxa" target="_blank" class="external">sxa</a> -
+<strong>Stewart X Addison</strong> &lt;<a href="mailto:sxa@redhat.com">sxa@redhat.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/targos" target="_blank" class="external">targos</a> -
+<strong>Michaël Zasso</strong> &lt;<a href="mailto:targos@protonmail.com">targos@protonmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/theanarkh" target="_blank" class="external">theanarkh</a> -
+<strong>theanarkh</strong> &lt;<a href="mailto:theratliter@gmail.com">theratliter@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/tniessen" target="_blank" class="external">tniessen</a> -
+<strong>Tobias Nießen</strong> &lt;<a href="mailto:tniessen@tnie.de">tniessen@tnie.de</a>&gt; (he/him)</li>
+<li><a href="https://github.com/trivikr" target="_blank" class="external">trivikr</a> -
+<strong>Trivikram Kamat</strong> &lt;<a href="mailto:trivikr.dev@gmail.com">trivikr.dev@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/Trott" target="_blank" class="external">Trott</a> -
+<strong>Rich Trott</strong> &lt;<a href="mailto:rtrott@gmail.com">rtrott@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/UlisesGascon" target="_blank" class="external">UlisesGascon</a> -
+<strong>Ulises Gascón</strong> &lt;<a href="mailto:ulisesgascongonzalez@gmail.com">ulisesgascongonzalez@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/vmoroz" target="_blank" class="external">vmoroz</a> -
+<strong>Vladimir Morozov</strong> &lt;<a href="mailto:vmorozov@microsoft.com">vmorozov@microsoft.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/VoltrexKeyva" target="_blank" class="external">VoltrexKeyva</a> -
+<strong>Mohammed Keyvanzadeh</strong> &lt;<a href="mailto:mohammadkeyvanzade94@gmail.com">mohammadkeyvanzade94@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/watilde" target="_blank" class="external">watilde</a> -
+<strong>Daijiro Wachi</strong> &lt;<a href="mailto:daijiro.wachi@gmail.com">daijiro.wachi@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/zcbenz" target="_blank" class="external">zcbenz</a> -
+<strong>Cheng Zhao</strong> &lt;<a href="mailto:zcbenz@gmail.com">zcbenz@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ZYSzys" target="_blank" class="external">ZYSzys</a> -
+<strong>Yongsheng Zhang</strong> &lt;<a href="mailto:zyszys98@gmail.com">zyszys98@gmail.com</a>&gt; (he/him)</li>
+</ul>
+<details>
+<summary>Emeriti</summary>
+<!-- find-inactive-collaborators.mjs depends on the format of the emeriti list.
+     If the format changes, those utilities need to be tested and updated. -->
+<a id="md:collaborator-emeriti" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Collaborator emeriti<a href="#md:collaborator-emeriti" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><a href="https://github.com/ak239" target="_blank" class="external">ak239</a> -
+<strong>Aleksei Koziatinskii</strong> &lt;<a href="mailto:ak239spb@gmail.com">ak239spb@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/andrasq" target="_blank" class="external">andrasq</a> -
+<strong>Andras</strong> &lt;<a href="mailto:andras@kinvey.com">andras@kinvey.com</a>&gt;</li>
+<li><a href="https://github.com/AndreasMadsen" target="_blank" class="external">AndreasMadsen</a> -
+<strong>Andreas Madsen</strong> &lt;<a href="mailto:amwebdk@gmail.com">amwebdk@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/AnnaMag" target="_blank" class="external">AnnaMag</a> -
+<strong>Anna M. Kedzierska</strong> &lt;<a href="mailto:anna.m.kedzierska@gmail.com">anna.m.kedzierska@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/antsmartian" target="_blank" class="external">antsmartian</a> -
+<strong>Anto Aravinth</strong> &lt;<a href="mailto:anto.aravinth.cse@gmail.com">anto.aravinth.cse@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/aqrln" target="_blank" class="external">aqrln</a> -
+<strong>Alexey Orlenko</strong> &lt;<a href="mailto:eaglexrlnk@gmail.com">eaglexrlnk@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/AshCripps" target="_blank" class="external">AshCripps</a> -
+<strong>Ash Cripps</strong> &lt;<a href="mailto:email@ashleycripps.co.uk">email@ashleycripps.co.uk</a>&gt;</li>
+<li><a href="https://github.com/bcoe" target="_blank" class="external">bcoe</a> -
+<strong>Ben Coe</strong> &lt;<a href="mailto:bencoe@gmail.com">bencoe@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/bmeck" target="_blank" class="external">bmeck</a> -
+<strong>Bradley Farias</strong> &lt;<a href="mailto:bradley.meck@gmail.com">bradley.meck@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/bmeurer" target="_blank" class="external">bmeurer</a> -
+<strong>Benedikt Meurer</strong> &lt;<a href="mailto:benedikt.meurer@gmail.com">benedikt.meurer@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/boneskull" target="_blank" class="external">boneskull</a> -
+<strong>Christopher Hiller</strong> &lt;<a href="mailto:boneskull@boneskull.com">boneskull@boneskull.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/brendanashworth" target="_blank" class="external">brendanashworth</a> -
+<strong>Brendan Ashworth</strong> &lt;<a href="mailto:brendan.ashworth@me.com">brendan.ashworth@me.com</a>&gt;</li>
+<li><a href="https://github.com/bzoz" target="_blank" class="external">bzoz</a> -
+<strong>Bartosz Sosnowski</strong> &lt;<a href="mailto:bartosz@janeasystems.com">bartosz@janeasystems.com</a>&gt;</li>
+<li><a href="https://github.com/calvinmetcalf" target="_blank" class="external">calvinmetcalf</a> -
+<strong>Calvin Metcalf</strong> &lt;<a href="mailto:calvin.metcalf@gmail.com">calvin.metcalf@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/ChALkeR" target="_blank" class="external">ChALkeR</a> -
+<strong>Сковорода Никита Андреевич</strong> &lt;<a href="mailto:chalkerx@gmail.com">chalkerx@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/chrisdickinson" target="_blank" class="external">chrisdickinson</a> -
+<strong>Chris Dickinson</strong> &lt;<a href="mailto:christopher.s.dickinson@gmail.com">christopher.s.dickinson@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/claudiorodriguez" target="_blank" class="external">claudiorodriguez</a> -
+<strong>Claudio Rodriguez</strong> &lt;<a href="mailto:cjrodr@yahoo.com">cjrodr@yahoo.com</a>&gt;</li>
+<li><a href="https://github.com/danbev" target="_blank" class="external">danbev</a> -
+<strong>Daniel Bevenius</strong> &lt;<a href="mailto:daniel.bevenius@gmail.com">daniel.bevenius@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/DavidCai1993" target="_blank" class="external">DavidCai1993</a> -
+<strong>David Cai</strong> &lt;<a href="mailto:davidcai1993@yahoo.com">davidcai1993@yahoo.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/davisjam" target="_blank" class="external">davisjam</a> -
+<strong>Jamie Davis</strong> &lt;<a href="mailto:davisjam@vt.edu">davisjam@vt.edu</a>&gt; (he/him)</li>
+<li><a href="https://github.com/devnexen" target="_blank" class="external">devnexen</a> -
+<strong>David Carlier</strong> &lt;<a href="mailto:devnexen@gmail.com">devnexen@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/devsnek" target="_blank" class="external">devsnek</a> -
+<strong>Gus Caplan</strong> &lt;<a href="mailto:me@gus.host">me@gus.host</a>&gt; (they/them)</li>
+<li><a href="https://github.com/digitalinfinity" target="_blank" class="external">digitalinfinity</a> -
+<strong>Hitesh Kanwathirtha</strong> &lt;<a href="mailto:digitalinfinity@gmail.com">digitalinfinity@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/dmabupt" target="_blank" class="external">dmabupt</a> -
+<strong>Xu Meng</strong> &lt;<a href="mailto:dmabupt@gmail.com">dmabupt@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/dnlup" target="_blank" class="external">dnlup</a>
+<strong>dnlup</strong> &lt;<a href="mailto:dnlup.dev@gmail.com">dnlup.dev@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/eljefedelrodeodeljefe" target="_blank" class="external">eljefedelrodeodeljefe</a> -
+<strong>Robert Jefe Lindstaedt</strong> &lt;<a href="mailto:robert.lindstaedt@gmail.com">robert.lindstaedt@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/estliberitas" target="_blank" class="external">estliberitas</a> -
+<strong>Alexander Makarenko</strong> &lt;<a href="mailto:estliberitas@gmail.com">estliberitas@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/eugeneo" target="_blank" class="external">eugeneo</a> -
+<strong>Eugene Ostroukhov</strong> &lt;<a href="mailto:eostroukhov@google.com">eostroukhov@google.com</a>&gt;</li>
+<li><a href="https://github.com/evanlucas" target="_blank" class="external">evanlucas</a> -
+<strong>Evan Lucas</strong> &lt;<a href="mailto:evanlucas@me.com">evanlucas@me.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/firedfox" target="_blank" class="external">firedfox</a> -
+<strong>Daniel Wang</strong> &lt;<a href="mailto:wangyang0123@gmail.com">wangyang0123@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/Fishrock123" target="_blank" class="external">Fishrock123</a> -
+<strong>Jeremiah Senkpiel</strong> &lt;<a href="mailto:fishrock123@rocketmail.com">fishrock123@rocketmail.com</a>&gt; (he/they)</li>
+<li><a href="https://github.com/gdams" target="_blank" class="external">gdams</a> -
+<strong>George Adams</strong> &lt;<a href="mailto:gadams@microsoft.com">gadams@microsoft.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/geek" target="_blank" class="external">geek</a> -
+<strong>Wyatt Preul</strong> &lt;<a href="mailto:wpreul@gmail.com">wpreul@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/gibfahn" target="_blank" class="external">gibfahn</a> -
+<strong>Gibson Fahnestock</strong> &lt;<a href="mailto:gibfahn@gmail.com">gibfahn@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/glentiki" target="_blank" class="external">glentiki</a> -
+<strong>Glen Keane</strong> &lt;<a href="mailto:glenkeane.94@gmail.com">glenkeane.94@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/hashseed" target="_blank" class="external">hashseed</a> -
+<strong>Yang Guo</strong> &lt;<a href="mailto:yangguo@chromium.org">yangguo@chromium.org</a>&gt; (he/him)</li>
+<li><a href="https://github.com/hiroppy" target="_blank" class="external">hiroppy</a> -
+<strong>Yuta Hiroto</strong> &lt;<a href="mailto:hello@hiroppy.me">hello@hiroppy.me</a>&gt; (he/him)</li>
+<li><a href="https://github.com/iansu" target="_blank" class="external">iansu</a> -
+<strong>Ian Sutherland</strong> &lt;<a href="mailto:ian@iansutherland.ca">ian@iansutherland.ca</a>&gt;</li>
+<li><a href="https://github.com/iarna" target="_blank" class="external">iarna</a> -
+<strong>Rebecca Turner</strong> &lt;<a href="mailto:me@re-becca.org">me@re-becca.org</a>&gt;</li>
+<li><a href="https://github.com/imran-iq" target="_blank" class="external">imran-iq</a> -
+<strong>Imran Iqbal</strong> &lt;<a href="mailto:imran@imraniqbal.org">imran@imraniqbal.org</a>&gt;</li>
+<li><a href="https://github.com/imyller" target="_blank" class="external">imyller</a> -
+<strong>Ilkka Myller</strong> &lt;<a href="mailto:ilkka.myller@nodefield.com">ilkka.myller@nodefield.com</a>&gt;</li>
+<li><a href="https://github.com/indutny" target="_blank" class="external">indutny</a> -
+<strong>Fedor Indutny</strong> &lt;<a href="mailto:fedor@indutny.com">fedor@indutny.com</a>&gt;</li>
+<li><a href="https://github.com/isaacs" target="_blank" class="external">isaacs</a> -
+<strong>Isaac Z. Schlueter</strong> &lt;<a href="mailto:i@izs.me">i@izs.me</a>&gt;</li>
+<li><a href="https://github.com/italoacasas" target="_blank" class="external">italoacasas</a> -
+<strong>Italo A. Casas</strong> &lt;<a href="mailto:me@italoacasas.com">me@italoacasas.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/JacksonTian" target="_blank" class="external">JacksonTian</a> -
+<strong>Jackson Tian</strong> &lt;<a href="mailto:shyvo1987@gmail.com">shyvo1987@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/jasongin" target="_blank" class="external">jasongin</a> -
+<strong>Jason Ginchereau</strong> &lt;<a href="mailto:jasongin@microsoft.com">jasongin@microsoft.com</a>&gt;</li>
+<li><a href="https://github.com/jbergstroem" target="_blank" class="external">jbergstroem</a> -
+<strong>Johan Bergström</strong> &lt;<a href="mailto:bugs@bergstroem.nu">bugs@bergstroem.nu</a>&gt;</li>
+<li><a href="https://github.com/jdalton" target="_blank" class="external">jdalton</a> -
+<strong>John-David Dalton</strong> &lt;<a href="mailto:john.david.dalton@gmail.com">john.david.dalton@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/jhamhader" target="_blank" class="external">jhamhader</a> -
+<strong>Yuval Brik</strong> &lt;<a href="mailto:yuval@brik.org.il">yuval@brik.org.il</a>&gt;</li>
+<li><a href="https://github.com/joaocgreis" target="_blank" class="external">joaocgreis</a> -
+<strong>João Reis</strong> &lt;<a href="mailto:reis@janeasystems.com">reis@janeasystems.com</a>&gt;</li>
+<li><a href="https://github.com/joesepi" target="_blank" class="external">joesepi</a> -
+<strong>Joe Sepi</strong> &lt;<a href="mailto:sepi@joesepi.com">sepi@joesepi.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/joshgav" target="_blank" class="external">joshgav</a> -
+<strong>Josh Gavant</strong> &lt;<a href="mailto:josh.gavant@outlook.com">josh.gavant@outlook.com</a>&gt;</li>
+<li><a href="https://github.com/julianduque" target="_blank" class="external">julianduque</a> -
+<strong>Julian Duque</strong> &lt;<a href="mailto:julianduquej@gmail.com">julianduquej@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/kfarnung" target="_blank" class="external">kfarnung</a> -
+<strong>Kyle Farnung</strong> &lt;<a href="mailto:kfarnung@microsoft.com">kfarnung@microsoft.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/kunalspathak" target="_blank" class="external">kunalspathak</a> -
+<strong>Kunal Pathak</strong> &lt;<a href="mailto:kunal.pathak@microsoft.com">kunal.pathak@microsoft.com</a>&gt;</li>
+<li><a href="https://github.com/kuriyosh" target="_blank" class="external">kuriyosh</a> -
+<strong>Yoshiki Kurihara</strong> &lt;<a href="mailto:yosyos0306@gmail.com">yosyos0306@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lance" target="_blank" class="external">lance</a> -
+<strong>Lance Ball</strong> &lt;<a href="mailto:lball@redhat.com">lball@redhat.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Leko" target="_blank" class="external">Leko</a> -
+<strong>Shingo Inoue</strong> &lt;<a href="mailto:leko.noor@gmail.com">leko.noor@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lucamaraschi" target="_blank" class="external">lucamaraschi</a> -
+<strong>Luca Maraschi</strong> &lt;<a href="mailto:luca.maraschi@gmail.com">luca.maraschi@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lundibundi" target="_blank" class="external">lundibundi</a> -
+<strong>Denys Otrishko</strong> &lt;<a href="mailto:shishugi@gmail.com">shishugi@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/lxe" target="_blank" class="external">lxe</a> -
+<strong>Aleksey Smolenchuk</strong> &lt;<a href="mailto:lxe@lxe.co">lxe@lxe.co</a>&gt;</li>
+<li><a href="https://github.com/maclover7" target="_blank" class="external">maclover7</a> -
+<strong>Jon Moss</strong> &lt;<a href="mailto:me@jonathanmoss.me">me@jonathanmoss.me</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mafintosh" target="_blank" class="external">mafintosh</a> -
+<strong>Mathias Buus</strong> &lt;<a href="mailto:mathiasbuus@gmail.com">mathiasbuus@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/matthewloring" target="_blank" class="external">matthewloring</a> -
+<strong>Matthew Loring</strong> &lt;<a href="mailto:mattloring@google.com">mattloring@google.com</a>&gt;</li>
+<li><a href="https://github.com/Mesteery" target="_blank" class="external">Mesteery</a> -
+<strong>Mestery</strong> &lt;<a href="mailto:mestery@protonmail.com">mestery@protonmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/micnic" target="_blank" class="external">micnic</a> -
+<strong>Nicu Micleușanu</strong> &lt;<a href="mailto:micnic90@gmail.com">micnic90@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mikeal" target="_blank" class="external">mikeal</a> -
+<strong>Mikeal Rogers</strong> &lt;<a href="mailto:mikeal.rogers@gmail.com">mikeal.rogers@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/miladfarca" target="_blank" class="external">miladfarca</a> -
+<strong>Milad Fa</strong> &lt;<a href="mailto:mfarazma@redhat.com">mfarazma@redhat.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/misterdjules" target="_blank" class="external">misterdjules</a> -
+<strong>Julien Gilli</strong> &lt;<a href="mailto:jgilli@netflix.com">jgilli@netflix.com</a>&gt;</li>
+<li><a href="https://github.com/mmarchini" target="_blank" class="external">mmarchini</a> -
+<strong>Mary Marchini</strong> &lt;<a href="mailto:oss@mmarchini.me">oss@mmarchini.me</a>&gt; (she/her)</li>
+<li><a href="https://github.com/monsanto" target="_blank" class="external">monsanto</a> -
+<strong>Christopher Monsanto</strong> &lt;<a href="mailto:chris@monsan.to">chris@monsan.to</a>&gt;</li>
+<li><a href="https://github.com/MoonBall" target="_blank" class="external">MoonBall</a> -
+<strong>Chen Gang</strong> &lt;<a href="mailto:gangc.cxy@foxmail.com">gangc.cxy@foxmail.com</a>&gt;</li>
+<li><a href="https://github.com/mscdex" target="_blank" class="external">mscdex</a> -
+<strong>Brian White</strong> &lt;<a href="mailto:mscdex@mscdex.net">mscdex@mscdex.net</a>&gt;</li>
+<li><a href="https://github.com/MylesBorins" target="_blank" class="external">MylesBorins</a> -
+<strong>Myles Borins</strong> &lt;<a href="mailto:myles.borins@gmail.com">myles.borins@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/not-an-aardvark" target="_blank" class="external">not-an-aardvark</a> -
+<strong>Teddy Katz</strong> &lt;<a href="mailto:teddy.katz@gmail.com">teddy.katz@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/ofrobots" target="_blank" class="external">ofrobots</a> -
+<strong>Ali Ijaz Sheikh</strong> &lt;<a href="mailto:ofrobots@google.com">ofrobots@google.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Olegas" target="_blank" class="external">Olegas</a> -
+<strong>Oleg Elifantiev</strong> &lt;<a href="mailto:oleg@elifantiev.ru">oleg@elifantiev.ru</a>&gt;</li>
+<li><a href="https://github.com/orangemocha" target="_blank" class="external">orangemocha</a> -
+<strong>Alexis Campailla</strong> &lt;<a href="mailto:orangemocha@nodejs.org">orangemocha@nodejs.org</a>&gt;</li>
+<li><a href="https://github.com/othiym23" target="_blank" class="external">othiym23</a> -
+<strong>Forrest L Norvell</strong> &lt;<a href="mailto:ogd@aoaioxxysz.net">ogd@aoaioxxysz.net</a>&gt; (they/them/themself)</li>
+<li><a href="https://github.com/oyyd" target="_blank" class="external">oyyd</a> -
+<strong>Ouyang Yadong</strong> &lt;<a href="mailto:oyydoibh@gmail.com">oyydoibh@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/petkaantonov" target="_blank" class="external">petkaantonov</a> -
+<strong>Petka Antonov</strong> &lt;<a href="mailto:petka_antonov@hotmail.com">petka_antonov@hotmail.com</a>&gt;</li>
+<li><a href="https://github.com/phillipj" target="_blank" class="external">phillipj</a> -
+<strong>Phillip Johnsen</strong> &lt;<a href="mailto:johphi@gmail.com">johphi@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/piscisaureus" target="_blank" class="external">piscisaureus</a> -
+<strong>Bert Belder</strong> &lt;<a href="mailto:bertbelder@gmail.com">bertbelder@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/pmq20" target="_blank" class="external">pmq20</a> -
+<strong>Minqi Pan</strong> &lt;<a href="mailto:pmq2001@gmail.com">pmq2001@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/PoojaDurgad" target="_blank" class="external">PoojaDurgad</a> -
+<strong>Pooja D P</strong> &lt;<a href="mailto:Pooja.D.P@ibm.com">Pooja.D.P@ibm.com</a>&gt; (she/her)</li>
+<li><a href="https://github.com/princejwesley" target="_blank" class="external">princejwesley</a> -
+<strong>Prince John Wesley</strong> &lt;<a href="mailto:princejohnwesley@gmail.com">princejohnwesley@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/psmarshall" target="_blank" class="external">psmarshall</a> -
+<strong>Peter Marshall</strong> &lt;<a href="mailto:petermarshall@chromium.org">petermarshall@chromium.org</a>&gt; (he/him)</li>
+<li><a href="https://github.com/puzpuzpuz" target="_blank" class="external">puzpuzpuz</a> -
+<strong>Andrey Pechkurov</strong> &lt;<a href="mailto:apechkurov@gmail.com">apechkurov@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/RaisinTen" target="_blank" class="external">RaisinTen</a> -
+<strong>Darshan Sen</strong> &lt;<a href="mailto:raisinten@gmail.com">raisinten@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/refack" target="_blank" class="external">refack</a> -
+<strong>Refael Ackermann (רפאל פלחי)</strong> &lt;<a href="mailto:refack@gmail.com">refack@gmail.com</a>&gt; (he/him/הוא/אתה)</li>
+<li><a href="https://github.com/rexagod" target="_blank" class="external">rexagod</a> -
+<strong>Pranshu Srivastava</strong> &lt;<a href="mailto:rexagod@gmail.com">rexagod@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/rickyes" target="_blank" class="external">rickyes</a> -
+<strong>Ricky Zhou</strong> &lt;<a href="mailto:0x19951125@gmail.com">0x19951125@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/rlidwka" target="_blank" class="external">rlidwka</a> -
+<strong>Alex Kocharin</strong> &lt;<a href="mailto:alex@kocharin.ru">alex@kocharin.ru</a>&gt;</li>
+<li><a href="https://github.com/rmg" target="_blank" class="external">rmg</a> -
+<strong>Ryan Graham</strong> &lt;<a href="mailto:r.m.graham@gmail.com">r.m.graham@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/robertkowalski" target="_blank" class="external">robertkowalski</a> -
+<strong>Robert Kowalski</strong> &lt;<a href="mailto:rok@kowalski.gd">rok@kowalski.gd</a>&gt;</li>
+<li><a href="https://github.com/romankl" target="_blank" class="external">romankl</a> -
+<strong>Roman Klauke</strong> &lt;<a href="mailto:romaaan.git@gmail.com">romaaan.git@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/ronkorving" target="_blank" class="external">ronkorving</a> -
+<strong>Ron Korving</strong> &lt;<a href="mailto:ron@ronkorving.nl">ron@ronkorving.nl</a>&gt;</li>
+<li><a href="https://github.com/RReverser" target="_blank" class="external">RReverser</a> -
+<strong>Ingvar Stepanyan</strong> &lt;<a href="mailto:me@rreverser.com">me@rreverser.com</a>&gt;</li>
+<li><a href="https://github.com/rubys" target="_blank" class="external">rubys</a> -
+<strong>Sam Ruby</strong> &lt;<a href="mailto:rubys@intertwingly.net">rubys@intertwingly.net</a>&gt;</li>
+<li><a href="https://github.com/rvagg" target="_blank" class="external">rvagg</a> -
+<strong>Rod Vagg</strong> &lt;<a href="mailto:rod@vagg.org">rod@vagg.org</a>&gt;</li>
+<li><a href="https://github.com/ryzokuken" target="_blank" class="external">ryzokuken</a> -
+<strong>Ujjwal Sharma</strong> &lt;<a href="mailto:ryzokuken@disroot.org">ryzokuken@disroot.org</a>&gt; (he/him)</li>
+<li><a href="https://github.com/saghul" target="_blank" class="external">saghul</a> -
+<strong>Saúl Ibarra Corretgé</strong> &lt;<a href="mailto:s@saghul.net">s@saghul.net</a>&gt;</li>
+<li><a href="https://github.com/sam-github" target="_blank" class="external">sam-github</a> -
+<strong>Sam Roberts</strong> &lt;<a href="mailto:vieuxtech@gmail.com">vieuxtech@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/sebdeckers" target="_blank" class="external">sebdeckers</a> -
+<strong>Sebastiaan Deckers</strong> &lt;<a href="mailto:sebdeckers83@gmail.com">sebdeckers83@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/seishun" target="_blank" class="external">seishun</a> -
+<strong>Nikolai Vavilov</strong> &lt;<a href="mailto:vvnicholas@gmail.com">vvnicholas@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/shigeki" target="_blank" class="external">shigeki</a> -
+<strong>Shigeki Ohtsu</strong> &lt;<a href="mailto:ohtsu@ohtsu.org">ohtsu@ohtsu.org</a>&gt; (he/him)</li>
+<li><a href="https://github.com/shisama" target="_blank" class="external">shisama</a> -
+<strong>Masashi Hirano</strong> &lt;<a href="mailto:shisama07@gmail.com">shisama07@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/silverwind" target="_blank" class="external">silverwind</a> -
+<strong>Roman Reiss</strong> &lt;<a href="mailto:me@silverwind.io">me@silverwind.io</a>&gt;</li>
+<li><a href="https://github.com/starkwang" target="_blank" class="external">starkwang</a> -
+<strong>Weijia Wang</strong> &lt;<a href="mailto:starkwang@126.com">starkwang@126.com</a>&gt;</li>
+<li><a href="https://github.com/stefanmb" target="_blank" class="external">stefanmb</a> -
+<strong>Stefan Budeanu</strong> &lt;<a href="mailto:stefan@budeanu.com">stefan@budeanu.com</a>&gt;</li>
+<li><a href="https://github.com/tellnes" target="_blank" class="external">tellnes</a> -
+<strong>Christian Tellnes</strong> &lt;<a href="mailto:christian@tellnes.no">christian@tellnes.no</a>&gt;</li>
+<li><a href="https://github.com/thefourtheye" target="_blank" class="external">thefourtheye</a> -
+<strong>Sakthipriyan Vairamani</strong> &lt;<a href="mailto:thechargingvolcano@gmail.com">thechargingvolcano@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/thlorenz" target="_blank" class="external">thlorenz</a> -
+<strong>Thorsten Lorenz</strong> &lt;<a href="mailto:thlorenz@gmx.de">thlorenz@gmx.de</a>&gt;</li>
+<li><a href="https://github.com/TimothyGu" target="_blank" class="external">TimothyGu</a> -
+<strong>Tiancheng &quot;Timothy&quot; Gu</strong> &lt;<a href="mailto:timothygu99@gmail.com">timothygu99@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/trevnorris" target="_blank" class="external">trevnorris</a> -
+<strong>Trevor Norris</strong> &lt;<a href="mailto:trev.norris@gmail.com">trev.norris@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/tunniclm" target="_blank" class="external">tunniclm</a> -
+<strong>Mike Tunnicliffe</strong> &lt;<a href="mailto:m.j.tunnicliffe@gmail.com">m.j.tunnicliffe@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/vdeturckheim" target="_blank" class="external">vdeturckheim</a> -
+<strong>Vladimir de Turckheim</strong> &lt;<a href="mailto:vlad2t@hotmail.com">vlad2t@hotmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/vkurchatkin" target="_blank" class="external">vkurchatkin</a> -
+<strong>Vladimir Kurchatkin</strong> &lt;<a href="mailto:vladimir.kurchatkin@gmail.com">vladimir.kurchatkin@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/vsemozhetbyt" target="_blank" class="external">vsemozhetbyt</a> -
+<strong>Vse Mozhet Byt</strong> &lt;<a href="mailto:vsemozhetbyt@gmail.com">vsemozhetbyt@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/watson" target="_blank" class="external">watson</a> -
+<strong>Thomas Watson</strong> &lt;<a href="mailto:w@tson.dk">w@tson.dk</a>&gt;</li>
+<li><a href="https://github.com/whitlockjc" target="_blank" class="external">whitlockjc</a> -
+<strong>Jeremy Whitlock</strong> &lt;<a href="mailto:jwhitlock@apache.org">jwhitlock@apache.org</a>&gt;</li>
+<li><a href="https://github.com/XadillaX" target="_blank" class="external">XadillaX</a> -
+<strong>Khaidi Chu</strong> &lt;<a href="mailto:i@2333.moe">i@2333.moe</a>&gt; (he/him)</li>
+<li><a href="https://github.com/yashLadha" target="_blank" class="external">yashLadha</a> -
+<strong>Yash Ladha</strong> &lt;<a href="mailto:yash@yashladha.in">yash@yashladha.in</a>&gt; (he/him)</li>
+<li><a href="https://github.com/yhwang" target="_blank" class="external">yhwang</a> -
+<strong>Yihong Wang</strong> &lt;<a href="mailto:yh.wang@ibm.com">yh.wang@ibm.com</a>&gt;</li>
+<li><a href="https://github.com/yorkie" target="_blank" class="external">yorkie</a> -
+<strong>Yorkie Liu</strong> &lt;<a href="mailto:yorkiefixer@gmail.com">yorkiefixer@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/yosuke-furukawa" target="_blank" class="external">yosuke-furukawa</a> -
+<strong>Yosuke Furukawa</strong> &lt;<a href="mailto:yosuke.furukawa@gmail.com">yosuke.furukawa@gmail.com</a>&gt;</li>
+</ul>
+</details>
+<!--lint enable prohibited-strings-->
+<p>Collaborators follow the <a href="./doc/contributing/collaborator-guide.md">Collaborator Guide</a> in
+maintaining the Node.js project.</p>
+<a id="md:triagers" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Triagers<a href="#md:triagers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><a href="https://github.com/atlowChemi" target="_blank" class="external">atlowChemi</a> -
+<strong>Chemi Atlow</strong> &lt;<a href="mailto:chemi@atlow.co.il">chemi@atlow.co.il</a>&gt; (he/him)</li>
+<li><a href="https://github.com/Ayase-252" target="_blank" class="external">Ayase-252</a> -
+<strong>Qingyu Deng</strong> &lt;<a href="mailto:i@ayase-lab.com">i@ayase-lab.com</a>&gt;</li>
+<li><a href="https://github.com/bmuenzenmeyer" target="_blank" class="external">bmuenzenmeyer</a> -
+<strong>Brian Muenzenmeyer</strong> &lt;<a href="mailto:brian.muenzenmeyer@gmail.com">brian.muenzenmeyer@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/CanadaHonk" target="_blank" class="external">CanadaHonk</a> -
+<strong>Oliver Medhurst</strong> &lt;<a href="mailto:honk@goose.icu">honk@goose.icu</a>&gt; (they/them)</li>
+<li><a href="https://github.com/daeyeon" target="_blank" class="external">daeyeon</a> -
+<strong>Daeyeon Jeong</strong> &lt;<a href="mailto:daeyeon.dev@gmail.com">daeyeon.dev@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/F3n67u" target="_blank" class="external">F3n67u</a> -
+<strong>Feng Yu</strong> &lt;<a href="mailto:F3n67u@outlook.com">F3n67u@outlook.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/gireeshpunathil" target="_blank" class="external">gireeshpunathil</a> -
+<strong>Gireesh Punathil</strong> &lt;<a href="mailto:gpunathi@in.ibm.com">gpunathi@in.ibm.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/iam-frankqiu" target="_blank" class="external">iam-frankqiu</a> -
+<strong>Frank Qiu</strong> &lt;<a href="mailto:iam.frankqiu@gmail.com">iam.frankqiu@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/KevinEady" target="_blank" class="external">KevinEady</a> -
+<strong>Kevin Eady</strong> &lt;<a href="mailto:kevin.c.eady@gmail.com">kevin.c.eady@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/kvakil" target="_blank" class="external">kvakil</a> -
+<strong>Keyhan Vakil</strong> &lt;<a href="mailto:kvakil@sylph.kvakil.me">kvakil@sylph.kvakil.me</a>&gt;</li>
+<li><a href="https://github.com/marsonya" target="_blank" class="external">marsonya</a> -
+<strong>Akhil Marsonya</strong> &lt;<a href="mailto:akhil.marsonya27@gmail.com">akhil.marsonya27@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/meixg" target="_blank" class="external">meixg</a> -
+<strong>Xuguang Mei</strong> &lt;<a href="mailto:meixuguang@gmail.com">meixuguang@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mertcanaltin" target="_blank" class="external">mertcanaltin</a> -
+<strong>Mert Can Altin</strong> &lt;<a href="mailto:mertgold60@gmail.com">mertgold60@gmail.com</a>&gt;</li>
+<li><a href="https://github.com/preveen-stack" target="_blank" class="external">preveen-stack</a> -
+<strong>Preveen Padmanabhan</strong> &lt;<a href="mailto:wide4head@gmail.com">wide4head@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/redyetidev" target="_blank" class="external">RedYetiDev</a> -
+<strong>Aviv Keller</strong> &lt;<a href="mailto:redyetidev@gmail.com">redyetidev@gmail.com</a>&gt; (they/them)</li>
+<li><a href="https://github.com/VoltrexKeyva" target="_blank" class="external">VoltrexKeyva</a> -
+<strong>Mohammed Keyvanzadeh</strong> &lt;<a href="mailto:mohammadkeyvanzade94@gmail.com">mohammadkeyvanzade94@gmail.com</a>&gt; (he/him)</li>
+</ul>
+<p>Triagers follow the <a href="./doc/contributing/issues.md#triaging-a-bug-report">Triage Guide</a> when
+responding to new issues.</p>
+<a id="md:release-keys" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Release keys<a href="#md:release-keys" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Primary GPG keys for Node.js Releasers (some Releasers sign with subkeys):</p>
+<ul>
+<li><strong>Antoine du Hamel</strong> &lt;<a href="mailto:duhamelantoine1995@gmail.com">duhamelantoine1995@gmail.com</a>&gt;
+<code>C0D6248439F1D5604AAFFB4021D900FFDB233756</code></li>
+<li><strong>Beth Griggs</strong> &lt;<a href="mailto:bethanyngriggs@gmail.com">bethanyngriggs@gmail.com</a>&gt;
+<code>4ED778F539E3634C779C87C6D7062848A1AB005C</code></li>
+<li><strong>Bryan English</strong> &lt;<a href="mailto:bryan@bryanenglish.com">bryan@bryanenglish.com</a>&gt;
+<code>141F07595B7B3FFE74309A937405533BE57C7D57</code></li>
+<li><strong>Danielle Adams</strong> &lt;<a href="mailto:adamzdanielle@gmail.com">adamzdanielle@gmail.com</a>&gt;
+<code>74F12602B6F1C4E913FAA37AD3A89613643B6201</code></li>
+<li><strong>Juan José Arboleda</strong> &lt;<a href="mailto:soyjuanarbol@gmail.com">soyjuanarbol@gmail.com</a>&gt;
+<code>DD792F5973C6DE52C432CBDAC77ABFA00DDBF2B7</code></li>
+<li><strong>Marco Ippolito</strong> &lt;<a href="mailto:marcoippolito54@gmail.com">marcoippolito54@gmail.com</a>&gt;
+<code>CC68F5A3106FF448322E48ED27F5E38D5B0A215F</code></li>
+<li><strong>Michaël Zasso</strong> &lt;<a href="mailto:targos@protonmail.com">targos@protonmail.com</a>&gt;
+<code>8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600</code></li>
+<li><strong>Rafael Gonzaga</strong> &lt;<a href="mailto:rafael.nunu@hotmail.com">rafael.nunu@hotmail.com</a>&gt;
+<code>890C08DB8579162FEE0DF9DB8BEAB4DFCF555EF4</code></li>
+<li><strong>Richard Lau</strong> &lt;<a href="mailto:rlau@redhat.com">rlau@redhat.com</a>&gt;
+<code>C82FA3AE1CBEDC6BE46B9360C43CEC45C17AB93C</code></li>
+<li><strong>Ruy Adorno</strong> &lt;<a href="mailto:ruyadorno@hotmail.com">ruyadorno@hotmail.com</a>&gt;
+<code>108F52B48DB57BB0CC439B2997B01419BD92F80A</code></li>
+<li><strong>Ulises Gascón</strong> &lt;<a href="mailto:ulisesgascongonzalez@gmail.com">ulisesgascongonzalez@gmail.com</a>&gt;
+<code>A363A499291CBBC940DD62E41F10027AF002F8B0</code></li>
+</ul>
+<p>To import the full set of trusted release keys (including subkeys possibly used
+to sign releases):</p>
+<pre><code class="bash"><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">C0D6248439F1D5604AAFFB4021D900FFDB233756</span><span class="hl-1"> </span><span class="hl-4"># Antoine du Hamel</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">4ED778F539E3634C779C87C6D7062848A1AB005C</span><span class="hl-1"> </span><span class="hl-4"># Beth Griggs</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">141F07595B7B3FFE74309A937405533BE57C7D57</span><span class="hl-1"> </span><span class="hl-4"># Bryan English</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">74F12602B6F1C4E913FAA37AD3A89613643B6201</span><span class="hl-1"> </span><span class="hl-4"># Danielle Adams</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">DD792F5973C6DE52C432CBDAC77ABFA00DDBF2B7</span><span class="hl-1"> </span><span class="hl-4"># Juan José Arboleda</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">CC68F5A3106FF448322E48ED27F5E38D5B0A215F</span><span class="hl-1"> </span><span class="hl-4"># Marco Ippolito</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600</span><span class="hl-1"> </span><span class="hl-4"># Michaël Zasso</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">890C08DB8579162FEE0DF9DB8BEAB4DFCF555EF4</span><span class="hl-1"> </span><span class="hl-4"># Rafael Gonzaga</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">C82FA3AE1CBEDC6BE46B9360C43CEC45C17AB93C</span><span class="hl-1"> </span><span class="hl-4"># Richard Lau</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">108F52B48DB57BB0CC439B2997B01419BD92F80A</span><span class="hl-1"> </span><span class="hl-4"># Ruy Adorno</span><br/><span class="hl-0">gpg</span><span class="hl-1"> </span><span class="hl-2">--keyserver</span><span class="hl-1"> </span><span class="hl-3">hkps://keys.openpgp.org</span><span class="hl-1"> </span><span class="hl-2">--recv-keys</span><span class="hl-1"> </span><span class="hl-3">A363A499291CBBC940DD62E41F10027AF002F8B0</span><span class="hl-1"> </span><span class="hl-4"># Ulises Gascón</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:get-tags" class="tsd-anchor"></a><h4 class="tsd-anchor-link">get tags<a href="#md:get-tags" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">getTags</span><span class="hl-1">();</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:get-branch-sha" class="tsd-anchor"></a><h4 class="tsd-anchor-link">get branch sha<a href="#md:get-branch-sha" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">getBranchSha</span><span class="hl-1">(</span><span class="hl-2">&quot;main&quot;</span><span class="hl-1">);</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:get-branch-tree" class="tsd-anchor"></a><h4 class="tsd-anchor-link">get branch tree<a href="#md:get-branch-tree" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1"> </span><span class="hl-0">getBranchTree</span><span class="hl-1">(</span><span class="hl-2">&quot;main&quot;</span><span class="hl-1">);</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:get-file-content" class="tsd-anchor"></a><h4 class="tsd-anchor-link">get file content<a href="#md:get-file-content" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">getFileContent</span><span class="hl-1">(</span><span class="hl-2">&quot;path/to/file&quot;</span><span class="hl-1">);</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:create-a-tag" class="tsd-anchor"></a><h4 class="tsd-anchor-link">create a tag<a href="#md:create-a-tag" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">createTag</span><span class="hl-1">(</span><span class="hl-2">&quot;my-tag&quot;</span><span class="hl-1">, </span><span class="hl-2">&quot;main&quot;</span><span class="hl-1">);</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:list-pull-requests" class="tsd-anchor"></a><h4 class="tsd-anchor-link">list pull requests<a href="#md:list-pull-requests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">listPulls</span><span class="hl-1">({ </span><span class="hl-4">base:</span><span class="hl-1"> </span><span class="hl-2">&quot;main&quot;</span><span class="hl-1"> });</span>
-</code><button type="button">Copy</button></pre>
-
-<a id="md:list-issues" class="tsd-anchor"></a><h4 class="tsd-anchor-link">list issues<a href="#md:list-issues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">repo</span><span class="hl-1">.</span><span class="hl-0">listIssues</span><span class="hl-1">({ </span><span class="hl-4">state:</span><span class="hl-1"> </span><span class="hl-2">&quot;all&quot;</span><span class="hl-1"> });</span>
-</code><button type="button">Copy</button></pre>
-
-</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:tomsdgithub-repo"><span>@tomsd/github-<wbr/>repo</span></a><ul><li><a href="#md:installation"><span>installation</span></a></li><li><a href="#md:usage"><span>usage</span></a></li><li><ul><li><a href="#md:import-githubrepo-class"><span>import <wbr/>Git<wbr/>Hub<wbr/>Repo class.</span></a></li><li><a href="#md:create-an-instance"><span>create an instance</span></a></li><li><a href="#md:get-branches"><span>get branches</span></a></li><li><a href="#md:get-tags"><span>get tags</span></a></li><li><a href="#md:get-branch-sha"><span>get branch sha</span></a></li><li><a href="#md:get-branch-tree"><span>get branch tree</span></a></li><li><a href="#md:get-file-content"><span>get file content</span></a></li><li><a href="#md:create-a-tag"><span>create a tag</span></a></li><li><a href="#md:list-pull-requests"><span>list pull requests</span></a></li><li><a href="#md:list-issues"><span>list issues</span></a></li></ul></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>@tomsd/github-repo</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
+<p>See <a href="#md:verifying-binaries">Verifying binaries</a> for how to use these keys to
+verify a downloaded file.</p>
+<details>
+<summary>Other keys used to sign some previous releases</summary>
+<ul>
+<li><strong>Chris Dickinson</strong> &lt;<a href="mailto:christopher.s.dickinson@gmail.com">christopher.s.dickinson@gmail.com</a>&gt;
+<code>9554F04D7259F04124DE6B476D5A82AC7E37093B</code></li>
+<li><strong>Colin Ihrig</strong> &lt;<a href="mailto:cjihrig@gmail.com">cjihrig@gmail.com</a>&gt;
+<code>94AE36675C464D64BAFA68DD7434390BDBE9B9C5</code></li>
+<li><strong>Danielle Adams</strong> &lt;<a href="mailto:adamzdanielle@gmail.com">adamzdanielle@gmail.com</a>&gt;
+<code>1C050899334244A8AF75E53792EF661D867B9DFA</code></li>
+<li><strong>Evan Lucas</strong> &lt;<a href="mailto:evanlucas@me.com">evanlucas@me.com</a>&gt;
+<code>B9AE9905FFD7803F25714661B63B535A4C206CA9</code></li>
+<li><strong>Gibson Fahnestock</strong> &lt;<a href="mailto:gibfahn@gmail.com">gibfahn@gmail.com</a>&gt;
+<code>77984A986EBC2AA786BC0F66B01FBB92821C587A</code></li>
+<li><strong>Isaac Z. Schlueter</strong> &lt;<a href="mailto:i@izs.me">i@izs.me</a>&gt;
+<code>93C7E9E91B49E432C2F75674B0A78B0A6C481CF6</code></li>
+<li><strong>Italo A. Casas</strong> &lt;<a href="mailto:me@italoacasas.com">me@italoacasas.com</a>&gt;
+<code>56730D5401028683275BD23C23EFEFE93C4CFFFE</code></li>
+<li><strong>James M Snell</strong> &lt;<a href="mailto:jasnell@keybase.io">jasnell@keybase.io</a>&gt;
+<code>71DCFD284A79C3B38668286BC97EC7A07EDE3FC1</code></li>
+<li><strong>Jeremiah Senkpiel</strong> &lt;<a href="mailto:fishrock@keybase.io">fishrock@keybase.io</a>&gt;
+<code>FD3A5288F042B6850C66B31F09FE44734EB7990E</code></li>
+<li><strong>Juan José Arboleda</strong> &lt;<a href="mailto:soyjuanarbol@gmail.com">soyjuanarbol@gmail.com</a>&gt;
+<code>61FC681DFB92A079F1685E77973F295594EC4689</code></li>
+<li><strong>Julien Gilli</strong> &lt;<a href="mailto:jgilli@fastmail.fm">jgilli@fastmail.fm</a>&gt;
+<code>114F43EE0176B71C7BC219DD50A3051F888C628D</code></li>
+<li><strong>Myles Borins</strong> &lt;<a href="mailto:myles.borins@gmail.com">myles.borins@gmail.com</a>&gt;
+<code>C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8</code></li>
+<li><strong>Rod Vagg</strong> &lt;<a href="mailto:rod@vagg.org">rod@vagg.org</a>&gt;
+<code>DD8F2338BAE7501E3DD5AC78C273792F7D83545D</code></li>
+<li><strong>Ruben Bridgewater</strong> &lt;<a href="mailto:ruben@bridgewater.de">ruben@bridgewater.de</a>&gt;
+<code>A48C2BEE680E841632CD4E44F07496B3EB3C1762</code></li>
+<li><strong>Shelley Vohr</strong> &lt;<a href="mailto:shelley.vohr@gmail.com">shelley.vohr@gmail.com</a>&gt;
+<code>B9E2F5981AA6E0CD28160D9FF13993A75599653C</code></li>
+<li><strong>Timothy J Fontaine</strong> &lt;<a href="mailto:tjfontaine@gmail.com">tjfontaine@gmail.com</a>&gt;
+<code>7937DFD2AB06298B2293C3187D33FF9D0246406D</code></li>
+</ul>
+</details>
+<a id="md:security-release-stewards" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Security release stewards<a href="#md:security-release-stewards" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>When possible, the commitment to take slots in the
+security release steward rotation is made by companies in order
+to ensure individuals who act as security stewards have the
+support and recognition from their employer to be able to
+prioritize security releases. Security release stewards manage security
+releases on a rotation basis as outlined in the
+<a href="./doc/contributing/security-release-process.md">security release process</a>.</p>
+<ul>
+<li><a href="https://www.datadoghq.com/" target="_blank" class="external">Datadog</a>
+<ul>
+<li><a href="https://github.com/bengl" target="_blank" class="external">bengl</a> -
+<strong>Bryan English</strong> &lt;<a href="mailto:bryan@bryanenglish.com">bryan@bryanenglish.com</a>&gt; (he/him)</li>
+</ul>
+</li>
+<li><a href="https://nodesource.com/" target="_blank" class="external">NodeSource</a>
+<ul>
+<li><a href="https://github.com/juanarbol" target="_blank" class="external">juanarbol</a> -
+<strong>Juan José Arboleda</strong> &lt;<a href="mailto:soyjuanarbol@gmail.com">soyjuanarbol@gmail.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/RafaelGSS" target="_blank" class="external">RafaelGSS</a> -
+<strong>Rafael Gonzaga</strong> &lt;<a href="mailto:rafael.nunu@hotmail.com">rafael.nunu@hotmail.com</a>&gt; (he/him)</li>
+</ul>
+</li>
+<li><a href="https://platformatic.dev/" target="_blank" class="external">Platformatic</a>
+<ul>
+<li><a href="https://github.com/mcollina" target="_blank" class="external">mcollina</a> -
+<strong>Matteo Collina</strong> &lt;<a href="mailto:matteo.collina@gmail.com">matteo.collina@gmail.com</a>&gt; (he/him)</li>
+</ul>
+</li>
+<li><a href="https://redhat.com" target="_blank" class="external">Red Hat</a> / <a href="https://ibm.com" target="_blank" class="external">IBM</a>
+<ul>
+<li><a href="https://github.com/joesepi" target="_blank" class="external">joesepi</a> -
+<strong>Joe Sepi</strong> &lt;<a href="mailto:joesepi@ibm.com">joesepi@ibm.com</a>&gt; (he/him)</li>
+<li><a href="https://github.com/mhdawson" target="_blank" class="external">mhdawson</a> -
+<strong>Michael Dawson</strong> &lt;<a href="mailto:midawson@redhat.com">midawson@redhat.com</a>&gt; (he/him)</li>
+</ul>
+</li>
+</ul>
+<a id="md:license" class="tsd-anchor"></a><h2 class="tsd-anchor-link">License<a href="#md:license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Node.js is available under the
+<a href="https://opensource.org/licenses/MIT" target="_blank" class="external">MIT license</a>. Node.js also includes
+external libraries that are available under a variety of licenses.  See
+<a href="https://github.com/nodejs/node/blob/HEAD/LICENSE" target="_blank" class="external">LICENSE</a> for the full
+license text.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:nodejs"><span>Node.js</span></a><ul><li><a href="#md:table-of-contents"><span>Table of contents</span></a></li><li><a href="#md:support"><span>Support</span></a></li><li><a href="#md:release-types"><span>Release types</span></a></li><li><ul><li><a href="#md:download"><span>Download</span></a></li><li><ul><li><a href="#md:current-and-lts-releases"><span>Current and LTS releases</span></a></li><li><a href="#md:nightly-releases"><span>Nightly releases</span></a></li><li><a href="#md:api-documentation"><span>API documentation</span></a></li></ul></li><li><a href="#md:verifying-binaries"><span>Verifying binaries</span></a></li></ul></li><li><a href="#md:building-nodejs"><span>Building <wbr/>Node.js</span></a></li><li><a href="#md:security"><span>Security</span></a></li><li><a href="#md:contributing-to-nodejs"><span>Contributing to <wbr/>Node.js</span></a></li><li><a href="#md:current-project-team-members"><span>Current project team members</span></a></li><li><ul><li><a href="#md:tsc-technical-steering-committee"><span>TSC (<wbr/>Technical <wbr/>Steering <wbr/>Committee)</span></a></li><li><ul><li><a href="#md:tsc-voting-members"><span>TSC voting members</span></a></li><li><a href="#md:tsc-regular-members"><span>TSC regular members</span></a></li><li><a href="#md:tsc-emeriti-members"><span>TSC emeriti members</span></a></li></ul></li><li><a href="#md:collaborators"><span>Collaborators</span></a></li><li><a href="#md:collaborator-emeriti"><span>Collaborator emeriti</span></a></li><li><a href="#md:triagers"><span>Triagers</span></a></li><li><a href="#md:release-keys"><span>Release keys</span></a></li><li><a href="#md:security-release-stewards"><span>Security release stewards</span></a></li></ul></li><li><a href="#md:license"><span>License</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>@tomsd/github-repo</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
