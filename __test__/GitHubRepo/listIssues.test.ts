@@ -1,6 +1,6 @@
-import { afterEach, describe, it, expect, vi } from "vitest";
-import { token, owner, repo } from "./constants";
 import { GitHubRepo } from "@/GitHubRepo";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { owner, repo, token } from "./constants";
 
 const { spy: spyList, dummyItems: dummyIssues } = await vi.hoisted(async () => {
   const { generateSpy } = await import("./util");

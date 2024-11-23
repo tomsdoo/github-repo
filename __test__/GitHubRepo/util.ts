@@ -1,5 +1,5 @@
-import { vi, type MockInstance } from "vitest";
 import type { Octokit } from "@octokit/rest";
+import { type MockInstance, vi } from "vitest";
 
 export function regardAsHasOctokit(value: unknown): { octokit: Octokit } {
   return value as { octokit: Octokit };
@@ -9,16 +9,15 @@ export function generateSpy(): {
   spy: MockInstance;
   dummyItems: Array<{ name: string }>;
 } {
-  const dummyItems = Array.from({ length: 101 }, (v, i) => ({
+  const dummyItems = Array.from({ length: 101 }, (_, i) => ({
     name: `${i}`,
   }));
   return {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     spy: vi.fn().mockImplementation(async ({ per_page, page }) => {
       switch (page) {
         case 1:
           return {
-            data: Array.from({ length: per_page }, (v, i) => ({
+            data: Array.from({ length: per_page }, (_, i) => ({
               name: `${i}`,
             })),
           };

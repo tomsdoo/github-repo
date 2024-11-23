@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
 import { PageLooper } from "@/PageLooper";
+import { describe, expect, it, vi } from "vitest";
 
 describe("PageLooper", () => {
   describe("doLoop", () => {

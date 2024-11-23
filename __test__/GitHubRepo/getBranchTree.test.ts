@@ -1,13 +1,13 @@
+import { GitHubRepo } from "@/GitHubRepo";
 import {
+  type MockInstance,
   afterEach,
   beforeEach,
   describe,
-  it,
   expect,
+  it,
   vi,
-  type MockInstance,
 } from "vitest";
-import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "./constants";
 
 describe("GitHubRepo", () => {
