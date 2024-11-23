@@ -182,8 +182,8 @@ export class GitHubRepo {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public async listIssueComments(
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     issue_number: number,
   ): Promise<IssueComment[]> {
     return await new PageLooper(100).doLoop(
