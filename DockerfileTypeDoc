@@ -8,11 +8,6 @@ WORKDIR /usr/local/app
 
 RUN npm install -g npm@latest
 RUN npm ci
-RUN npm uninstall eslint
-RUN npm uninstall eslint-config-prettier
-RUN npm uninstall eslint-plugin-import
-RUN npm uninstall eslint-plugin-n
-RUN npm uninstall eslint-plugin-promise
 RUN npm uninstall husky
 RUN npm uninstall lint-staged
 RUN npm install -D -E typescript@5.6.3
