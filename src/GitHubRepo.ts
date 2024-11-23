@@ -6,6 +6,7 @@ import type {
   ListPullsParams,
   PullRequest,
   Repository,
+  ReviewComment,
 } from "@/types";
 import { Octokit } from "@octokit/rest";
 
@@ -188,6 +189,21 @@ export class GitHubRepo {
           owner: this.owner,
           repo: this.repo,
           issue_number,
+          per_page,
+          page,
+        }),
+    );
+  }
+
+  public async listReviewComments(
+    pull_number: number,
+  ): Promise<ReviewComment[]> {
+    return await new PageLooper(100).doLoop(
+      async ({ per_page, page }) =>
+        await this.octokit.rest.pulls.listReviewComments({
+          owner: this.owner,
+          repo: this.repo,
+          pull_number,
           per_page,
           page,
         }),

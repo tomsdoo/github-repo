@@ -41,3 +41,10 @@ export type IssueComment =
   >
     ? T
     : never;
+
+export type ReviewComment =
+  RestEndpointMethodTypes["pulls"]["listReviewComments"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;
