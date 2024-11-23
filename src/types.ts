@@ -34,3 +34,10 @@ type RawListIssuesForRepoParams =
     : never;
 
 export type ListIssuesForRepoParams = Partial<RawListIssuesForRepoParams>;
+
+export type IssueComment =
+  RestEndpointMethodTypes["issues"]["listComments"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;
