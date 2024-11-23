@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) listPulls()
+# [GitHubRepo](./GitHubRepo.md) listPulls()
 
 ``` typescript
 await repo.listPulls({

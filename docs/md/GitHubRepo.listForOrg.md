@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) listForOrg()
+# [GitHubRepo](./GitHubRepo.md) listForOrg()
 
 ``` typescript
 await GitHubRepo.listForOrg("token", "my-org");

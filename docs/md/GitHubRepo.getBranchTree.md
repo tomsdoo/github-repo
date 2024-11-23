@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) getBranchTree()
+# [GitHubRepo](./GitHubRepo.md) getBranchTree()
 
 ``` typescript
 await repo.getBranchTree("branch");

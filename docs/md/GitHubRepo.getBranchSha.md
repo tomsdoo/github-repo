@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) getBranchSha()
+# [GitHubRepo](./GitHubRepo.md) getBranchSha()
 
 ``` typescript
 await repo.getBranchSha("branch");

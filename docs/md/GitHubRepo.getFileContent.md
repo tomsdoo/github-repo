@@ -1,4 +1,4 @@
-# [GetFubRepo](./GitHubRepo.md) getFileContent()
+# [GitHubRepo](./GitHubRepo.md) getFileContent()
 
 ``` typescript
 await repo.getFileContent("path/to/file");
