@@ -13,7 +13,6 @@ export function generateSpy(): {
     name: `${i}`,
   }));
   return {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     spy: vi.fn().mockImplementation(async ({ per_page, page }) => {
       switch (page) {
         case 1:

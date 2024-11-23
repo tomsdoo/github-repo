@@ -32,7 +32,6 @@ export class GitHubRepo {
         mediaType: {
           format: "raw",
         },
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         ...(branch ? { ref: this.getRefName(branch) } : {}),
       })
       .then(({ data }) => data);
@@ -156,7 +155,6 @@ export class GitHubRepo {
 
   public async listPulls(params: ListPullsParams): Promise<PullRequest[]> {
     return await new PageLooper(100).doLoop(
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       async ({ per_page, page }) =>
         await this.octokit.rest.pulls.list({
           ...params,
@@ -170,7 +168,6 @@ export class GitHubRepo {
 
   public async listIssues(params: ListIssuesForRepoParams): Promise<Issue[]> {
     return await new PageLooper(100).doLoop(
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       async ({ per_page, page }) =>
         await this.octokit.rest.issues.listForRepo({
           ...params,
@@ -183,11 +180,9 @@ export class GitHubRepo {
   }
 
   public async listIssueComments(
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     issue_number: number,
   ): Promise<IssueComment[]> {
     return await new PageLooper(100).doLoop(
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       async ({ per_page, page }) =>
         await this.octokit.rest.issues.listComments({
           owner: this.owner,
@@ -205,7 +200,6 @@ export class GitHubRepo {
   ): Promise<Repository[]> {
     const octokit = new Octokit({ auth: token });
     return await new PageLooper(100).doLoop<Repository>(
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       async ({ per_page, page }) =>
         await octokit.rest.repos.listForOrg({
           org,
