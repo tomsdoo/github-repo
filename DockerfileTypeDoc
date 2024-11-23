@@ -1,0 +1,22 @@
+FROM node:22
+
+COPY package.json /usr/local/app/
+COPY package-lock.json /usr/local/app/
+COPY typedoc.json /usr/local/app/
+COPY tsconfig.json /usr/local/app/
+WORKDIR /usr/local/app
+
+RUN npm install -g npm@latest
+RUN npm ci
+RUN npm uninstall eslint
+RUN npm uninstall eslint-config-prettier
+RUN npm uninstall eslint-plugin-import
+RUN npm uninstall eslint-plugin-n
+RUN npm uninstall eslint-plugin-promise
+RUN npm uninstall husky
+RUN npm uninstall lint-staged
+RUN npm install -D -E typescript@5.6.3
+RUN npm install -E typedoc
+RUN mkdir -p docs/typedocs
+
+CMD ["echo" "npm run make:typedoc"]

@@ -16,6 +16,8 @@
   "scripts": {
     "build": "tsup",
     "format": "prettier --write __test__/**/*.ts && prettier --write src/**/*.ts",
+    "build-image:typedoc": "docker image build -f DockerfileTypeDoc -t docker-image-for-github-repo-typedoc:v1.0.0 .",
+    "build:typedoc": "docker run --rm -it --mount type=bind,src=${PWD}/src,dst=/usr/local/app/src docker-image-for-github-repo-typedoc:v1.0.0 sh",
     "make:typedoc": "typedoc",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint __test__/**/*.ts && ESLINT_USE_FLAT_CONFIG=false eslint src/**/*.ts",
     "prepare": "husky",
@@ -48,20 +50,19 @@
   },
   "devDependencies": {
     "@tomsd/md-book": "1.2.0",
-    "@types/node": "22.9.1",
+    "@types/node": "22.9.2",
     "@typescript-eslint/eslint-plugin": "8.15.0",
     "eslint": "9.15.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-n": "17.13.2",
+    "eslint-plugin-n": "17.14.0",
     "eslint-plugin-promise": "7.1.0",
     "husky": "9.1.7",
     "lint-staged": "15.2.10",
     "prettier": "3.3.3",
     "tsup": "8.3.5",
     "tsx": "4.19.2",
-    "typedoc": "0.26.11",
-    "typescript": "5.6.3",
+    "typescript": "5.7.2",
     "vitest": "2.1.5"
   }
 }
