@@ -2,33 +2,12 @@ import { afterEach, describe, it, expect, vi } from "vitest";
 import { token } from "./constants";
 import { GitHubRepo } from "@/GitHubRepo";
 
-const { spyListForOrg, dummyRepos } = vi.hoisted(() => {
-  const dummyRepos = Array.from({ length: 101 }, (v, i) => ({
-    name: `repo${i}`,
-  }));
-  return {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    spyListForOrg: vi.fn().mockImplementation(async ({ per_page, page }) => {
-      if (page !== 1) {
-        const repoi = (page - 1) * per_page;
-        return {
-          data: [
-            {
-              name: `repo${repoi}`,
-            },
-          ],
-        };
-      }
-
-      return {
-        data: Array.from({ length: per_page }, (v, i) => ({
-          name: `repo${i}`,
-        })),
-      };
-    }),
-    dummyRepos,
-  };
-});
+const { spy: spyListForOrg, dummyItems: dummyRepos } = await vi.hoisted(
+  async () => {
+    const { generateSpy } = await import("./util");
+    return generateSpy();
+  },
+);
 
 vi.mock("@octokit/rest", () => ({
   Octokit: class Octokit {
