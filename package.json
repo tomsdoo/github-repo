@@ -10,9 +10,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "build-image:typedoc": "docker image build -f DockerfileTypeDoc -t docker-image-for-github-repo-typedoc:v1.0.0 .",
@@ -24,12 +22,8 @@
     "test": "vitest"
   },
   "lint-staged": {
-    "src/**/*.ts": [
-      "npm run lint"
-    ],
-    "__test__/**/*.ts": [
-      "npm run lint"
-    ]
+    "src/**/*.ts": ["npm run lint"],
+    "__test__/**/*.ts": ["npm run lint"]
   },
   "keywords": [],
   "author": "tom",

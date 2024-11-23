@@ -1,14 +1,14 @@
+import { GitHubRepo } from "@/GitHubRepo";
 import {
+  type MockInstance,
   afterEach,
   beforeEach,
   describe,
-  it,
   expect,
+  it,
   vi,
-  type MockInstance,
 } from "vitest";
 import { owner, repo, token } from "./constants";
-import { GitHubRepo } from "@/GitHubRepo";
 import { regardAsHasOctokit } from "./util";
 
 describe("GitHugRepo", () => {

@@ -1,13 +1,13 @@
-import { Octokit } from "@octokit/rest";
 import { PageLooper } from "@/PageLooper";
 import type {
-  Repository,
-  ListIssuesForRepoParams,
   Issue,
+  IssueComment,
+  ListIssuesForRepoParams,
   ListPullsParams,
   PullRequest,
-  IssueComment,
+  Repository,
 } from "@/types";
+import { Octokit } from "@octokit/rest";
 
 export class GitHubRepo {
   protected owner: string;
