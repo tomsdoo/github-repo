@@ -4,6 +4,7 @@ COPY package.json /usr/local/app/
 COPY package-lock.json /usr/local/app/
 COPY typedoc.json /usr/local/app/
 COPY tsconfig.json /usr/local/app/
+COPY ./src /usr/local/app/src
 WORKDIR /usr/local/app
 
 RUN npm install -g npm@latest
@@ -14,4 +15,6 @@ RUN npm install -D -E typescript@5.6.3
 RUN npm install -E typedoc
 RUN mkdir -p docs/typedocs
 
-CMD ["echo" "npm run make:typedoc"]
+RUN npx typedoc
+
+CMD ["sleep", "5m"]

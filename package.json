@@ -15,9 +15,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "build-image:typedoc": "docker image build -f DockerfileTypeDoc -t docker-image-for-github-repo-typedoc:v1.0.0 .",
-    "build:typedoc": "docker run --rm -it --mount type=bind,src=${PWD}/src,dst=/usr/local/app/src docker-image-for-github-repo-typedoc:v1.0.0 sh",
-    "make:typedoc": "typedoc",
+    "make:typedoc": "tsx buildTypedoc",
     "lint": "biome check",
     "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs/",
