@@ -6,7 +6,6 @@ See [github-repo-package.netlify.app](https://github-repo-package.netlify.app/) 
 ![npm](https://img.shields.io/npm/v/%40tomsd%2Fgithub-repo?style=for-the-badge&logo=npm)
 ![NPM](https://img.shields.io/npm/l/%40tomsd%2Fgithub-repo?style=for-the-badge&logo=npm)
 ![release date](https://img.shields.io/github/release-date/tomsdoo/github-repo?style=for-the-badge&logo=npm)
-![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@tomsd/github-repo?style=for-the-badge&logo=npm)
 
 ![ci](https://img.shields.io/github/actions/workflow/status/tomsdoo/github-repo/ci.yml?style=social&logo=github)
 ![checks](https://img.shields.io/github/check-runs/tomsdoo/github-repo/main?style=social&logo=github)
