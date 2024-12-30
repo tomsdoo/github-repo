@@ -8,8 +8,8 @@ import {
   it,
   vi,
 } from "vitest";
-import { owner, repo, token } from "./constants";
-import { regardAsHasOctokit } from "./util";
+import { owner, repo, token } from "../fixtures/constants";
+import { regardAsHasOctokit } from "../fixtures/util";
 
 describe("GitHugRepo", () => {
   let githubRepo: GitHubRepo;

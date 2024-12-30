@@ -8,7 +8,7 @@ import {
   it,
   vi,
 } from "vitest";
-import { owner, repo, token } from "./constants";
+import { owner, repo, token } from "../fixtures/constants";
 
 describe("GitHubRepo", () => {
   afterEach(() => {
