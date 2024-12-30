@@ -5,12 +5,11 @@ See [github-repo-package.netlify.app](https://github-repo-package.netlify.app/) 
 
 ![npm](https://img.shields.io/npm/v/%40tomsd%2Fgithub-repo?style=for-the-badge&logo=npm)
 ![NPM](https://img.shields.io/npm/l/%40tomsd%2Fgithub-repo?style=for-the-badge&logo=npm)
-![release date](https://img.shields.io/github/release-date/tomsdoo/github-repo?style=for-the-badge&logo=npm)
 
 ![ci](https://img.shields.io/github/actions/workflow/status/tomsdoo/github-repo/ci.yml?style=social&logo=github)
 ![checks](https://img.shields.io/github/check-runs/tomsdoo/github-repo/main?style=social&logo=github)
 ![top language](https://img.shields.io/github/languages/top/tomsdoo/github-repo?style=social&logo=typescript)
-![Maintenance](https://img.shields.io/maintenance/yes/2024?style=social&logo=github)
+![Maintenance](https://img.shields.io/maintenance/yes/2025?style=social&logo=github)
 ![depends on node greater or equal 18](https://img.shields.io/badge/node.js-%3E%3D%2018-lightyellow?style=social&logo=nodedotjs)
 
 
