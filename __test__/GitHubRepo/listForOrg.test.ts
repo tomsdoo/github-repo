@@ -1,10 +1,10 @@
 import { GitHubRepo } from "@/GitHubRepo";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { token } from "./constants";
+import { token } from "../fixtures/constants";
 
 const { spy: spyListForOrg, dummyItems: dummyRepos } = await vi.hoisted(
   async () => {
-    const { generateSpy } = await import("./util");
+    const { generateSpy } = await import("../fixtures/util");
     return generateSpy();
   },
 );

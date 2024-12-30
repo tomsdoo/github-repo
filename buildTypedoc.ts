@@ -19,6 +19,7 @@ await execute(
 );
 
 let exited = false;
+// biome-ignore lint: using void
 void execute(
   `docker run --rm --name ${CONTAINER_NAME} ${REPOSITORY_NAME}:${TAG_NAME}`,
 ).catch((e) => {

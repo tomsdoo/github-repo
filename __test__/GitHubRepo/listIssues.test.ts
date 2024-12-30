@@ -1,9 +1,9 @@
 import { GitHubRepo } from "@/GitHubRepo";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { owner, repo, token } from "./constants";
+import { owner, repo, token } from "../fixtures/constants";
 
 const { spy: spyList, dummyItems: dummyIssues } = await vi.hoisted(async () => {
-  const { generateSpy } = await import("./util");
+  const { generateSpy } = await import("../fixtures/util");
   return generateSpy();
 });
 
