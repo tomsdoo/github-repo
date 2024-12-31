@@ -17,6 +17,7 @@
 |[listIssues()](./GitHubRepo.listIssues.md)|list issues|
 |[listIssueComments()](./GitHubRepo.listIssueComments.md)|list issue comments|
 |[listReviewComments()](./GitHubRepo.listReviewComments.md)|list review comments|
+|[listDeployments()](./GitHubRepo.listDeployments.md)|list deployments|
 
 ***
 
@@ -37,6 +38,7 @@ class GitHubRepo {
   +listIssues(params) Promise~Issue[]~
   +listIssueComments(issueNumber: number) Promise~IssueComment[]~
   +listReviewComments(pullNumber: number) Promise~ReviewComment[]~
+  +listDeployments() Promise~Deployment[]~
   +listForOrg(token: string, org: string) Promise~Repo[]~$
 }
 

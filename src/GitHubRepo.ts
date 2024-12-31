@@ -1,5 +1,6 @@
 import { PageLooper } from "@/PageLooper";
 import type {
+  Deployment,
   Issue,
   IssueComment,
   ListIssuesForRepoParams,
@@ -204,6 +205,18 @@ export class GitHubRepo {
           owner: this.owner,
           repo: this.repo,
           pull_number,
+          per_page,
+          page,
+        }),
+    );
+  }
+
+  public async listDeployments(): Promise<Deployment[]> {
+    return await new PageLooper(100).doLoop<Deployment>(
+      async ({ per_page, page }) =>
+        await this.octokit.rest.repos.listDeployments({
+          owner: this.owner,
+          repo: this.repo,
           per_page,
           page,
         }),
