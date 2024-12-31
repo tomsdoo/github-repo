@@ -48,3 +48,10 @@ export type ReviewComment =
   >
     ? T
     : never;
+
+export type Deployment =
+  RestEndpointMethodTypes["repos"]["listDeployments"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;
