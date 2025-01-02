@@ -21,20 +21,43 @@ npm install @tomsd/github-repo
 
 ## usage
 
-#### import `GitHubRepo` class.
+#### import `GitHub` class.
 
 ``` typescript
-import { GitHubRepo } froom "@tomsd/github-repo";
+import { GitHub } froom "@tomsd/github-repo";
 ```
 
 #### create an instance
 
 ``` typescript
-const repo = new GitHubRepo(
-  GITHUB_TOKEN,
-  OWNER,
-  REPO
-);
+const github = new GitHub(GITHUB_TOKEN);
+```
+
+### get repo instance
+
+``` typescript
+const repo = github.organization(OWNER).repo(REPO);
+```
+
+### instance chainings
+
+``` ts
+const issue = github
+  .organization(ORG)
+  .repo(REPO)
+  .issue(issueNumber);
+
+const pull = repo
+  .pull(pullNumber);
+```
+
+### fetching data
+
+``` ts
+// call ensureData() of each instance
+await repo.ensureData();
+await issue.ensureData();
+await pull.ensureData();
 ```
 
 #### get branches
@@ -57,7 +80,7 @@ await repo.getBranchSha("main");
 #### get branch tree
 
 ``` typescript
-await repo getBranchTree("main");
+await repo.getBranchTree("main");
 ```
 
 #### get file content
@@ -75,11 +98,13 @@ await repo.createTag("my-tag", "main");
 #### list pull requests
 
 ``` typescript
-await repo.listPulls({ base: "main" });
+const pulls = await repo.listPulls({ base: "main" });
+await Promise.all(pulls.values().map(pull => pull.ensureData()));
 ```
 
 #### list issues
 
 ``` typescript
-await repo.listIssues({ state: "all" });
+const issues = await repo.listIssues({ state: "all" });
+await Promise.all(issues.values().map(issue => issue.ensureData()));
 ```

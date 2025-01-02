@@ -8,29 +8,34 @@ export function regardAsHasOctokit(value: unknown): { octokit: Octokit } {
 export function generateSpy(): {
   spy: MockInstance;
   dummyItems: Array<{ name: string }>;
+  spyOne: MockInstance;
+  dummyItem: { name: string };
 } {
   const dummyItems = Array.from({ length: 101 }, (_, i) => ({
+    id: i,
+    number: i,
     name: `${i}`,
+    login: `${i}`,
+    slug: `${i}`,
   }));
+  const dummyItem = {
+    name: "dummyItem",
+  };
   return {
     spy: vi.fn().mockImplementation(async ({ per_page, page }) => {
       switch (page) {
         case 1:
           return {
-            data: Array.from({ length: per_page }, (_, i) => ({
-              name: `${i}`,
-            })),
+            data: dummyItems.slice((page - 1) * per_page, page * per_page),
           };
         default:
           return {
-            data: [
-              {
-                name: `${(page - 1) * per_page}`,
-              },
-            ],
+            data: dummyItems.slice(-1),
           };
       }
     }),
     dummyItems,
+    spyOne: vi.fn().mockResolvedValue({ data: dummyItem }),
+    dummyItem,
   };
 }

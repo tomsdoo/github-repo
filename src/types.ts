@@ -55,3 +55,17 @@ export type Deployment =
   >
     ? T
     : never;
+
+export type Organization =
+  RestEndpointMethodTypes["orgs"]["list"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;
+
+export type Team =
+  RestEndpointMethodTypes["teams"]["list"]["response"]["data"] extends Array<
+    infer T
+  >
+    ? T
+    : never;

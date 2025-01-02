@@ -1,19 +1,15 @@
-# GitHubTeam class
-
-## methods
-
-|name|description|
-|:--|:--|
-|[listForOrg()](./GitHubTeam.listForOrg.md)|list teams in organization|
-
-***
+# GitHubTeam
 
 ``` mermaid
 classDiagram
 
 class GitHubTeam {
-  +listForOrg(token: string, org: string) Promise~Team[]~$
+  +list(token: string, org: string) Promise~Map~string#44;GitHubTeam~~$
 }
-```
 
-See <a href="https://github-repo-package.netlify.app/typedocs/" target="_blank">tyoedoc</a> also.
+GitHubData <|-- GitHubTeam
+click GitHubData href "/#/?path=/md/GitHubData.md"
+
+GitHubTeam -- GitHubOrg
+click GitHubOrg href "/#/?path=/md/GitHubOrg.md"
+```

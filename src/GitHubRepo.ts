@@ -1,24 +1,30 @@
+import { GitHubData } from "@/GitHubData";
+import { GitHubIssue } from "@/GitHubIssue";
+import { GitHubPull } from "@/GitHubPull";
 import { PageLooper } from "@/PageLooper";
 import type {
   Deployment,
-  Issue,
-  IssueComment,
   ListIssuesForRepoParams,
   ListPullsParams,
-  PullRequest,
   Repository,
-  ReviewComment,
 } from "@/types";
 import { Octokit } from "@octokit/rest";
 
-export class GitHubRepo {
+export class GitHubRepo extends GitHubData<Repository> {
   protected owner: string;
   protected repo: string;
-  protected octokit: Octokit;
   constructor(token: string, owner: string, repo: string) {
+    super(token);
     this.owner = owner;
     this.repo = repo;
-    this.octokit = new Octokit({ auth: token });
+  }
+
+  protected async fetchData() {
+    const { data } = await this.octokit.rest.repos.get({
+      owner: this.owner,
+      repo: this.repo,
+    });
+    return data as Repository;
   }
 
   protected getRefName(branch: string): string {
@@ -155,60 +161,20 @@ export class GitHubRepo {
     return await this.getTree(branchSha);
   }
 
-  public async listPulls(params: ListPullsParams): Promise<PullRequest[]> {
-    return await new PageLooper(100).doLoop(
-      async ({ per_page, page }) =>
-        await this.octokit.rest.pulls.list({
-          ...params,
-          owner: this.owner,
-          repo: this.repo,
-          per_page,
-          page,
-        }),
-    );
+  public pull(pullNumber: number) {
+    return new GitHubPull(this._token, this.owner, this.repo, pullNumber);
   }
 
-  public async listIssues(params: ListIssuesForRepoParams): Promise<Issue[]> {
-    return await new PageLooper(100).doLoop(
-      async ({ per_page, page }) =>
-        await this.octokit.rest.issues.listForRepo({
-          ...params,
-          owner: this.owner,
-          repo: this.repo,
-          per_page,
-          page,
-        }),
-    );
+  public issue(issueNumber: number) {
+    return new GitHubIssue(this._token, this.owner, this.repo, issueNumber);
   }
 
-  public async listIssueComments(
-    issue_number: number,
-  ): Promise<IssueComment[]> {
-    return await new PageLooper(100).doLoop(
-      async ({ per_page, page }) =>
-        await this.octokit.rest.issues.listComments({
-          owner: this.owner,
-          repo: this.repo,
-          issue_number,
-          per_page,
-          page,
-        }),
-    );
+  public async listPulls(params: ListPullsParams = {}) {
+    return GitHubPull.list(this._token, this.owner, this.repo, params);
   }
 
-  public async listReviewComments(
-    pull_number: number,
-  ): Promise<ReviewComment[]> {
-    return await new PageLooper(100).doLoop(
-      async ({ per_page, page }) =>
-        await this.octokit.rest.pulls.listReviewComments({
-          owner: this.owner,
-          repo: this.repo,
-          pull_number,
-          per_page,
-          page,
-        }),
-    );
+  public async listIssues(params: ListIssuesForRepoParams = {}) {
+    return await GitHubIssue.list(this._token, this.owner, this.repo, params);
   }
 
   public async listDeployments(): Promise<Deployment[]> {
@@ -223,18 +189,22 @@ export class GitHubRepo {
     );
   }
 
-  public static async listForOrg(
-    token: string,
-    org: string,
-  ): Promise<Repository[]> {
+  public static async listForOrg(token: string, org: string) {
     const octokit = new Octokit({ auth: token });
-    return await new PageLooper(100).doLoop<Repository>(
+    const resRepos = await new PageLooper(100).doLoop<Repository>(
       async ({ per_page, page }) =>
         await octokit.rest.repos.listForOrg({
           org,
           per_page,
           page,
         }),
+    );
+    return new Map(
+      resRepos.map((resRepo) => {
+        const repo = new GitHubRepo(token, org, resRepo.name);
+        repo.setData(resRepo);
+        return [resRepo.name, repo];
+      }),
     );
   }
 }

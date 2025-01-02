@@ -19,17 +19,4 @@ describe("GitHubRepo", () => {
     const instance = new GitHubRepo(token, owner, repo);
     expect(instance).toHaveProperty("repo", repo);
   });
-  it("instance has property named 'octokit'", () => {
-    const instance = new GitHubRepo(token, owner, repo);
-    expect(instance).toHaveProperty("octokit", {
-      name: "dummyInstance",
-    });
-  });
-  it("news Octokit", () => {
-    const instance = new GitHubRepo(token, owner, repo);
-    expect(instance instanceof GitHubRepo).toBe(true);
-    expect(Octokit).toHaveBeenCalledWith({
-      auth: token,
-    });
-  });
 });

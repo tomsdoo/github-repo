@@ -1,4 +1,4 @@
-# GitHubRepo class
+# GitHubRepo
 
 ## methods
 
@@ -34,12 +34,12 @@ class GitHubRepo {
   +getFileContent(path: string,branch?: string) Promise~any~
   +getRefSha(ref: string) Promise~string~
   +getTree(sha: string) Promise~TreeElement[]~
-  +listPulls(params) Promise~PullRequest[]~
-  +listIssues(params) Promise~Issue[]~
-  +listIssueComments(issueNumber: number) Promise~IssueComment[]~
-  +listReviewComments(pullNumber: number) Promise~ReviewComment[]~
+  +pull(pullNumber: number) GitHubPull
+  +issue(issueNumber: number) GitHubIssue
+  +listPulls(params) Promise~Map~number#44;GitHubPull~~
+  +listIssues(params) Promise~Map~number#44;GitHubIssue~~
   +listDeployments() Promise~Deployment[]~
-  +listForOrg(token: string, org: string) Promise~Repo[]~$
+  +listForOrg(token: string, org: string) Promise~Map~string#44;Repo~~$
 }
 
 class TreeElement {
@@ -53,6 +53,14 @@ class TreeElement {
 }
 
 GitHubRepo -- TreeElement
+GitHubData <|-- GitHubRepo
+click GitHubData href "/#/?path=/md/GitHubData.md"
+
+GitHubRepo -- GitHubPull
+click GitHubPull href "/#/?path=/md/GitHubPull.md"
+
+GitHubRepo -- GitHubIssue
+click GitHubIssue href "/#/?path=/md/GitHubIssue.md"
 ```
 
 See <a href="https://github-repo-package.netlify.app/typedocs/" target="_blank">tyoedoc</a> also.
