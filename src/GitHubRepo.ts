@@ -1,6 +1,8 @@
+import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubData } from "@/GitHubData";
 import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubPull } from "@/GitHubPull";
+import { GitHubTag } from "@/GitHubTag";
 import { PageLooper } from "@/PageLooper";
 import type {
   Deployment,
@@ -32,29 +34,21 @@ export class GitHubRepo extends GitHubData<Repository> {
   }
 
   public async getFileContent(path: string, branch?: string): Promise<any> {
-    return await this.octokit.rest.repos
-      .getContent({
-        owner: this.owner,
-        repo: this.repo,
-        path,
-        mediaType: {
-          format: "raw",
-        },
-        ...(branch ? { ref: this.getRefName(branch) } : {}),
-      })
-      .then(({ data }) => data);
+    const branchName =
+      branch ??
+      (await this.ensureData().then(({ default_branch }) => default_branch));
+    if (branchName == null) {
+      throw new Error("default branch is undefined");
+    }
+
+    return await this.branch(branchName).getFileContent(path);
   }
 
   public async getBranches(): Promise<string[]> {
-    return await this.octokit.rest.git
-      .listMatchingRefs({
-        owner: this.owner,
-        repo: this.repo,
-        ref: "heads/",
-      })
-      .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/heads\//, "")),
-      );
+    const branches = await this.listBranches().then((branches) =>
+      branches.values().toArray(),
+    );
+    return branches.map(({ refName }) => refName);
   }
 
   public async getTags(): Promise<string[]> {
@@ -147,18 +141,24 @@ export class GitHubRepo extends GitHubData<Repository> {
       .then(({ data: { tree } }) => tree);
   }
 
-  public async getBranchTree(branch: string): Promise<
-    Array<{
-      path?: string;
-      mode?: string;
-      type?: string;
-      sha?: string;
-      size?: number;
-      url?: string;
-    }>
-  > {
-    const branchSha = await this.getBranchSha(branch);
-    return await this.getTree(branchSha);
+  public async getBranchTree(branch: string) {
+    return await this.branch(branch).getTree();
+  }
+
+  public branch(name: string) {
+    return new GitHubBranch(this._token, this.owner, this.repo, name);
+  }
+
+  public tag(name: string) {
+    return new GitHubTag(this._token, this.owner, this.repo, name);
+  }
+
+  public async listBranches() {
+    return await GitHubBranch.list(this._token, this.owner, this.repo);
+  }
+
+  public async listTags() {
+    return await GitHubTag.list(this._token, this.owner, this.repo);
   }
 
   public pull(pullNumber: number) {

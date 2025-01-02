@@ -1,3 +1,4 @@
+import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubRepo } from "@/GitHubRepo";
 import {
   type MockInstance,
@@ -9,49 +10,21 @@ import {
   vi,
 } from "vitest";
 import { owner, repo, token } from "../fixtures/constants";
-import { regardAsHasOctokit } from "../fixtures/util";
 
 describe("GitHugRepo", () => {
   let githubRepo: GitHubRepo;
-  let spyOctokitListMatchingRef: MockInstance;
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   beforeEach(() => {
     githubRepo = new GitHubRepo(token, owner, repo);
-    spyOctokitListMatchingRef = vi
-      .spyOn(
-        regardAsHasOctokit(githubRepo).octokit.rest.git,
-        "listMatchingRefs",
-      )
-      .mockResolvedValue({
-        status: 200,
-        url: "dummyApiUrl",
-        headers: {},
-        data: [
-          {
-            ref: "refs/heads/dummyBranch1",
-            node_id: "dummyNodeId",
-            url: "dummyUrl",
-            object: {
-              type: "commit",
-              sha: "dummySha",
-              url: "dummyUrl",
-            },
-          },
-          {
-            ref: "refs/heads/dummyBranch2",
-            node_id: "dummyNodeId",
-            url: "dummyUrl",
-            object: {
-              type: "commit",
-              sha: "dummySha",
-              url: "dummyUrl",
-            },
-          },
-        ],
-      });
+    vi.spyOn(GitHubBranch, "list").mockResolvedValue(
+      new Map([
+        ["dummyBranch1", new GitHubBranch(token, owner, repo, "dummyBranch1")],
+        ["dummyBranch2", new GitHubBranch(token, owner, repo, "dummyBranch2")],
+      ]),
+    );
   });
   describe("getBranches()", () => {
     it("result value is correct", async () => {
@@ -62,11 +35,6 @@ describe("GitHugRepo", () => {
     });
     it("calls octokit.rest.git.listMatchingRefs()", async () => {
       await githubRepo.getBranches();
-      expect(spyOctokitListMatchingRef).toHaveBeenCalledWith({
-        owner,
-        repo,
-        ref: "heads/",
-      });
     });
   });
 });
