@@ -31,7 +31,10 @@ describe("GitHubRepo", () => {
   describe("listForOrg()", () => {
     it("resolves repos", async () => {
       const repos = await GitHubRepo.listForOrg(token, "dummyOrg");
-      expect(repos).toEqual(dummyRepos);
+      const data = await Promise.all(
+        repos.values().map((repo) => repo.ensureData()),
+      );
+      expect(data).toEqual(dummyRepos);
     });
 
     it("calls octokit.rest.repos.listForOrg()", async () => {

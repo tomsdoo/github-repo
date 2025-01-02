@@ -13,18 +13,35 @@ npm install @tomsd/github-repo
 #### import class
 
 ``` typescript
-import { GitHubRepo } from "@tomsd/github-repo";
+import { GitHub } froom "@tomsd/github-repo";
 ```
 
 
 #### create an instance
 
 ``` typescript
-const repo = new GitHubRepo(
-  GITHUB_TOKEN,
-  OWNER,
-  REPO
-);
+const github = new GitHub(GITHUB_TOKEN);
+```
+
+### get repo instance
+
+``` typescript
+const repo = github.organization(OWNER).repo(REPO);
+```
+
+### fetching data
+
+``` ts
+// call ensureData() of each instance
+await repo.ensureData();
+await issue.ensureData();
+await pull.ensureData();
+```
+
+### get repo instance
+
+``` typescript
+const repo = github.organization(OWNER).repo(REPO);
 ```
 
 #### get branches

@@ -1,52 +1,18 @@
+import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubRepo } from "@/GitHubRepo";
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { owner, repo, token } from "../fixtures/constants";
+import { describe, expect, it, vi } from "vitest";
 
-const { spy: spyList, dummyItems: dummyIssues } = await vi.hoisted(async () => {
-  const { generateSpy } = await import("../fixtures/util");
-  return generateSpy();
-});
-
-vi.mock("@octokit/rest", () => ({
-  Octokit: class Octokit {
-    auth: string;
-    constructor({ auth }: { auth: string }) {
-      this.auth = auth;
-    }
-    rest = {
-      issues: {
-        listForRepo: spyList,
-      },
-    };
-  },
-}));
+const { token, owner, repo } = await vi.hoisted(
+  async () => await import("../fixtures/constants"),
+);
 
 describe("GitHubRepo", () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe("listIssues()", () => {
-    it("resolves issues", async () => {
-      const issues = await new GitHubRepo(token, owner, repo).listIssues({
-        state: "all",
-      });
-      expect(issues).toEqual(dummyIssues);
-      expect(spyList).toHaveBeenCalledTimes(2);
-      expect(spyList).toHaveBeenNthCalledWith(1, {
-        owner,
-        repo,
-        per_page: 100,
-        page: 1,
-        state: "all",
-      });
-      expect(spyList).toHaveBeenNthCalledWith(2, {
-        owner,
-        repo,
-        per_page: 100,
-        page: 2,
-        state: "all",
-      });
+    it("resolves", async () => {
+      const dummyItems = [{ name: "dummy" }];
+      const githubRepo = new GitHubRepo(token, owner, repo);
+      vi.spyOn(GitHubIssue, "list").mockResolvedValue(dummyItems as any);
+      await expect(githubRepo.listIssues()).resolves.toEqual(dummyItems);
     });
   });
 });
