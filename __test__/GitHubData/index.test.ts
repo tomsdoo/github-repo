@@ -9,9 +9,9 @@ import {
   vi,
 } from "vitest";
 
-const { token } = vi.hoisted(() => ({
-  token: "dummyToken",
-}));
+const { token } = await vi.hoisted(
+  async () => await import("../fixtures/constants"),
+);
 
 describe("GitHubData", () => {
   type TestType = {

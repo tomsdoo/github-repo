@@ -2,11 +2,9 @@ import { GitHubRepo } from "@/GitHubRepo";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { token } from "../fixtures/constants";
 
-const { spy: spyListForOrg, dummyItems: dummyRepos } = await vi.hoisted(
-  async () => {
-    const { generateSpy } = await import("../fixtures/util");
-    return generateSpy();
-  },
+const { spy, dummyItems } = await vi.hoisted(
+  async () =>
+    await import("../fixtures/util").then(({ generateSpy }) => generateSpy()),
 );
 
 vi.mock("@octokit/rest", () => ({
@@ -17,7 +15,7 @@ vi.mock("@octokit/rest", () => ({
     }
     rest = {
       repos: {
-        listForOrg: spyListForOrg,
+        listForOrg: spy,
       },
     };
   },
@@ -34,18 +32,18 @@ describe("GitHubRepo", () => {
       const data = await Promise.all(
         repos.values().map((repo) => repo.ensureData()),
       );
-      expect(data).toEqual(dummyRepos);
+      expect(data).toEqual(dummyItems);
     });
 
     it("calls octokit.rest.repos.listForOrg()", async () => {
       await GitHubRepo.listForOrg(token, "dummyOrg");
-      expect(spyListForOrg).toHaveBeenCalledTimes(2);
-      expect(spyListForOrg).toHaveBeenNthCalledWith(1, {
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenNthCalledWith(1, {
         org: "dummyOrg",
         per_page: 100,
         page: 1,
       });
-      expect(spyListForOrg).toHaveBeenNthCalledWith(2, {
+      expect(spy).toHaveBeenNthCalledWith(2, {
         org: "dummyOrg",
         per_page: 100,
         page: 2,

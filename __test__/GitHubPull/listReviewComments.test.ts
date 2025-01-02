@@ -2,12 +2,13 @@ import { GitHubPull } from "@/GitHubPull";
 import { GitHubReviewComment } from "@/GitHubReviewComment";
 import { describe, expect, it, vi } from "vitest";
 
-const { token, owner, repo, dummyItems } = await vi.hoisted(() => ({
-  token: "dummyToken",
-  owner: "dummyOwner",
-  repo: "dummyRepo",
+const { dummyItems } = await vi.hoisted(() => ({
   dummyItems: [{ name: "dummyItem" }],
 }));
+
+const { token, owner, repo } = await vi.hoisted(
+  async () => await import("../fixtures/constants"),
+);
 
 describe("GitHubPull", () => {
   describe("listReviewComments()", () => {

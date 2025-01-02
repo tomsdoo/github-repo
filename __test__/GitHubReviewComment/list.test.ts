@@ -1,21 +1,14 @@
 import { GitHubReviewComment } from "@/GitHubReviewComment";
 import { describe, expect, it, vi } from "vitest";
 
-const {
-  token,
-  owner,
-  repo,
-  spy: spyList,
-  dummyItems,
-} = await vi.hoisted(async () => {
-  const { generateSpy } = await import("../fixtures/util");
-  return {
-    ...generateSpy(),
-    token: "dummyToken",
-    owner: "dummyOwner",
-    repo: "dummyRepo",
-  };
-});
+const { spy: spyList, dummyItems } = await vi.hoisted(
+  async () =>
+    await import("../fixtures/util").then(({ generateSpy }) => generateSpy()),
+);
+
+const { token, owner, repo } = await vi.hoisted(
+  async () => await import("../fixtures/constants"),
+);
 
 vi.mock("@octokit/rest", () => ({
   Octokit: class Octokit {

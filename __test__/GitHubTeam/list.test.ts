@@ -1,10 +1,10 @@
 import { GitHubTeam } from "@/GitHubTeam";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-const { spy: spyList, dummyItems } = await vi.hoisted(async () => {
-  const { generateSpy } = await import("../fixtures/util");
-  return generateSpy();
-});
+const { spy: spyList, dummyItems } = await vi.hoisted(
+  async () =>
+    await import("../fixtures/util").then(({ generateSpy }) => generateSpy()),
+);
 
 const { token } = await vi.hoisted(
   async () => await import("../fixtures/constants"),
