@@ -1,53 +1,18 @@
 import { GitHubRepo } from "@/GitHubRepo";
-import {
-  type MockInstance,
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { GitHubTag } from "@/GitHubTag";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { owner, repo, token } from "../fixtures/constants";
-import { regardAsHasOctokit } from "../fixtures/util";
 
 describe("GitHubRepo", () => {
   let githubRepo: GitHubRepo;
-  let spyOctokitRestGitListMatchingRefs: MockInstance;
   beforeEach(() => {
     githubRepo = new GitHubRepo(token, owner, repo);
-    spyOctokitRestGitListMatchingRefs = vi
-      .spyOn(
-        regardAsHasOctokit(githubRepo).octokit.rest.git,
-        "listMatchingRefs",
-      )
-      .mockResolvedValue({
-        status: 200,
-        url: "dummyCalledApiUrl",
-        headers: {},
-        data: [
-          {
-            ref: "refs/tags/dummyTag1",
-            node_id: "dummyNodeId",
-            url: "dummyRefUrl",
-            object: {
-              sha: "dummySha",
-              type: "tag",
-              url: "dummyApiUrl",
-            },
-          },
-          {
-            ref: "refs/tags/dummyTag2",
-            node_id: "dummyNodeId",
-            url: "dummyRefUrl",
-            object: {
-              sha: "dummySha",
-              type: "tag",
-              url: "dummyApiUrl",
-            },
-          },
-        ],
-      });
+    vi.spyOn(GitHubTag, "list").mockResolvedValue(
+      new Map([
+        ["dummyTag1", new GitHubTag(token, owner, repo, "dummyTag1")],
+        ["dummyTag2", new GitHubTag(token, owner, repo, "dummyTag2")],
+      ]),
+    );
   });
 
   afterEach(() => {
@@ -60,14 +25,6 @@ describe("GitHubRepo", () => {
         "dummyTag1",
         "dummyTag2",
       ]);
-    });
-    it("calls octokit.rest.git.listMatchingRefs()", async () => {
-      await githubRepo.getTags();
-      expect(spyOctokitRestGitListMatchingRefs).toHaveBeenCalledWith({
-        owner,
-        repo,
-        ref: "tags/",
-      });
     });
   });
 });

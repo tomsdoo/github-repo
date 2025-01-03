@@ -1,4 +1,5 @@
 import { GitHubRef, REF_TYPE } from "@/GitHubRef";
+import { Octokit } from "@octokit/rest";
 
 export class GitHubTag extends GitHubRef {
   constructor(token: string, owner: string, repo: string, refName: string) {
@@ -15,5 +16,37 @@ export class GitHubTag extends GitHubRef {
         return [refName, branch];
       }),
     );
+  }
+
+  public static async create(
+    token: string,
+    owner: string,
+    repo: string,
+    tag: string,
+    sha: string,
+  ) {
+    const octokit = new Octokit({ auth: token });
+    const {
+      data: {
+        tag: refName,
+        object: { sha: tagSha },
+      },
+    } = await octokit.rest.git.createTag({
+      owner,
+      repo,
+      tag,
+      message: "",
+      object: sha,
+      type: "commit",
+      "tagger.name": "",
+      "tagger.email": "",
+    });
+    await octokit.rest.git.createRef({
+      owner,
+      repo,
+      ref: `refs/tags/${refName}`,
+      sha: tagSha,
+    });
+    return new GitHubTag(token, owner, repo, refName);
   }
 }

@@ -5,6 +5,7 @@ import { Octokit } from "@octokit/rest";
 export enum REF_TYPE {
   HEAD = "head",
   TAG = "tag",
+  RAW = "raw",
 }
 
 export class GitHubRef extends GitHubData<GitRef> {
@@ -34,11 +35,14 @@ export class GitHubRef extends GitHubData<GitRef> {
     return {
       [REF_TYPE.HEAD]: "heads",
       [REF_TYPE.TAG]: "tags",
+      [REF_TYPE.RAW]: "",
     }[this._refType];
   }
 
   public get ref() {
-    return `${this.refTypeName}/${this._refName}`;
+    return [this.refTypeName, this._refName]
+      .filter((s) => s != null && s !== "")
+      .join("/");
   }
 
   protected async fetchData() {
@@ -87,6 +91,7 @@ export class GitHubRef extends GitHubData<GitRef> {
     const ref = {
       [REF_TYPE.HEAD]: "heads/",
       [REF_TYPE.TAG]: "tags/",
+      [REF_TYPE.RAW]: "",
     }[refType];
     const octokit = new Octokit({ auth: token });
     const { data } = await octokit.rest.git.listMatchingRefs({

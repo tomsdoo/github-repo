@@ -2,6 +2,7 @@ import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubData } from "@/GitHubData";
 import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubPull } from "@/GitHubPull";
+import { GitHubRawRef } from "@/GitHubRawRef";
 import { GitHubTag } from "@/GitHubTag";
 import { PageLooper } from "@/PageLooper";
 import type {
@@ -52,37 +53,20 @@ export class GitHubRepo extends GitHubData<Repository> {
   }
 
   public async getTags(): Promise<string[]> {
-    return await this.octokit.rest.git
-      .listMatchingRefs({
-        owner: this.owner,
-        repo: this.repo,
-        ref: "tags/",
-      })
-      .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/tags\//, "")),
-      );
+    const tags = await this.listTags().then((tags) => tags.values().toArray());
+    return tags.map(({ refName }) => refName);
   }
 
   public async createTag(name: string, branch: string): Promise<string> {
-    return await this.octokit.rest.git
-      .createTag({
-        owner: this.owner,
-        repo: this.repo,
-        tag: name,
-        message: "",
-        object: await this.getBranchSha(branch),
-        type: "commit",
-        "tagger.name": "",
-        "tagger.email": "",
-      })
-      .then(
-        async ({
-          data: {
-            tag,
-            object: { sha },
-          },
-        }) => await this.createRef(sha, tag, "tag"),
-      );
+    const githubTag = await GitHubTag.create(
+      this._token,
+      this.owner,
+      this.repo,
+      name,
+      await this.getBranchSha(branch),
+    );
+    const { ref } = await githubTag.ensureData();
+    return ref.replace(/^refs\/tags\//, "");
   }
 
   public async createRef(
@@ -105,20 +89,16 @@ export class GitHubRepo extends GitHubData<Repository> {
     return await this.getRefSha(`heads/${branch}`);
   }
 
-  public async getRefSha(ref: string): Promise<string> {
-    return await this.octokit.rest.git
-      .getRef({
-        owner: this.owner,
-        repo: this.repo,
-        ref,
-      })
-      .then(
-        ({
-          data: {
-            object: { sha },
-          },
-        }) => sha,
-      );
+  public async getRefSha(ref: string) {
+    const {
+      object: { sha },
+    } = await new GitHubRawRef(
+      this._token,
+      this.owner,
+      this.repo,
+      ref,
+    ).ensureData();
+    return sha;
   }
 
   public async getTree(sha: string): Promise<
