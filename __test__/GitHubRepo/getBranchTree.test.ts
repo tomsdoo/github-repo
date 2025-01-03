@@ -1,3 +1,4 @@
+import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubRepo } from "@/GitHubRepo";
 import {
   type MockInstance,
@@ -23,13 +24,8 @@ describe("GitHubRepo", () => {
     url?: string;
   }>;
   let githubRepo: GitHubRepo;
-  let spyGetBranchSha: MockInstance;
-  let spyGetTree: MockInstance;
   beforeEach(() => {
     githubRepo = new GitHubRepo(token, owner, repo);
-    spyGetBranchSha = vi
-      .spyOn(GitHubRepo.prototype, "getBranchSha")
-      .mockResolvedValue("dummySha");
     mockedTree = [
       {
         path: "dummyPath1",
@@ -38,25 +34,13 @@ describe("GitHubRepo", () => {
         path: "dummyPath2",
       },
     ];
-    spyGetTree = vi
-      .spyOn(GitHubRepo.prototype, "getTree")
-      .mockResolvedValue(mockedTree);
+    vi.spyOn(GitHubBranch.prototype, "getTree").mockResolvedValue(mockedTree);
   });
   describe("getBranchTree()", () => {
     it("resolved value is correct", async () => {
       await expect(
         githubRepo.getBranchTree("dummyBranch"),
       ).resolves.toStrictEqual(mockedTree);
-    });
-
-    it("calls getBranchSha()", async () => {
-      await githubRepo.getBranchTree("dummyBranch");
-      expect(spyGetBranchSha).toHaveBeenCalledWith("dummyBranch");
-    });
-
-    it("calls getTree()", async () => {
-      await githubRepo.getBranchTree("dummyBranch");
-      expect(spyGetTree).toHaveBeenCalledWith("dummySha");
     });
   });
 });
