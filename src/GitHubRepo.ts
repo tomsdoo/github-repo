@@ -3,6 +3,7 @@ import { GitHubData } from "@/GitHubData";
 import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubPull } from "@/GitHubPull";
 import { GitHubRawRef } from "@/GitHubRawRef";
+import { GitHubRef } from "@/GitHubRef";
 import { GitHubTag } from "@/GitHubTag";
 import { PageLooper } from "@/PageLooper";
 import type {
@@ -75,14 +76,14 @@ export class GitHubRepo extends GitHubData<Repository> {
     refType: "head" | "tag",
   ): Promise<string> {
     const ref = `refs/${{ head: "heads", tag: "tags" }[refType]}/${refName}`;
-    return await this.octokit.rest.git
-      .createRef({
-        owner: this.owner,
-        repo: this.repo,
-        ref,
-        sha,
-      })
-      .then(({ data: { ref } }) => ref.replace(/^refs\/(tags|heads)\//, ""));
+    const { ref: resRef } = await GitHubRef.createRef(
+      this._token,
+      this.owner,
+      this.repo,
+      ref,
+      sha,
+    );
+    return resRef.replace(/^refs\/(tags|heads)\//, "");
   }
 
   public async getBranchSha(branch: string): Promise<string> {

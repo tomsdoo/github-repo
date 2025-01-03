@@ -41,12 +41,7 @@ export class GitHubTag extends GitHubRef {
       "tagger.name": "",
       "tagger.email": "",
     });
-    await octokit.rest.git.createRef({
-      owner,
-      repo,
-      ref: `refs/tags/${refName}`,
-      sha: tagSha,
-    });
+    await super.createRef(token, owner, repo, `refs/tags/${refName}`, tagSha);
     return new GitHubTag(token, owner, repo, refName);
   }
 }

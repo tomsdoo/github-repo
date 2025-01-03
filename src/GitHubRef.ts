@@ -101,4 +101,21 @@ export class GitHubRef extends GitHubData<GitRef> {
     });
     return data;
   }
+
+  public static async createRef(
+    token: string,
+    owner: string,
+    repo: string,
+    ref: string,
+    sha: string,
+  ) {
+    const octokit = new Octokit({ auth: token });
+    const { data } = await octokit.rest.git.createRef({
+      owner,
+      repo,
+      ref,
+      sha,
+    });
+    return data;
+  }
 }
