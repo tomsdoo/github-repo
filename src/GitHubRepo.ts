@@ -1,6 +1,10 @@
+import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubData } from "@/GitHubData";
 import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubPull } from "@/GitHubPull";
+import { GitHubRawRef } from "@/GitHubRawRef";
+import { GitHubRef } from "@/GitHubRef";
+import { GitHubTag } from "@/GitHubTag";
 import { PageLooper } from "@/PageLooper";
 import type {
   Deployment,
@@ -32,63 +36,38 @@ export class GitHubRepo extends GitHubData<Repository> {
   }
 
   public async getFileContent(path: string, branch?: string): Promise<any> {
-    return await this.octokit.rest.repos
-      .getContent({
-        owner: this.owner,
-        repo: this.repo,
-        path,
-        mediaType: {
-          format: "raw",
-        },
-        ...(branch ? { ref: this.getRefName(branch) } : {}),
-      })
-      .then(({ data }) => data);
+    const branchName =
+      branch ??
+      (await this.ensureData().then(({ default_branch }) => default_branch));
+    if (branchName == null) {
+      throw new Error("default branch is undefined");
+    }
+
+    return await this.branch(branchName).getFileContent(path);
   }
 
   public async getBranches(): Promise<string[]> {
-    return await this.octokit.rest.git
-      .listMatchingRefs({
-        owner: this.owner,
-        repo: this.repo,
-        ref: "heads/",
-      })
-      .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/heads\//, "")),
-      );
+    const branches = await this.listBranches().then((branches) =>
+      branches.values().toArray(),
+    );
+    return branches.map(({ refName }) => refName);
   }
 
   public async getTags(): Promise<string[]> {
-    return await this.octokit.rest.git
-      .listMatchingRefs({
-        owner: this.owner,
-        repo: this.repo,
-        ref: "tags/",
-      })
-      .then(({ data }) =>
-        data.map(({ ref }) => ref.replace(/^refs\/tags\//, "")),
-      );
+    const tags = await this.listTags().then((tags) => tags.values().toArray());
+    return tags.map(({ refName }) => refName);
   }
 
   public async createTag(name: string, branch: string): Promise<string> {
-    return await this.octokit.rest.git
-      .createTag({
-        owner: this.owner,
-        repo: this.repo,
-        tag: name,
-        message: "",
-        object: await this.getBranchSha(branch),
-        type: "commit",
-        "tagger.name": "",
-        "tagger.email": "",
-      })
-      .then(
-        async ({
-          data: {
-            tag,
-            object: { sha },
-          },
-        }) => await this.createRef(sha, tag, "tag"),
-      );
+    const githubTag = await GitHubTag.create(
+      this._token,
+      this.owner,
+      this.repo,
+      name,
+      await this.getBranchSha(branch),
+    );
+    const { ref } = await githubTag.ensureData();
+    return ref.replace(/^refs\/tags\//, "");
   }
 
   public async createRef(
@@ -97,34 +76,30 @@ export class GitHubRepo extends GitHubData<Repository> {
     refType: "head" | "tag",
   ): Promise<string> {
     const ref = `refs/${{ head: "heads", tag: "tags" }[refType]}/${refName}`;
-    return await this.octokit.rest.git
-      .createRef({
-        owner: this.owner,
-        repo: this.repo,
-        ref,
-        sha,
-      })
-      .then(({ data: { ref } }) => ref.replace(/^refs\/(tags|heads)\//, ""));
+    const { ref: resRef } = await GitHubRef.createRef(
+      this._token,
+      this.owner,
+      this.repo,
+      ref,
+      sha,
+    );
+    return resRef.replace(/^refs\/(tags|heads)\//, "");
   }
 
   public async getBranchSha(branch: string): Promise<string> {
     return await this.getRefSha(`heads/${branch}`);
   }
 
-  public async getRefSha(ref: string): Promise<string> {
-    return await this.octokit.rest.git
-      .getRef({
-        owner: this.owner,
-        repo: this.repo,
-        ref,
-      })
-      .then(
-        ({
-          data: {
-            object: { sha },
-          },
-        }) => sha,
-      );
+  public async getRefSha(ref: string) {
+    const {
+      object: { sha },
+    } = await new GitHubRawRef(
+      this._token,
+      this.owner,
+      this.repo,
+      ref,
+    ).ensureData();
+    return sha;
   }
 
   public async getTree(sha: string): Promise<
@@ -147,18 +122,24 @@ export class GitHubRepo extends GitHubData<Repository> {
       .then(({ data: { tree } }) => tree);
   }
 
-  public async getBranchTree(branch: string): Promise<
-    Array<{
-      path?: string;
-      mode?: string;
-      type?: string;
-      sha?: string;
-      size?: number;
-      url?: string;
-    }>
-  > {
-    const branchSha = await this.getBranchSha(branch);
-    return await this.getTree(branchSha);
+  public async getBranchTree(branch: string) {
+    return await this.branch(branch).getTree();
+  }
+
+  public branch(name: string) {
+    return new GitHubBranch(this._token, this.owner, this.repo, name);
+  }
+
+  public tag(name: string) {
+    return new GitHubTag(this._token, this.owner, this.repo, name);
+  }
+
+  public async listBranches() {
+    return await GitHubBranch.list(this._token, this.owner, this.repo);
+  }
+
+  public async listTags() {
+    return await GitHubTag.list(this._token, this.owner, this.repo);
   }
 
   public pull(pullNumber: number) {
@@ -202,6 +183,24 @@ export class GitHubRepo extends GitHubData<Repository> {
     return new Map(
       resRepos.map((resRepo) => {
         const repo = new GitHubRepo(token, org, resRepo.name);
+        repo.setData(resRepo);
+        return [resRepo.name, repo];
+      }),
+    );
+  }
+
+  public static async listForAuthenticatedUser(token: string) {
+    const octokit = new Octokit({ auth: token });
+    const resRepos = await new PageLooper(100).doLoop<Repository>(
+      async ({ per_page, page }) =>
+        (await octokit.rest.repos.listForAuthenticatedUser({
+          per_page,
+          page,
+        })) as { data: Repository[] },
+    );
+    return new Map(
+      resRepos.map((resRepo) => {
+        const repo = new GitHubRepo(token, resRepo.owner.login, resRepo.name);
         repo.setData(resRepo);
         return [resRepo.name, repo];
       }),

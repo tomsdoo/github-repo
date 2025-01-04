@@ -69,3 +69,15 @@ export type Team =
   >
     ? T
     : never;
+
+export type GitRef =
+  RestEndpointMethodTypes["git"]["getRef"]["response"]["data"] extends infer T
+    ? T
+    : never;
+
+export type GitTree =
+  RestEndpointMethodTypes["git"]["getTree"]["response"]["data"] extends {
+    tree: infer T;
+  }
+    ? T
+    : never;

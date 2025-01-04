@@ -17,6 +17,9 @@ export function generateSpy(): {
     name: `${i}`,
     login: `${i}`,
     slug: `${i}`,
+    owner: {
+      login: `${i}`,
+    },
   }));
   const dummyItem = {
     name: "dummyItem",
