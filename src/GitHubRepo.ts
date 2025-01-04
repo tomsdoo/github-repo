@@ -188,4 +188,22 @@ export class GitHubRepo extends GitHubData<Repository> {
       }),
     );
   }
+
+  public static async listForAuthenticatedUser(token: string) {
+    const octokit = new Octokit({ auth: token });
+    const resRepos = await new PageLooper(100).doLoop<Repository>(
+      async ({ per_page, page }) =>
+        (await octokit.rest.repos.listForAuthenticatedUser({
+          per_page,
+          page,
+        })) as { data: Repository[] },
+    );
+    return new Map(
+      resRepos.map((resRepo) => {
+        const repo = new GitHubRepo(token, resRepo.owner.login, resRepo.name);
+        repo.setData(resRepo);
+        return [resRepo.name, repo];
+      }),
+    );
+  }
 }

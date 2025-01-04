@@ -1,4 +1,5 @@
 import { GitHubOrg } from "@/GitHubOrg";
+import { GitHubRepo } from "@/GitHubRepo";
 
 export class GitHub {
   protected _token: string;
@@ -12,5 +13,9 @@ export class GitHub {
 
   public async listOrganizations() {
     return await GitHubOrg.list(this._token);
+  }
+
+  public async listRepos() {
+    return await GitHubRepo.listForAuthenticatedUser(this._token);
   }
 }
