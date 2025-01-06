@@ -1,6 +1,7 @@
 import { GitHubData } from "@/GitHubData";
 import type { GitRef } from "@/types";
 import { Octokit } from "@octokit/rest";
+import { load as loadYaml } from "js-yaml";
 
 export enum REF_TYPE {
   HEAD = "head",
@@ -80,6 +81,15 @@ export class GitHubRef extends GitHubData<GitRef> {
       ref: this.ref,
     });
     return data;
+  }
+
+  public async getDependabotYaml() {
+    try {
+      const content = await this.getFileContent(".github/dependabot.yml");
+      return loadYaml(content as unknown as string);
+    } catch {
+      return null;
+    }
   }
 
   protected static async fetchRefs(
