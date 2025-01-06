@@ -11,6 +11,10 @@ export class GitHub {
     return new GitHubOrg(this._token, name);
   }
 
+  public repo(owner: string, repo: string) {
+    return new GitHubRepo(this._token, owner, repo);
+  }
+
   public async listOrganizations() {
     return await GitHubOrg.list(this._token);
   }
