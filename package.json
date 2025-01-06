@@ -1,6 +1,6 @@
 {
   "name": "@tomsd/github-repo",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "description": "Utility for GitHub repo",
   "exports": {
