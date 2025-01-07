@@ -4,6 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    reviewers:
+      - "tomsdoo"
     groups:
       dev-dependencies:
         applies-to: version-updates
