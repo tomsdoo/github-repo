@@ -1,0 +1,9 @@
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: DockerfileTypeDoc
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run build

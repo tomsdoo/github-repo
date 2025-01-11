@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "make:typedoc": "tsx buildTypedoc",
+    "make:typedoc": "sh buildTypedoc.sh",
     "lint": "biome check",
     "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs/",
