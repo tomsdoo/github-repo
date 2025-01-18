@@ -43,6 +43,31 @@ export class GitHubIssue extends GitHubData<Issue> {
     );
   }
 
+  public async listSubIssues() {
+    const resSubIssues = await new PageLooper(100).doLoop(
+      async ({ per_page, page }) =>
+        await this.octokit.rest.issues.listSubIssues({
+          owner: this.owner,
+          repo: this.repo,
+          issue_number: this.issueNumber,
+          per_page,
+          page,
+        }),
+    );
+    return new Map(
+      resSubIssues.map((resSubIssue) => {
+        const issue = new GitHubIssue(
+          this.token,
+          this.owner,
+          this.repo,
+          resSubIssue.number,
+        );
+        issue.setData(resSubIssue);
+        return [resSubIssue.number, issue];
+      }),
+    );
+  }
+
   public static async list(
     token: string,
     owner: string,

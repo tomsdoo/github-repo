@@ -5,6 +5,7 @@ classDiagram
 
 class GitHubIssue {
   +comment(commentId: string) GitHubIssueComment
+  +listSubIssues() Promise~Map~number#44;GitHubIssue~~
   +listComments() Promise~Map~number#44;GitHubIssueComment~~
   +list(token: string, owner: string, repo: string) Promise~Map~number#44;GitHubIssue~~$
 }
