@@ -1,4 +1,5 @@
 import { GitHubData } from "@/GitHubData";
+import { GitHubGraphOrgProject } from "@/GitHubGraphOrgProject";
 import { GitHubRepo } from "@/GitHubRepo";
 import { GitHubTeam } from "@/GitHubTeam";
 import { PageLooper } from "@/PageLooper";
@@ -37,6 +38,10 @@ export class GitHubOrg extends GitHubData<Organization> {
 
   public async listTeams() {
     return await GitHubTeam.list(this._token, this._name);
+  }
+
+  public async listProjects() {
+    return await GitHubGraphOrgProject.list(this._token, this._name);
   }
 
   public static async list(token: string) {
