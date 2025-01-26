@@ -2,7 +2,7 @@ import { GitHubGraph } from "@/GitHubGraph";
 import { GitHubGraphLooper } from "@/GitHubGraphLooper";
 import { GitHubGraphProject, type ProjectInfo } from "@/GitHubGraphProject";
 
-export class GitHubGraphOrgProject extends GitHubGraphProject {
+export class GitHubGraphUserProject extends GitHubGraphProject {
   protected _login: string;
   protected _projectNumber: number;
   protected _cache: ProjectInfo | null;
@@ -28,40 +28,40 @@ export class GitHubGraphOrgProject extends GitHubGraphProject {
 
   public async fetchData() {
     const {
-      organization: { projectV2 },
+      user: { projectV2 },
     } = await this._graphql<{
-      organization: {
+      user: {
         projectV2: ProjectInfo;
       };
     }>(
       `
       ${GitHubGraphProject.Fragments.projectInfo}
-      query fetchProject($org: String!, $projectNumber: Int!) {
-        organization(login: $org) {
+      query fetchOroject($login: String!, $projectNumber: Int!) {
+        user(login: $login) {
           projectV2(number: $projectNumber) {
             ...projectInfo
           }
         }
       }
-    `,
+      `,
       {
-        org: this._login,
+        login: this._login,
         projectNumber: this._projectNumber,
       },
     );
     return projectV2;
   }
 
-  public static async list(token: string, org: string) {
+  public static async list(token: string, login: string) {
     const graphql = GitHubGraph.generateGraphql(token);
     const projects = await new GitHubGraphLooper(100).doLoop(
       async (limit, cursor) => {
         const {
-          organization: {
+          user: {
             projectsV2: { pageInfo, nodes },
           },
         } = await graphql<{
-          organization: {
+          user: {
             projectsV2: {
               pageInfo: {
                 hasNextPage: boolean;
@@ -73,8 +73,8 @@ export class GitHubGraphOrgProject extends GitHubGraphProject {
         }>(
           `
         ${GitHubGraphProject.Fragments.projectInfo}
-        query listOrganizationProjects($org: String!, $limit: Int!, $cursor: String) {
-          organization(login: $org) {
+        query listUserProjects($login: String!, $limit: Int!, $cursor: String) {
+          user(login: $login) {
             projectsV2(first: $limit, after: $cursor) {
               pageInfo {
                 hasNextPage
@@ -88,7 +88,7 @@ export class GitHubGraphOrgProject extends GitHubGraphProject {
         }
         `,
           {
-            org,
+            login,
             limit,
             cursor,
           },
@@ -99,11 +99,12 @@ export class GitHubGraphOrgProject extends GitHubGraphProject {
         };
       },
     );
+
     return new Map(
       projects.map((projectInfo) => {
-        const project = new GitHubGraphOrgProject(
+        const project = new GitHubGraphUserProject(
           token,
-          org,
+          login,
           projectInfo.number,
         );
         project.setData(projectInfo);
