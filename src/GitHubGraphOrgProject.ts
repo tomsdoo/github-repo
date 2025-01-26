@@ -106,10 +106,16 @@ export class GitHubGraphOrgProject extends GitHubGraphProject {
       }
       cursor = endCursor;
     }
-    return darr.flat().map((projectInfo) => {
-      const project = new GitHubGraphOrgProject(token, org, projectInfo.number);
-      project.setData(projectInfo);
-      return project;
-    });
+    return new Map(
+      darr.flat().map((projectInfo) => {
+        const project = new GitHubGraphOrgProject(
+          token,
+          org,
+          projectInfo.number,
+        );
+        project.setData(projectInfo);
+        return [projectInfo.number, project];
+      }),
+    );
   }
 }
