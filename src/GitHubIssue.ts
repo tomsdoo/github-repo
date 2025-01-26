@@ -1,4 +1,5 @@
 import { GitHubData } from "@/GitHubData";
+import { GitHubGraphIssue } from "@/GitHubGraphIssue";
 import { GitHubIssueComment } from "@/GitHubIssueComment";
 import { PageLooper } from "@/PageLooper";
 import type { Issue, ListIssuesForRepoParams } from "@/types";
@@ -40,6 +41,25 @@ export class GitHubIssue extends GitHubData<Issue> {
       this.owner,
       this.repo,
       this.issueNumber,
+    );
+  }
+
+  public async parent() {
+    const parent = await new GitHubGraphIssue(
+      this._token,
+      this.owner,
+      this.repo,
+      this.issueNumber,
+    ).fetchParent();
+    if (parent == null) {
+      return null;
+    }
+
+    return new GitHubIssue(
+      this._token,
+      parent.repository.owner.login,
+      parent.repository.name,
+      parent.number,
     );
   }
 
