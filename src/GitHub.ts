@@ -1,3 +1,5 @@
+import { GitHubGraphUserProject } from "@/GitHubGraphUserProject";
+import { GitHubMe } from "@/GitHubMe";
 import { GitHubOrg } from "@/GitHubOrg";
 import { GitHubRepo } from "@/GitHubRepo";
 
@@ -21,5 +23,10 @@ export class GitHub {
 
   public async listRepos() {
     return await GitHubRepo.listForAuthenticatedUser(this._token);
+  }
+
+  public async listProjects() {
+    const me = await new GitHubMe(this._token).ensureData();
+    return await GitHubGraphUserProject.list(this._token, me.login);
   }
 }

@@ -1,4 +1,8 @@
+import type { paths } from "@octokit/openapi-types";
 import type { RestEndpointMethodTypes } from "@octokit/rest";
+
+export type MeUser =
+  paths["/user"]["get"]["responses"][200]["content"]["application/json"];
 
 export type Repository =
   RestEndpointMethodTypes["repos"]["listForOrg"]["response"]["data"] extends Array<
