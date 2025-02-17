@@ -47,9 +47,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tomsd/md-book": "1.3.5",
+    "@tomsd/md-book": "1.3.6",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.4",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "tsup": "8.3.6",
