@@ -10,7 +10,7 @@ See [github-repo-package.netlify.app](https://github-repo-package.netlify.app/) 
 ![checks](https://img.shields.io/github/check-runs/tomsdoo/github-repo/main?style=social&logo=github)
 ![top language](https://img.shields.io/github/languages/top/tomsdoo/github-repo?style=social&logo=typescript)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025?style=social&logo=github)
-![depends on node greater or equal 18](https://img.shields.io/badge/node.js-%3E%3D%2018-lightyellow?style=social&logo=nodedotjs)
+![depends on node greater or equal 20](https://img.shields.io/badge/node.js-%3E%3D%2020-lightyellow?style=social&logo=nodedotjs)
 
 
 ## installation
