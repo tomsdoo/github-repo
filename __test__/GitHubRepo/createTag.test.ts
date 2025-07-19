@@ -1,14 +1,14 @@
-import { GitHubRepo } from "@/GitHubRepo";
-import { GitHubTag } from "@/GitHubTag";
 import {
-  type MockInstance,
   afterEach,
   beforeEach,
   describe,
   expect,
   it,
+  type MockInstance,
   vi,
 } from "vitest";
+import { GitHubRepo } from "@/GitHubRepo";
+import { GitHubTag } from "@/GitHubTag";
 import { owner, repo, token } from "../fixtures/constants";
 
 describe("GitHubRepo", () => {

@@ -1,7 +1,7 @@
-import { GitHubData } from "@/GitHubData";
-import type { GitRef } from "@/types";
 import { Octokit } from "@octokit/rest";
 import { load as loadYaml } from "js-yaml";
+import { GitHubData } from "@/GitHubData";
+import type { GitRef } from "@/types";
 
 export enum REF_TYPE {
   HEAD = "head",

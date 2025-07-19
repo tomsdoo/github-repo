@@ -1,6 +1,6 @@
+import { Octokit } from "@octokit/rest";
 import { PageLooper } from "@/PageLooper";
 import type { Team } from "@/types";
-import { Octokit } from "@octokit/rest";
 import { GitHubData } from "./GitHubData";
 
 export class GitHubTeam extends GitHubData<Team> {

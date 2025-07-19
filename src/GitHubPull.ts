@@ -1,9 +1,9 @@
+import { Octokit } from "@octokit/rest";
 import { GitHubData } from "@/GitHubData";
 import { GitHubIssueComment } from "@/GitHubIssueComment";
 import { GitHubReviewComment } from "@/GitHubReviewComment";
 import { PageLooper } from "@/PageLooper";
 import type { ListPullsParams, PullRequest } from "@/types";
-import { Octokit } from "@octokit/rest";
 
 export class GitHubPull extends GitHubData<PullRequest> {
   protected owner: string;

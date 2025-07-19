@@ -1,6 +1,6 @@
-import { GitHubRepo } from "@/GitHubRepo";
 import { Octokit } from "@octokit/rest";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "../fixtures/constants";
 
 vi.mock("@octokit/rest", () => ({

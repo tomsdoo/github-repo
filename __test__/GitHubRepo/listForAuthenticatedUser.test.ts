@@ -1,5 +1,5 @@
-import { GitHubRepo } from "@/GitHubRepo";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { GitHubRepo } from "@/GitHubRepo";
 
 const { spy, dummyItems } = await vi.hoisted(
   async () =>

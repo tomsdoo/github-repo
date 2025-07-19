@@ -1,5 +1,5 @@
-import { GitHubReviewComment } from "@/GitHubReviewComment";
 import { describe, expect, it, vi } from "vitest";
+import { GitHubReviewComment } from "@/GitHubReviewComment";
 
 const { spy: spyList, dummyItems } = await vi.hoisted(
   async () =>

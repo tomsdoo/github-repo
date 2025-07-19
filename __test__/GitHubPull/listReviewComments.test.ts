@@ -1,6 +1,6 @@
+import { describe, expect, it, vi } from "vitest";
 import { GitHubPull } from "@/GitHubPull";
 import { GitHubReviewComment } from "@/GitHubReviewComment";
-import { describe, expect, it, vi } from "vitest";
 
 const { dummyItems } = await vi.hoisted(() => ({
   dummyItems: [{ name: "dummyItem" }],

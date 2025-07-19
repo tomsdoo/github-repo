@@ -1,5 +1,5 @@
-import { GitHubRef, REF_TYPE } from "@/GitHubRef";
 import { Octokit } from "@octokit/rest";
+import { GitHubRef, REF_TYPE } from "@/GitHubRef";
 
 export class GitHubTag extends GitHubRef {
   constructor(token: string, owner: string, repo: string, refName: string) {

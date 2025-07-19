@@ -1,7 +1,7 @@
+import { Octokit } from "@octokit/rest";
 import { GitHubData } from "@/GitHubData";
 import { PageLooper } from "@/PageLooper";
 import type { ReviewComment } from "@/types";
-import { Octokit } from "@octokit/rest";
 
 export class GitHubReviewComment extends GitHubData<ReviewComment> {
   protected owner: string;
