@@ -1,13 +1,13 @@
-import { GitHubData } from "@/GitHubData";
 import {
-  type MockInstance,
   afterEach,
   beforeEach,
   describe,
   expect,
   it,
+  type MockInstance,
   vi,
 } from "vitest";
+import { GitHubData } from "@/GitHubData";
 
 const { token } = await vi.hoisted(
   async () => await import("../fixtures/constants"),

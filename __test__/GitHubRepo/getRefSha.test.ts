@@ -1,14 +1,14 @@
-import { GitHubRawRef } from "@/GitHubRawRef";
-import { GitHubRepo } from "@/GitHubRepo";
 import {
-  type MockInstance,
   afterEach,
   beforeEach,
   describe,
   expect,
   it,
+  type MockInstance,
   vi,
 } from "vitest";
+import { GitHubRawRef } from "@/GitHubRawRef";
+import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "../fixtures/constants";
 
 describe("GitHugRepo", () => {

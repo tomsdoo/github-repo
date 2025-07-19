@@ -1,3 +1,4 @@
+import { Octokit } from "@octokit/rest";
 import { GitHubBranch } from "@/GitHubBranch";
 import { GitHubData } from "@/GitHubData";
 import { GitHubIssue } from "@/GitHubIssue";
@@ -12,7 +13,6 @@ import type {
   ListPullsParams,
   Repository,
 } from "@/types";
-import { Octokit } from "@octokit/rest";
 
 export class GitHubRepo extends GitHubData<Repository> {
   protected owner: string;

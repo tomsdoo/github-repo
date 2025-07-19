@@ -1,9 +1,9 @@
+import { Octokit } from "@octokit/rest";
 import { GitHubData } from "@/GitHubData";
 import { GitHubGraphIssue } from "@/GitHubGraphIssue";
 import { GitHubIssueComment } from "@/GitHubIssueComment";
 import { PageLooper } from "@/PageLooper";
 import type { Issue, ListIssuesForRepoParams } from "@/types";
-import { Octokit } from "@octokit/rest";
 
 export class GitHubIssue extends GitHubData<Issue> {
   protected owner: string;

@@ -1,6 +1,6 @@
-import { GitHubData } from "@/GitHubData";
 import { Octokit } from "@octokit/rest";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { GitHubData } from "@/GitHubData";
 
 const { token } = await vi.hoisted(
   async () => await import("../fixtures/constants"),

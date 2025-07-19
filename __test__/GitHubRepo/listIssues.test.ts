@@ -1,6 +1,6 @@
+import { describe, expect, it, vi } from "vitest";
 import { GitHubIssue } from "@/GitHubIssue";
 import { GitHubRepo } from "@/GitHubRepo";
-import { describe, expect, it, vi } from "vitest";
 
 const { token, owner, repo } = await vi.hoisted(
   async () => await import("../fixtures/constants"),

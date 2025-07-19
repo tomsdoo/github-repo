@@ -1,6 +1,6 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GitHubRepo } from "@/GitHubRepo";
 import { GitHubTag } from "@/GitHubTag";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { owner, repo, token } from "../fixtures/constants";
 
 describe("GitHubRepo", () => {

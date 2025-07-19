@@ -1,10 +1,10 @@
+import { Octokit } from "@octokit/rest";
 import { GitHubData } from "@/GitHubData";
 import { GitHubGraphOrgProject } from "@/GitHubGraphOrgProject";
 import { GitHubRepo } from "@/GitHubRepo";
 import { GitHubTeam } from "@/GitHubTeam";
 import { PageLooper } from "@/PageLooper";
 import type { Organization } from "@/types";
-import { Octokit } from "@octokit/rest";
 
 export class GitHubOrg extends GitHubData<Organization> {
   protected _name: string;

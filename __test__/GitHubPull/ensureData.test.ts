@@ -1,5 +1,5 @@
-import { GitHubPull } from "@/GitHubPull";
 import { describe, expect, it, vi } from "vitest";
+import { GitHubPull } from "@/GitHubPull";
 
 const { spyOne, dummyItem } = await vi.hoisted(
   async () =>

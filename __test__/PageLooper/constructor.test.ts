@@ -1,5 +1,5 @@
-import { PageLooper } from "@/PageLooper";
 import { describe, expect, it } from "vitest";
+import { PageLooper } from "@/PageLooper";
 
 function regardAsHasPerPage(v: unknown): { perPage: number } {
   return v as { perPage: number };

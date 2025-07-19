@@ -1,5 +1,5 @@
-import { GitHubIssueComment } from "@/GitHubIssueComment";
 import { describe, expect, it, vi } from "vitest";
+import { GitHubIssueComment } from "@/GitHubIssueComment";
 
 const { spy: spyList, dummyItems } = await vi.hoisted(
   async () =>
