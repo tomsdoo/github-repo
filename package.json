@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
-    "@tomsd/md-book": "2.0.2",
+    "@tomsd/md-book": "2.0.3",
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.3.0",
     "husky": "9.1.7",
