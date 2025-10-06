@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/tomsdoo/github-repo#readme",
   "dependencies": {
-    "@octokit/graphql": "9.0.1",
+    "@octokit/graphql": "9.0.2",
     "@octokit/rest": "22.0.0",
     "js-yaml": "4.1.0"
   },
