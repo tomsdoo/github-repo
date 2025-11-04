@@ -46,10 +46,10 @@
     "js-yaml": "4.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.1",
+    "@biomejs/biome": "2.3.2",
     "@tomsd/md-book": "2.0.5",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.9.1",
+    "@types/node": "24.10.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.6",
     "tsup": "8.5.0",
