@@ -4,7 +4,9 @@ import { GitHubRepo } from "@/GitHubRepo";
 import { owner, repo, token } from "../fixtures/constants";
 
 vi.mock("@octokit/rest", () => ({
-  Octokit: vi.fn(() => ({ name: "dummyInstance" })),
+  Octokit: vi.fn(function (this: { name: string }) {
+    this.name = "dummyInstance";
+  }),
 }));
 
 describe("GitHubRepo", () => {

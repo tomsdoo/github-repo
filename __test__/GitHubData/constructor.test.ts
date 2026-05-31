@@ -7,7 +7,9 @@ const { token } = await vi.hoisted(
 );
 
 vi.mock("@octokit/rest", () => ({
-  Octokit: vi.fn(() => ({ name: "dummyInstance" })),
+  Octokit: vi.fn(function (this: { name: string }) {
+    this.name = "dummyInstance";
+  }),
 }));
 
 describe("GitHubData", () => {
