@@ -6,15 +6,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "make:typedoc": "sh buildTypedoc.sh",
     "lint": "biome check",
     "prepare": "husky",
@@ -53,9 +52,9 @@
     "@types/node": "25.9.1",
     "husky": "9.1.7",
     "lint-staged": "17.0.6",
-    "tsup": "8.5.1",
+    "tsdown": "0.22.1",
     "tsx": "4.22.3",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "vitest": "4.1.7"
   }
 }
