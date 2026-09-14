@@ -45,13 +45,13 @@
     "js-yaml": "5.4.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.12",
+    "@biomejs/biome": "2.5.13",
     "@octokit/openapi-types": "29.0.1",
     "@tomsd/md-book": "2.1.0",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "26.4.1",
+    "@types/node": "26.5.1",
     "husky": "9.1.7",
-    "lint-staged": "17.4.1",
+    "lint-staged": "17.5.1",
     "tsdown": "0.23.0",
     "tsx": "4.23.13",
     "typescript": "7.0.2",
