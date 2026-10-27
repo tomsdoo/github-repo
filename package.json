@@ -45,7 +45,7 @@
     "js-yaml": "5.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.2",
     "@octokit/openapi-types": "29.0.1",
     "@tomsd/md-book": "2.1.0",
     "@types/js-yaml": "4.0.9",
